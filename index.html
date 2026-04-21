@@ -1886,6 +1886,221 @@
             }, 900);
         }
     </script>
+    <!-- ================= SUPABASE ================= -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        /* ================= CONFIG ================= */
+        const supabase = window.supabase.createClient(
+            "https://jobfhtcnwnmpdyryptpy.supabase.co",
+            "sb_publishable_BWDnlqjX5G-T8LxVOVzcHg_QlTEqAfc"
+        );
+
+        /* ================= UI HELPERS ================= */
+        function closeMob() {
+            document.getElementById("mob").classList.remove("open");
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.add("open");
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove("open");
+        }
+
+        function openBuyerModal(type = null, city = null) {
+            openModal("buyerModal");
+
+            if (type) document.getElementById("b-type").value = type;
+            if (city) document.getElementById("b-city").value = city;
+        }
+
+        function prefillSearch(val) {
+            document.getElementById("searchInput").value = val;
+        }
+
+        /* ================= CREATE RESULT UI (AUTO) ================= */
+        function createResultsSection() {
+            if (document.getElementById("resultsSection")) return;
+
+            const section = document.createElement("section");
+            section.id = "resultsSection";
+            section.style.padding = "60px 5%";
+            section.style.display = "none";
+
+            section.innerHTML = `
+    <h2 style="text-align:center;margin-bottom:30px;">Top Realtors</h2>
+    <div id="results" style="max-width:900px;margin:auto;display:grid;gap:20px;"></div>
+  `;
+
+            document.body.appendChild(section);
+        }
+
+        createResultsSection();
+
+        /* ================= SEARCH ================= */
+        async function handleSearch() {
+            const query = document.getElementById("searchInput").value.trim();
+            const city = document.getElementById("cityInput").value.trim();
+
+            if (!city) {
+                alert("Please enter a city");
+                return;
+            }
+
+            try {
+                /* Save search log */
+                await supabase.from("search_logs").insert([{
+                    search_query: query,
+                    city
+                }]);
+
+                /* Fetch realtors */
+                const {
+                    data,
+                    error
+                } = await supabase
+                    .from("realtors")
+                    .select("*")
+                    .ilike("city", `%${city}%`)
+                    .order("score", {
+                        ascending: false
+                    })
+                    .limit(3);
+
+                if (error) throw error;
+
+                renderResults(data);
+
+            } catch (err) {
+                console.error(err);
+                alert("Search failed. Check console.");
+            }
+        }
+
+        /* ================= RENDER ================= */
+        function renderResults(data) {
+            const section = document.getElementById("resultsSection");
+            const container = document.getElementById("results");
+
+            section.style.display = "block";
+            container.innerHTML = "";
+
+            if (!data || data.length === 0) {
+                container.innerHTML = "<p style='text-align:center'>No realtors found</p>";
+                return;
+            }
+
+            data.forEach(r => {
+                const card = document.createElement("div");
+                card.style = "background:#fff;padding:20px;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.1)";
+
+                card.innerHTML = `
+      <h3 style="margin-bottom:8px">${r.name}</h3>
+      <p><b>Agency:</b> ${r.agency || "-"}</p>
+      <p><b>City:</b> ${r.city}</p>
+      <p><b>Specialty:</b> ${r.specialty || "-"}</p>
+      <p><b>Experience:</b> ${r.experience || "-"}</p>
+    `;
+
+                container.appendChild(card);
+            });
+
+            section.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
+        /* ================= AGENT FORM ================= */
+        async function submitAgent(e) {
+            e.preventDefault();
+
+            const data = {
+                name: document.getElementById("a-name").value,
+                email: document.getElementById("a-email").value,
+                phone: document.getElementById("a-phone").value,
+                agency: document.getElementById("a-agency").value,
+                city: document.getElementById("a-city").value,
+                experience: document.getElementById("a-exp").value,
+                specialty: document.getElementById("a-spec").value,
+                bio: document.getElementById("a-bio").value,
+                score: Math.floor(Math.random() * 100)
+            };
+
+            try {
+                const {
+                    error
+                } = await supabase.from("realtors").insert([data]);
+                if (error) throw error;
+
+                document.getElementById("agentFormWrap").style.display = "none";
+                document.getElementById("agentSuccess").style.display = "block";
+
+            } catch (err) {
+                console.error(err);
+                alert("Error submitting agent");
+            }
+        }
+
+        /* ================= BUYER FORM ================= */
+        async function submitBuyer(e) {
+            e.preventDefault();
+
+            const data = {
+                name: document.getElementById("b-name").value,
+                email: document.getElementById("b-email").value,
+                phone: document.getElementById("b-phone").value,
+                city: document.getElementById("b-city").value,
+                type: document.getElementById("b-type").value,
+                budget: document.getElementById("b-budget").value,
+                message: document.getElementById("b-msg").value
+            };
+
+            try {
+                const {
+                    error
+                } = await supabase.from("buyers").insert([data]);
+                if (error) throw error;
+
+                document.getElementById("buyerFormWrap").style.display = "none";
+                document.getElementById("buyerSuccess").style.display = "block";
+
+            } catch (err) {
+                console.error(err);
+                alert("Error submitting buyer");
+            }
+        }
+
+        /* ================= CONTACT FORM ================= */
+        async function submitContact(e) {
+            e.preventDefault();
+
+            const data = {
+                name: document.getElementById("c-name").value,
+                email: document.getElementById("c-email").value,
+                phone: document.getElementById("c-phone").value,
+                city: document.getElementById("c-city").value,
+                type: document.getElementById("c-type").value,
+                budget: document.getElementById("c-budget").value,
+                message: document.getElementById("c-msg").value
+            };
+
+            try {
+                const {
+                    error
+                } = await supabase.from("buyers").insert([data]);
+                if (error) throw error;
+
+                document.getElementById("contactFormWrap").style.display = "none";
+                document.getElementById("contactSuccess").style.display = "block";
+
+            } catch (err) {
+                console.error(err);
+                alert("Error submitting contact");
+            }
+        }
+    </script>
 </body>
 
 </html>
