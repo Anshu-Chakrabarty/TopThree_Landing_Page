@@ -40,7 +40,6 @@
             color: var(--ink);
             overflow-x: hidden
         }
-        /* NAV */
         
         nav {
             position: fixed;
@@ -187,7 +186,6 @@
             border: none;
             color: var(--or)
         }
-        /* HERO */
         
         .hero {
             position: relative;
@@ -294,7 +292,6 @@
             margin-bottom: 32px;
             text-shadow: 0 1px 12px rgba(0, 0, 0, .45)
         }
-        /* SEARCH */
         
         .search-box {
             background: #fff;
@@ -427,7 +424,6 @@
             border-color: rgba(255, 107, 53, .38);
             color: #FFD166
         }
-        /* TRUST STRIP */
         
         .strip {
             background: #fff;
@@ -466,7 +462,6 @@
             font-weight: 700;
             color: var(--or)
         }
-        /* SECTIONS */
         
         .sec-lbl {
             font-size: 11px;
@@ -499,7 +494,6 @@
             line-height: 1.7;
             margin-bottom: 36px
         }
-        /* SPECIALTIES */
         
         .specs {
             padding: 70px 5%;
@@ -593,7 +587,6 @@
             font-size: 11px;
             color: rgba(255, 255, 255, .45)
         }
-        /* CITIES */
         
         .cities {
             padding: 70px 5%;
@@ -696,7 +689,6 @@
             color: rgba(255, 255, 255, .58);
             font-weight: 600
         }
-        /* WHY US */
         
         .why {
             padding: 70px 5%;
@@ -746,7 +738,6 @@
             color: var(--mink);
             line-height: 1.65
         }
-        /* CTA BAND */
         
         .cta-band {
             padding: 72px 5%;
@@ -826,7 +817,6 @@
             width: 16px;
             height: 16px
         }
-        /* FORMS */
         
         .contact {
             padding: 70px 5%;
@@ -949,7 +939,77 @@
             text-align: center;
             margin-top: 10px
         }
-        /* MODAL */
+        /* ── PROPERTY TYPE SELECTOR ── */
+        
+        .prop-type-wrap {
+            margin-bottom: 14px
+        }
+        
+        .prop-type-lbl {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--mink);
+            letter-spacing: .3px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 5px
+        }
+        
+        .prop-type-lbl .req {
+            color: var(--or);
+            font-size: 14px;
+            line-height: 1
+        }
+        
+        .prop-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px
+        }
+        
+        .prop-btn {
+            background: #fff;
+            border: 1.5px solid #E2E0F0;
+            border-radius: 10px;
+            padding: 10px 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--mink);
+            cursor: pointer;
+            transition: all .18s;
+            text-align: left;
+            line-height: 1.35;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+        
+        .prop-btn:hover {
+            border-color: var(--or);
+            color: var(--or);
+            background: rgba(255, 107, 53, .04)
+        }
+        
+        .prop-btn.selected {
+            border-color: var(--or);
+            background: rgba(255, 107, 53, .09);
+            color: var(--ord);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, .12)
+        }
+        
+        .prop-btn.err {
+            border-color: #ef4444 !important;
+            background: rgba(239, 68, 68, .05) !important
+        }
+        
+        @media(max-width:520px) {
+            .prop-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
         
         .modal-overlay {
             position: fixed;
@@ -1048,7 +1108,6 @@
         .modal .form-submit {
             margin-top: 8px
         }
-        /* FOOTER */
         
         footer {
             background: #0A090F;
@@ -1131,7 +1190,6 @@
         .ft-legal a:hover {
             color: rgba(255, 255, 255, .65)
         }
-        /* SUCCESS STATE */
         
         .form-success {
             display: none;
@@ -1169,7 +1227,6 @@
             color: var(--mink);
             line-height: 1.6
         }
-        /* SEARCH RESULTS */
         
         .results-sec {
             padding: 70px 5%;
@@ -1271,7 +1328,6 @@
         .result-cta:hover {
             transform: translateY(-2px)
         }
-        /* RESPONSIVE */
         
         @media(max-width:900px) {
             .bento {
@@ -1370,7 +1426,7 @@
 
 <body>
 
-    <!-- ══ AGENT MODAL ══ -->
+    <!-- AGENT MODAL -->
     <div class="modal-overlay" id="agentModal">
         <div class="modal">
             <button class="modal-close" onclick="closeModal('agentModal')" aria-label="Close">✕</button>
@@ -1390,29 +1446,16 @@
                     <div class="form-row">
                         <div class="form-group"><label for="a-city">Primary Market / City</label><input id="a-city" type="text" placeholder="New York, NY" /></div>
                         <div class="form-group"><label for="a-exp">Years of Experience</label>
-                            <select id="a-exp">
-              <option value="" disabled selected>Select</option>
-              <option>Less than 2 years</option><option>2–5 years</option>
-              <option>5–10 years</option><option>10–20 years</option><option>20+ years</option>
-            </select>
+                            <select id="a-exp"><option value="" disabled selected>Select</option><option>Less than 2 years</option><option>2–5 years</option><option>5–10 years</option><option>10–20 years</option><option>20+ years</option></select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group full"><label for="a-spec">Primary Specialty</label>
-                            <select id="a-spec">
-              <option value="" disabled selected>Primary specialty</option>
-              <option>Buyer's Agent</option><option>Seller's Agent / Listing</option>
-              <option>Luxury Real Estate</option><option>Investment Properties</option>
-              <option>First-Time Buyers</option><option>Condos &amp; Apartments</option>
-              <option>Commercial Real Estate</option><option>Relocation</option>
-            </select>
+                            <select id="a-spec"><option value="" disabled selected>Primary specialty</option><option>Buyer's Agent</option><option>Seller's Agent / Listing</option><option>Luxury Real Estate</option><option>Investment Properties</option><option>First-Time Buyers</option><option>Condos &amp; Apartments</option><option>Commercial Real Estate</option><option>Relocation</option></select>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group full">
-                            <label for="a-bio">Brief Bio <span style="color:var(--hint);font-weight:400;text-transform:none">(optional)</span></label>
-                            <textarea id="a-bio" placeholder="Tell us about your track record, notable sales, and what makes you stand out…"></textarea>
-                        </div>
+                        <div class="form-group full"><label for="a-bio">Brief Bio <span style="color:var(--hint);font-weight:400;text-transform:none">(optional)</span></label><textarea id="a-bio" placeholder="Tell us about your track record, notable sales, and what makes you stand out…"></textarea></div>
                     </div>
                     <button class="form-submit" onclick="submitAgent(event)">Submit Application →</button>
                     <p class="form-note">🔒 We review every application personally. No automated decisions.</p>
@@ -1421,12 +1464,12 @@
             <div class="form-success" id="agentSuccess">
                 <div class="form-success-ico"><svg viewBox="0 0 28 28" fill="none"><path d="M5 14l6 6L23 8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                 <h3>Application Received!</h3>
-                <p>Thanks for applying. Our team will review your profile and get back to you within 48 hours. Keep an eye on your inbox.</p>
+                <p>Thanks for applying. Our team will review your profile and get back to you within 48 hours.</p>
             </div>
         </div>
     </div>
 
-    <!-- ══ BUYER MODAL ══ -->
+    <!-- BUYER MODAL -->
     <div class="modal-overlay" id="buyerModal">
         <div class="modal">
             <button class="modal-close" onclick="closeModal('buyerModal')" aria-label="Close">✕</button>
@@ -1445,26 +1488,29 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group"><label for="b-type">I'm looking to…</label>
-                            <select id="b-type">
-              <option value="" disabled selected>Select one</option>
-              <option>Buy a Home</option><option>Sell a Home</option>
-              <option>Buy a Luxury Property</option><option>Find an Investment Property</option>
-              <option>Buy a Condo / Apartment</option><option>Rent / Lease</option><option>Other</option>
-            </select>
+                            <select id="b-type"><option value="" disabled selected>Select one</option><option>Buy a Home</option><option>Sell a Home</option><option>Buy a Luxury Property</option><option>Find an Investment Property</option><option>Buy a Condo / Apartment</option><option>Rent / Lease</option><option>Other</option></select>
                         </div>
                         <div class="form-group"><label for="b-budget">Budget Range</label>
-                            <select id="b-budget">
-              <option value="" disabled selected>Select range</option>
-              <option>Under $250,000</option><option>$250,000 – $500,000</option>
-              <option>$500,000 – $1,000,000</option><option>$1M – $2M</option><option>$2M+</option>
-            </select>
+                            <select id="b-budget"><option value="" disabled selected>Select range</option><option>Under $250,000</option><option>$250,000 – $500,000</option><option>$500,000 – $1,000,000</option><option>$1M – $2M</option><option>$2M+</option></select>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group full">
-                            <label for="b-msg">Anything else? <span style="color:var(--hint);font-weight:400;text-transform:none">(optional)</span></label>
-                            <textarea id="b-msg" placeholder="Timeline, must-haves, neighbourhood preference…"></textarea>
+
+                    <!-- ══ PROPERTY TYPE — buyer modal ══ -->
+                    <div class="prop-type-wrap">
+                        <div class="prop-type-lbl">Property Type <span class="req">*</span></div>
+                        <div class="prop-grid" id="b-prop-grid">
+                            <button type="button" class="prop-btn" onclick="selectProp('b','Single Family')">🏠 Single Family</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('b','Condo / Townhouse')">🏢 Condo / Townhouse</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('b','Multi-Family')">🏘️ Multi-Family</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('b','Mobile Home')">🚐 Mobile Home</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('b','Commercial')">🏬 Commercial</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('b','Plot / Land')">🌱 Plot / Land</button>
                         </div>
+                        <input type="hidden" id="b-prop-type" />
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full"><label for="b-msg">Anything else? <span style="color:var(--hint);font-weight:400;text-transform:none">(optional)</span></label><textarea id="b-msg" placeholder="Timeline, must-haves, neighbourhood preference…"></textarea></div>
                     </div>
                     <button class="form-submit" onclick="submitBuyer(event)">Find My Top 3 Realtors →</button>
                     <p class="form-note">🔒 Your info is private and never shared without your consent.</p>
@@ -1481,8 +1527,7 @@
     <!-- NAV -->
     <nav id="nav">
         <a href="#" class="logo">
-            <div class="lm"><svg viewBox="0 0 22 22" fill="none"><path d="M11 2 13.5 8H20L14.8 11.9 16.8 18 11 14.2 5.2 18 7.2 11.9 2 8H8.5Z" fill="white"/></svg></div>
-            <span class="lt">Top<span>Three</span></span>
+            <div class="lm"><svg viewBox="0 0 22 22" fill="none"><path d="M11 2 13.5 8H20L14.8 11.9 16.8 18 11 14.2 5.2 18 7.2 11.9 2 8H8.5Z" fill="white"/></svg></div><span class="lt">Top<span>Three</span></span>
         </a>
         <ul class="nav-links">
             <li><a href="#specs">Specialties</a></li>
@@ -1542,10 +1587,10 @@
         </div>
     </div>
 
-    <!-- SEARCH RESULTS (injected here, inside page flow) -->
+    <!-- SEARCH RESULTS -->
     <section class="results-sec" id="resultsSection">
         <div class="results-sec-in">
-            <p class="sec-lbl" id="resultsLabel">Search Results</p>
+            <p class="sec-lbl">Search Results</p>
             <h2 class="sec-h" id="resultsTitle">Top Realtors</h2>
             <p class="sec-sub" id="resultsSub"></p>
             <div class="results-grid" id="resultsGrid"></div>
@@ -1559,36 +1604,12 @@
             <h2 class="sec-h">Whatever your property goal,<br><em>we have your expert</em></h2>
             <p class="sec-sub">Every specialty covered. Every realtor manually vetted.</p>
             <div class="spec-grid">
-                <button class="spec-card" onclick="openBuyerModal('Buy a Home')">
-        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&q=82&fit=crop" alt="Buy a Home">
-        <div class="spec-card-grad"></div>
-        <div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M1 7.5l7-6 7 6V15H1V7.5z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/><rect x="5.5" y="9.5" width="5" height="5.5" rx="1" stroke="white" stroke-width="1.2"/></svg></div><div class="spec-name">Buy a Home</div><div class="spec-cnt">4,200+ realtors</div></div>
-      </button>
-                <button class="spec-card" onclick="openBuyerModal('Sell a Home')">
-        <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&q=82&fit=crop" alt="Sell a Home">
-        <div class="spec-card-grad"></div>
-        <div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M2 13l4-4 3 3 5-7" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="spec-name">Sell a Home</div><div class="spec-cnt">3,800+ realtors</div></div>
-      </button>
-                <button class="spec-card" onclick="openBuyerModal('Buy a Luxury Property')">
-        <img src="https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=400&q=82&fit=crop" alt="Luxury Homes">
-        <div class="spec-card-grad"></div>
-        <div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1.5l1.4 4H14l-3.5 2.5 1.3 4L8 10 4.2 12l1.3-4L2 5.5h4.6z" stroke="white" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="spec-name">Luxury Homes</div><div class="spec-cnt">1,600+ realtors</div></div>
-      </button>
-                <button class="spec-card" onclick="openBuyerModal('Buy a Condo / Apartment')">
-        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=82&fit=crop" alt="Condos">
-        <div class="spec-card-grad"></div>
-        <div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="3" y="1" width="10" height="14" rx="2" stroke="white" stroke-width="1.3"/><rect x="5" y="4" width="2" height="2" rx=".4" fill="white" opacity=".8"/><rect x="9" y="4" width="2" height="2" rx=".4" fill="white" opacity=".8"/><rect x="5" y="8" width="2" height="2" rx=".4" fill="white" opacity=".8"/><rect x="9" y="8" width="2" height="2" rx=".4" fill="white" opacity=".8"/></svg></div><div class="spec-name">Condos &amp; Apts</div><div class="spec-cnt">2,900+ realtors</div></div>
-      </button>
-                <button class="spec-card" onclick="openBuyerModal('Buy a Home')">
-        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=82&fit=crop" alt="First-Time Buyers">
-        <div class="spec-card-grad"></div>
-        <div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M8 14s-5.5-3.7-5.5-7A5.5 5.5 0 0113.5 7c0 3.3-5.5 7-5.5 7z" stroke="white" stroke-width="1.3"/><circle cx="8" cy="6.5" r="1.8" stroke="white" stroke-width="1.2"/></svg></div><div class="spec-name">First-Time Buyers</div><div class="spec-cnt">3,200+ realtors</div></div>
-      </button>
-                <button class="spec-card" onclick="openBuyerModal('Find an Investment Property')">
-        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=82&fit=crop" alt="Investment">
-        <div class="spec-card-grad"></div>
-        <div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="1.5" y="8" width="3" height="7" rx="1" stroke="white" stroke-width="1.3"/><rect x="6.5" y="5" width="3" height="10" rx="1" stroke="white" stroke-width="1.3"/><rect x="11.5" y="2" width="3" height="13" rx="1" stroke="white" stroke-width="1.3"/></svg></div><div class="spec-name">Investment Property</div><div class="spec-cnt">2,100+ realtors</div></div>
-      </button>
+                <button class="spec-card" onclick="openBuyerModal('Buy a Home')"><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&q=82&fit=crop" alt="Buy a Home"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M1 7.5l7-6 7 6V15H1V7.5z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/><rect x="5.5" y="9.5" width="5" height="5.5" rx="1" stroke="white" stroke-width="1.2"/></svg></div><div class="spec-name">Buy a Home</div><div class="spec-cnt">4,200+ realtors</div></div></button>
+                <button class="spec-card" onclick="openBuyerModal('Sell a Home')"><img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&q=82&fit=crop" alt="Sell a Home"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M2 13l4-4 3 3 5-7" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="spec-name">Sell a Home</div><div class="spec-cnt">3,800+ realtors</div></div></button>
+                <button class="spec-card" onclick="openBuyerModal('Buy a Luxury Property')"><img src="https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=400&q=82&fit=crop" alt="Luxury"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1.5l1.4 4H14l-3.5 2.5 1.3 4L8 10 4.2 12l1.3-4L2 5.5h4.6z" stroke="white" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="spec-name">Luxury Homes</div><div class="spec-cnt">1,600+ realtors</div></div></button>
+                <button class="spec-card" onclick="openBuyerModal('Buy a Condo / Apartment')"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=82&fit=crop" alt="Condos"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="3" y="1" width="10" height="14" rx="2" stroke="white" stroke-width="1.3"/><rect x="5" y="4" width="2" height="2" rx=".4" fill="white" opacity=".8"/><rect x="9" y="4" width="2" height="2" rx=".4" fill="white" opacity=".8"/><rect x="5" y="8" width="2" height="2" rx=".4" fill="white" opacity=".8"/><rect x="9" y="8" width="2" height="2" rx=".4" fill="white" opacity=".8"/></svg></div><div class="spec-name">Condos &amp; Apts</div><div class="spec-cnt">2,900+ realtors</div></div></button>
+                <button class="spec-card" onclick="openBuyerModal('Buy a Home')"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=82&fit=crop" alt="First-Time"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M8 14s-5.5-3.7-5.5-7A5.5 5.5 0 0113.5 7c0 3.3-5.5 7-5.5 7z" stroke="white" stroke-width="1.3"/><circle cx="8" cy="6.5" r="1.8" stroke="white" stroke-width="1.2"/></svg></div><div class="spec-name">First-Time Buyers</div><div class="spec-cnt">3,200+ realtors</div></div></button>
+                <button class="spec-card" onclick="openBuyerModal('Find an Investment Property')"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=82&fit=crop" alt="Investment"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="1.5" y="8" width="3" height="7" rx="1" stroke="white" stroke-width="1.3"/><rect x="6.5" y="5" width="3" height="10" rx="1" stroke="white" stroke-width="1.3"/><rect x="11.5" y="2" width="3" height="13" rx="1" stroke="white" stroke-width="1.3"/></svg></div><div class="spec-name">Investment Property</div><div class="spec-cnt">2,100+ realtors</div></div></button>
             </div>
         </div>
     </section>
@@ -1600,36 +1621,12 @@
             <h2 class="sec-h">Top realtors in <em>300+ cities</em></h2>
             <p class="sec-sub">From major metros to growing suburbs — expanding every month.</p>
             <div class="bento">
-                <button class="city big" onclick="openBuyerModal(null,'New York')">
-        <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=900&q=82&fit=crop" alt="New York">
-        <div class="city-gd"></div>
-        <div class="city-info"><div class="city-pill">Most Active</div><div class="city-name">New York</div><div class="city-count">820+ realtors</div></div>
-      </button>
-                <button class="city" onclick="openBuyerModal(null,'Chicago')">
-        <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=82&fit=crop" alt="Chicago">
-        <div class="city-gd"></div>
-        <div class="city-info"><div class="city-name">Chicago</div><div class="city-count">560+ realtors</div></div>
-      </button>
-                <button class="city" onclick="openBuyerModal(null,'Los Angeles')">
-        <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=82&fit=crop" alt="Los Angeles">
-        <div class="city-gd"></div>
-        <div class="city-info"><div class="city-name">Los Angeles</div><div class="city-count">640+ realtors</div></div>
-      </button>
-                <button class="city" onclick="openBuyerModal(null,'Miami')">
-        <img src="https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=600&q=82&fit=crop" alt="Miami">
-        <div class="city-gd"></div>
-        <div class="city-info"><div class="city-name">Miami</div><div class="city-count">420+ realtors</div></div>
-      </button>
-                <button class="city" onclick="openBuyerModal(null,'Houston')">
-        <img src="https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=600&q=82&fit=crop" alt="Houston">
-        <div class="city-gd"></div>
-        <div class="city-info"><div class="city-name">Houston</div><div class="city-count">480+ realtors</div></div>
-      </button>
-                <button class="city" onclick="openBuyerModal(null,'San Francisco')">
-        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&q=82&fit=crop" alt="San Francisco">
-        <div class="city-gd"></div>
-        <div class="city-info"><div class="city-name">San Francisco</div><div class="city-count">380+ realtors</div></div>
-      </button>
+                <button class="city big" onclick="openBuyerModal(null,'New York')"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=900&q=82&fit=crop" alt="New York"><div class="city-gd"></div><div class="city-info"><div class="city-pill">Most Active</div><div class="city-name">New York</div><div class="city-count">820+ realtors</div></div></button>
+                <button class="city" onclick="openBuyerModal(null,'Chicago')"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=82&fit=crop" alt="Chicago"><div class="city-gd"></div><div class="city-info"><div class="city-name">Chicago</div><div class="city-count">560+ realtors</div></div></button>
+                <button class="city" onclick="openBuyerModal(null,'Los Angeles')"><img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=82&fit=crop" alt="Los Angeles"><div class="city-gd"></div><div class="city-info"><div class="city-name">Los Angeles</div><div class="city-count">640+ realtors</div></div></button>
+                <button class="city" onclick="openBuyerModal(null,'Miami')"><img src="https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=600&q=82&fit=crop" alt="Miami"><div class="city-gd"></div><div class="city-info"><div class="city-name">Miami</div><div class="city-count">420+ realtors</div></div></button>
+                <button class="city" onclick="openBuyerModal(null,'Houston')"><img src="https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=600&q=82&fit=crop" alt="Houston"><div class="city-gd"></div><div class="city-info"><div class="city-name">Houston</div><div class="city-count">480+ realtors</div></div></button>
+                <button class="city" onclick="openBuyerModal(null,'San Francisco')"><img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&q=82&fit=crop" alt="San Francisco"><div class="city-gd"></div><div class="city-info"><div class="city-name">San Francisco</div><div class="city-count">380+ realtors</div></div></button>
             </div>
         </div>
     </section>
@@ -1662,14 +1659,11 @@
             <p class="sec-lbl">For Real Estate Agents</p>
             <h2 class="sec-h" style="color:#fff">Get in front of serious<br><em>buyers &amp; sellers</em></h2>
             <p class="sec-sub">Join 12,000+ verified realtors on TopThree. Earn your spot by delivering results — no subscription required.</p>
-            <button class="cta-btn" onclick="openModal('agentModal')">
-      Apply to Be Listed
-      <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
+            <button class="cta-btn" onclick="openModal('agentModal')">Apply to Be Listed <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
     </section>
 
-    <!-- BUYER CONTACT FORM -->
+    <!-- CONTACT FORM -->
     <section class="contact" id="contact">
         <div class="contact-in">
             <p class="sec-lbl">Get in Touch</p>
@@ -1687,26 +1681,29 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group"><label for="c-type">I'm looking to…</label>
-                            <select id="c-type">
-              <option value="" disabled selected>Select one</option>
-              <option>Buy a Home</option><option>Sell a Home</option>
-              <option>Buy a Luxury Property</option><option>Find an Investment Property</option>
-              <option>Buy a Condo / Apartment</option><option>Rent / Lease</option><option>Other</option>
-            </select>
+                            <select id="c-type"><option value="" disabled selected>Select one</option><option>Buy a Home</option><option>Sell a Home</option><option>Buy a Luxury Property</option><option>Find an Investment Property</option><option>Buy a Condo / Apartment</option><option>Rent / Lease</option><option>Other</option></select>
                         </div>
                         <div class="form-group"><label for="c-budget">Budget Range</label>
-                            <select id="c-budget">
-              <option value="" disabled selected>Select range</option>
-              <option>Under $250,000</option><option>$250,000 – $500,000</option>
-              <option>$500,000 – $1,000,000</option><option>$1M – $2M</option><option>$2M+</option>
-            </select>
+                            <select id="c-budget"><option value="" disabled selected>Select range</option><option>Under $250,000</option><option>$250,000 – $500,000</option><option>$500,000 – $1,000,000</option><option>$1M – $2M</option><option>$2M+</option></select>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group full">
-                            <label for="c-msg">Anything else? <span style="color:var(--hint);font-weight:400;text-transform:none">(optional)</span></label>
-                            <textarea id="c-msg" placeholder="Timeline, must-haves, neighbourhood preference…"></textarea>
+
+                    <!-- ══ PROPERTY TYPE — contact section ══ -->
+                    <div class="prop-type-wrap">
+                        <div class="prop-type-lbl">Property Type <span class="req">*</span></div>
+                        <div class="prop-grid" id="c-prop-grid">
+                            <button type="button" class="prop-btn" onclick="selectProp('c','Single Family')">🏠 Single Family</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('c','Condo / Townhouse')">🏢 Condo / Townhouse</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('c','Multi-Family')">🏘️ Multi-Family</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('c','Mobile Home')">🚐 Mobile Home</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('c','Commercial')">🏬 Commercial</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('c','Plot / Land')">🌱 Plot / Land</button>
                         </div>
+                        <input type="hidden" id="c-prop-type" />
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full"><label for="c-msg">Anything else? <span style="color:var(--hint);font-weight:400;text-transform:none">(optional)</span></label><textarea id="c-msg" placeholder="Timeline, must-haves, neighbourhood preference…"></textarea></div>
                     </div>
                     <button class="form-submit" onclick="submitContact(event)">Find My Top 3 Realtors →</button>
                     <p class="form-note">🔒 Your information is private and never shared without your consent.</p>
@@ -1725,8 +1722,7 @@
         <div class="ft-in">
             <div class="ft-row">
                 <a href="#" class="logo ft-logo">
-                    <div class="lm"><svg viewBox="0 0 22 22" fill="none"><path d="M11 2 13.5 8H20L14.8 11.9 16.8 18 11 14.2 5.2 18 7.2 11.9 2 8H8.5Z" fill="white"/></svg></div>
-                    <span class="lt">Top<span>Three</span></span>
+                    <div class="lm"><svg viewBox="0 0 22 22" fill="none"><path d="M11 2 13.5 8H20L14.8 11.9 16.8 18 11 14.2 5.2 18 7.2 11.9 2 8H8.5Z" fill="white"/></svg></div><span class="lt">Top<span>Three</span></span>
                 </a>
                 <div class="ft-soc">
                     <a href="https://twitter.com" target="_blank" rel="noopener" class="fsoc" aria-label="Twitter"><svg viewBox="0 0 16 16" fill="rgba(255,255,255,.45)"><path d="M15 2a7.6 7.6 0 01-2.2.6A3.8 3.8 0 0014.7.3a7.7 7.7 0 01-2.4.9A3.8 3.8 0 008 4.8a10.8 10.8 0 01-7.8-4A3.8 3.8 0 001.4 6a3.8 3.8 0 01-1.7-.5v.1a3.8 3.8 0 003 3.7 3.8 3.8 0 01-1.7.1 3.8 3.8 0 003.6 2.6A7.7 7.7 0 010 13.5a10.8 10.8 0 005.9 1.7C13 15.2 16.7 9.7 16.7 4.9v-.5A7.7 7.7 0 0015 2z"/></svg></a>
@@ -1736,36 +1732,22 @@
             </div>
             <div class="ft-bot">
                 <span class="ft-copy">© 2025 TopThree. Not a licensed real estate brokerage.</span>
-                <div class="ft-legal">
-                    <a href="#contact">Contact Us</a>
-                    <a href="#why">About</a>
-                    <a href="#" onclick="openModal('agentModal');return false">For Agents</a>
-                </div>
+                <div class="ft-legal"><a href="#contact">Contact Us</a><a href="#why">About</a><a href="#" onclick="openModal('agentModal');return false">For Agents</a></div>
             </div>
         </div>
     </footer>
 
-    <!-- ════════════════════════════════════════════════
-     SUPABASE SDK  (loaded first — sb must exist
-     before any async function can call it)
-════════════════════════════════════════════════ -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <!-- ════════════════════════════════════════════════
-     SINGLE SCRIPT BLOCK — no duplicates
-     Tables:  realtors | buyers | search_logs
-════════════════════════════════════════════════ -->
     <script>
-        /* ── SUPABASE CLIENT ── */
+        /* ── SUPABASE ── */
         const sb = window.supabase.createClient(
             "https://jobfhtcnwnmpdyryptpy.supabase.co",
             "sb_publishable_BWDnlqjX5G-T8LxVOVzcHg_QlTEqAfc"
         );
 
-        /* ── NAV SHADOW ── */
+        /* ── NAV ── */
         window.addEventListener('scroll', () => {
-            document.getElementById('nav').style.boxShadow =
-                window.scrollY > 10 ? '0 2px 24px rgba(0,0,0,.08)' : 'none';
+            document.getElementById('nav').style.boxShadow = window.scrollY > 10 ? '0 2px 24px rgba(0,0,0,.08)' : 'none';
         });
 
         /* ── MOBILE MENU ── */
@@ -1773,39 +1755,61 @@
             document.getElementById('mob').classList.remove('open');
         }
 
-        /* ── MODAL: OPEN / CLOSE ── */
+        /* ── MODALS ── */
         function openModal(id) {
             document.getElementById(id).classList.add('open');
-            document.body.style.overflow = 'hidden'; // lock scroll
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal(id) {
             document.getElementById(id).classList.remove('open');
-            document.body.style.overflow = ''; // restore scroll
+            document.body.style.overflow = '';
         }
-        // Close on backdrop click
         document.querySelectorAll('.modal-overlay').forEach(ov => {
             ov.addEventListener('click', e => {
                 if (e.target === ov) closeModal(ov.id);
             });
         });
-        // Close on Escape key
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape')
-                document.querySelectorAll('.modal-overlay.open').forEach(ov => closeModal(ov.id));
+            if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(ov => closeModal(ov.id));
         });
 
-        /* ── BUYER MODAL: open with pre-fills, always reset state ── */
+        /* ── PROPERTY TYPE SELECTOR ──
+           prefix = 'b' (buyer modal) or 'c' (contact section) */
+        function selectProp(prefix, value) {
+            document.querySelectorAll('#' + prefix + '-prop-grid .prop-btn').forEach(btn => {
+                btn.classList.toggle('selected', btn.textContent.trim().includes(value.replace(' / ', '') || value));
+            });
+            // reliable toggle: match on full value
+            document.querySelectorAll('#' + prefix + '-prop-grid .prop-btn').forEach(btn => {
+                const t = btn.textContent.trim().replace(/^.\s/, ''); // strip emoji+space
+                btn.classList.toggle('selected', t === value || btn.textContent.includes(value));
+                btn.classList.remove('err');
+            });
+            document.getElementById(prefix + '-prop-type').value = value;
+        }
+
+        function validateProp(prefix) {
+            const val = document.getElementById(prefix + '-prop-type').value;
+            if (!val) {
+                document.querySelectorAll('#' + prefix + '-prop-grid .prop-btn').forEach(b => b.classList.add('err'));
+                showToast('Please select a property type');
+                return false;
+            }
+            return true;
+        }
+
+        /* ── BUYER MODAL ── */
         function openBuyerModal(type = null, city = null) {
-            // Reset to clean form every time
             document.getElementById('buyerFormWrap').style.display = '';
             document.getElementById('buyerSuccess').style.display = 'none';
             const btn = document.querySelector('#buyerFormWrap .form-submit');
             btn.textContent = 'Find My Top 3 Realtors →';
             btn.style.background = '';
             btn.disabled = false;
-
-            // Pre-fill type dropdown
+            // reset property type
+            document.getElementById('b-prop-type').value = '';
+            document.querySelectorAll('#b-prop-grid .prop-btn').forEach(b => b.classList.remove('selected', 'err'));
             const sel = document.getElementById('b-type');
             sel.value = '';
             if (type) {
@@ -1819,13 +1823,11 @@
             } else {
                 document.getElementById('buyerModalTitle').textContent = 'Find Your Top 3 Realtors';
             }
-
-            // Pre-fill city
             document.getElementById('b-city').value = city || '';
             openModal('buyerModal');
         }
 
-        /* ── SEARCH: log to DB then fetch top 3 ── */
+        /* ── SEARCH ── */
         function prefillSearch(term) {
             document.getElementById('searchInput').value = term;
             document.getElementById('searchInput').focus();
@@ -1834,7 +1836,6 @@
         async function handleSearch() {
             const query = document.getElementById('searchInput').value.trim();
             const city = document.getElementById('cityInput').value.trim();
-
             if (!city) {
                 const inp = document.getElementById('cityInput');
                 inp.focus();
@@ -1843,36 +1844,24 @@
                 showToast('Please enter a city to search');
                 return;
             }
-
             const btn = document.querySelector('.s-btn');
             btn.textContent = 'Searching…';
             btn.disabled = true;
-
             try {
-                // 1. Log the search → search_logs (search_query, city)
                 await sb.from('search_logs').insert([{
                     search_query: query || null,
                     city
                 }]);
-
-                // 2. Fetch top 3 realtors ordered by score desc → realtors
                 const {
                     data,
                     error
-                } = await sb
-                    .from('realtors')
-                    .select('id, name, email, agency, city, experience, specialty, score, is_verified')
-                    .ilike('city', `%${city}%`)
-                    .order('score', {
-                        ascending: false
-                    })
-                    .limit(3);
-
+                } = await sb.from('realtors').select('id,name,email,agency,city,experience,specialty,score,is_verified').ilike('city', `%${city}%`).order('score', {
+                    ascending: false
+                }).limit(3);
                 if (error) throw error;
                 renderResults(data, city);
-
             } catch (err) {
-                console.error('Search error:', err);
+                console.error(err);
                 showToast('Search failed — please try again');
             } finally {
                 btn.textContent = 'Search';
@@ -1880,230 +1869,59 @@
             }
         }
 
-        /* ── RENDER RESULTS (styled, inside page flow) ── */
         function renderResults(data, city) {
             const sec = document.getElementById('resultsSection');
             const grid = document.getElementById('resultsGrid');
-
             sec.style.display = 'block';
             grid.innerHTML = '';
-
-            const noResults = !data || data.length === 0;
-
-            document.getElementById('resultsTitle').innerHTML =
-                noResults ?
-                'No realtors found in ' + city :
-                'Top <em style="font-style:italic;color:var(--or)">3 Realtors</em> in ' + city;
-
-            document.getElementById('resultsSub').textContent =
-                noResults ?
-                'We don\'t have listings for this city yet — fill in the form below to get matched manually.' :
-                data.length + ' verified realtor' + (data.length > 1 ? 's' : '') +
-                ' found · ranked by performance score';
-
-            if (noResults) {
-                grid.innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:20px 0">
-        <button onclick="openBuyerModal(null,'${city}')"
-          style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#FF6B35,#D94F1A);
-                 color:#fff;padding:14px 32px;border-radius:12px;font-weight:700;font-size:15px;
-                 border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;
-                 box-shadow:0 4px 16px rgba(255,107,53,.28)">
-          Get Matched Manually →
-        </button>
-      </div>`;
+            const none = !data || data.length === 0;
+            document.getElementById('resultsTitle').innerHTML = none ? 'No realtors found in ' + city : 'Top <em style="font-style:italic;color:var(--or)">3 Realtors</em> in ' + city;
+            document.getElementById('resultsSub').textContent = none ? "We don't have listings for this city yet — fill in the form below to get matched manually." : data.length + ' verified realtor' + (data.length > 1 ? 's' : '') + ' found · ranked by performance score';
+            if (none) {
+                grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:20px 0"><button onclick="openBuyerModal(null,'${city}')" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#FF6B35,#D94F1A);color:#fff;padding:14px 32px;border-radius:12px;font-weight:700;font-size:15px;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 4px 16px rgba(255,107,53,.28)">Get Matched Manually →</button></div>`;
             } else {
                 const medals = ['🥇', '🥈', '🥉'];
                 data.forEach((r, i) => {
                             const card = document.createElement('div');
                             card.className = 'result-card';
-                            card.innerHTML = `
-        <div class="result-card-top">
-          <span class="result-medal">${medals[i] || ''}</span>
-          <span class="result-verified">${r.is_verified ? '✓ Verified' : 'Pending'}</span>
-        </div>
-        <div class="result-name">${r.name || '—'}</div>
-        <div class="result-agency">${r.agency || ''}</div>
-        <div class="result-meta">
-          ${r.specialty  ? `<span><b>Specialty:</b> ${r.specialty}</span>` : ''}
-          ${r.city       ? `<span><b>Market:</b> ${r.city}</span>` : ''}
-          ${r.experience ? `<span><b>Experience:</b> ${r.experience}</span>` : ''}
-        </div>
-        <button class="result-cta"
-          onclick="openBuyerModal(null,'${(r.city||city).replace(/'/g,"\\'")}')">
-          Contact This Agent →
-        </button>`;
-      grid.appendChild(card);
-    });
+                            card.innerHTML = `<div class="result-card-top"><span class="result-medal">${medals[i]||''}</span><span class="result-verified">${r.is_verified?'✓ Verified':'Pending'}</span></div><div class="result-name">${r.name||'—'}</div><div class="result-agency">${r.agency||''}</div><div class="result-meta">${r.specialty?`<span><b>Specialty:</b> ${r.specialty}</span>`:''}${r.city?`<span><b>Market:</b> ${r.city}</span>`:''}${r.experience?`<span><b>Experience:</b> ${r.experience}</span>`:''}</div><button class="result-cta" onclick="openBuyerModal(null,'${(r.city||city).replace(/'/g,"\\'")}')">Contact This Agent →</button>`; grid.appendChild(card); });
   }
-
-  sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  sec.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-/* ── TOAST NOTIFICATION ── */
-function showToast(msg){
-  let t = document.getElementById('toast');
-  if(!t){
-    t = document.createElement('div');
-    t.id = 'toast';
-    t.style.cssText =
-      'position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);' +
-      'background:#0F0E17;color:#fff;padding:12px 22px;border-radius:10px;font-size:14px;' +
-      'font-weight:600;z-index:9999;opacity:0;transition:all .3s;pointer-events:none;' +
-      'white-space:nowrap;max-width:90vw;text-align:center';
-    document.body.appendChild(t);
-  }
-  t.textContent = msg;
-  t.style.opacity = '1';
-  t.style.transform = 'translateX(-50%) translateY(0)';
-  clearTimeout(t._timer);
-  t._timer = setTimeout(() => {
-    t.style.opacity = '0';
-    t.style.transform = 'translateX(-50%) translateY(20px)';
-  }, 2800);
-}
+/* ── TOAST ── */
+function showToast(msg){ let t=document.getElementById('toast'); if(!t){ t=document.createElement('div'); t.id='toast'; t.style.cssText='position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#0F0E17;color:#fff;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:600;z-index:9999;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;max-width:90vw;text-align:center'; document.body.appendChild(t); } t.textContent=msg; t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(0)'; clearTimeout(t._timer); t._timer=setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateX(-50%) translateY(20px)'; },2800); }
 
-/* ── VALIDATION: checks required fields + email format ── */
-function validate(fields){
-  for(const [id, label] of fields){
-    const el  = document.getElementById(id);
-    const val = el.value.trim();
-    if(!val){
-      el.focus();
-      el.style.borderColor  = '#FF6B35';
-      el.style.boxShadow    = '0 0 0 3px rgba(255,107,53,.15)';
-      setTimeout(() => { el.style.borderColor = ''; el.style.boxShadow = ''; }, 1800);
-      showToast('Please fill in: ' + label);
-      return false;
-    }
-    if(el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)){
-      el.focus();
-      el.style.borderColor = '#FF6B35';
-      setTimeout(() => el.style.borderColor = '', 1800);
-      showToast('Please enter a valid email address');
-      return false;
-    }
-  }
-  return true;
-}
+/* ── VALIDATION ── */
+function validate(fields){ for(const[id,label]of fields){ const el=document.getElementById(id); const val=el.value.trim(); if(!val){ el.focus(); el.style.borderColor='#FF6B35'; el.style.boxShadow='0 0 0 3px rgba(255,107,53,.15)'; setTimeout(()=>{ el.style.borderColor=''; el.style.boxShadow=''; },1800); showToast('Please fill in: '+label); return false; } if(el.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)){ el.focus(); el.style.borderColor='#FF6B35'; setTimeout(()=>el.style.borderColor='',1800); showToast('Please enter a valid email address'); return false; } } return true; }
 
-/* ── SUBMIT AGENT → realtors table ──
-   Columns: name, email, phone, agency, city, experience, specialty, bio, score
-   score = 0  (admin sets real score after review)
-   is_verified defaults false in DB — no need to send
-*/
+/* ── SUBMIT AGENT → realtors ── */
 async function submitAgent(e){
-  if(!validate([
-    ['a-name','Full Name'],
-    ['a-email','Email Address'],
-    ['a-city', 'Primary Market / City'],
-    ['a-exp',  'Years of Experience'],
-    ['a-spec', 'Primary Specialty']
-  ])) return;
-
-  const btn = e.target;
-  btn.textContent = 'Submitting…';
-  btn.disabled    = true;
-
-  const payload = {
-    name:       document.getElementById('a-name').value.trim(),
-    email:      document.getElementById('a-email').value.trim(),
-    phone:      document.getElementById('a-phone').value.trim()  || null,
-    agency:     document.getElementById('a-agency').value.trim() || null,
-    city:       document.getElementById('a-city').value.trim(),
-    experience: document.getElementById('a-exp').value,
-    specialty:  document.getElementById('a-spec').value,
-    bio:        document.getElementById('a-bio').value.trim()    || null,
-    score:      0
-  };
-
-  try {
-    const { error } = await sb.from('realtors').insert([payload]);
-    if(error) throw error;
-    document.getElementById('agentFormWrap').style.display = 'none';
-    document.getElementById('agentSuccess').style.display  = 'block';
-  } catch(err){
-    console.error('Agent submit error:', err);
-    showToast('Submission failed — please try again');
-    btn.textContent = 'Submit Application →';
-    btn.disabled    = false;
-  }
+  if(!validate([['a-name','Full Name'],['a-email','Email Address'],['a-city','Primary Market / City'],['a-exp','Years of Experience'],['a-spec','Primary Specialty']])) return;
+  const btn=e.target; btn.textContent='Submitting…'; btn.disabled=true;
+  const payload={name:document.getElementById('a-name').value.trim(),email:document.getElementById('a-email').value.trim(),phone:document.getElementById('a-phone').value.trim()||null,agency:document.getElementById('a-agency').value.trim()||null,city:document.getElementById('a-city').value.trim(),experience:document.getElementById('a-exp').value,specialty:document.getElementById('a-spec').value,bio:document.getElementById('a-bio').value.trim()||null,score:0};
+  try{ const{error}=await sb.from('realtors').insert([payload]); if(error) throw error; document.getElementById('agentFormWrap').style.display='none'; document.getElementById('agentSuccess').style.display='block'; }
+  catch(err){ console.error(err); showToast('Submission failed — please try again'); btn.textContent='Submit Application →'; btn.disabled=false; }
 }
 
-/* ── SUBMIT BUYER MODAL → buyers table ──
-   Columns: name, email, phone, city, type, budget, message
-*/
+/* ── SUBMIT BUYER → buyers (with property_type) ── */
 async function submitBuyer(e){
-  if(!validate([
-    ['b-name', 'Full Name'],
-    ['b-email','Email Address'],
-    ['b-city', 'Your City'],
-    ['b-type', 'what you\'re looking for']
-  ])) return;
-
-  const btn = e.target;
-  btn.textContent = 'Submitting…';
-  btn.disabled    = true;
-
-  const payload = {
-    name:    document.getElementById('b-name').value.trim(),
-    email:   document.getElementById('b-email').value.trim(),
-    phone:   document.getElementById('b-phone').value.trim()  || null,
-    city:    document.getElementById('b-city').value.trim(),
-    type:    document.getElementById('b-type').value,
-    budget:  document.getElementById('b-budget').value        || null,
-    message: document.getElementById('b-msg').value.trim()    || null
-  };
-
-  try {
-    const { error } = await sb.from('buyers').insert([payload]);
-    if(error) throw error;
-    document.getElementById('buyerFormWrap').style.display = 'none';
-    document.getElementById('buyerSuccess').style.display  = 'block';
-  } catch(err){
-    console.error('Buyer submit error:', err);
-    showToast('Submission failed — please try again');
-    btn.textContent = 'Find My Top 3 Realtors →';
-    btn.disabled    = false;
-  }
+  if(!validate([['b-name','Full Name'],['b-email','Email Address'],['b-city','Your City'],['b-type','what you\'re looking for']])) return;
+  if(!validateProp('b')) return;
+  const btn=e.target; btn.textContent='Submitting…'; btn.disabled=true;
+  const payload={name:document.getElementById('b-name').value.trim(),email:document.getElementById('b-email').value.trim(),phone:document.getElementById('b-phone').value.trim()||null,city:document.getElementById('b-city').value.trim(),type:document.getElementById('b-type').value,property_type:document.getElementById('b-prop-type').value||null,budget:document.getElementById('b-budget').value||null,message:document.getElementById('b-msg').value.trim()||null};
+  try{ const{error}=await sb.from('buyers').insert([payload]); if(error) throw error; document.getElementById('buyerFormWrap').style.display='none'; document.getElementById('buyerSuccess').style.display='block'; }
+  catch(err){ console.error(err); showToast('Submission failed — please try again'); btn.textContent='Find My Top 3 Realtors →'; btn.disabled=false; }
 }
 
-/* ── SUBMIT CONTACT SECTION → buyers table ──
-   Same columns as buyer modal
-*/
+/* ── SUBMIT CONTACT → buyers (with property_type) ── */
 async function submitContact(e){
-  if(!validate([
-    ['c-name', 'Full Name'],
-    ['c-email','Email Address'],
-    ['c-city', 'Your City'],
-    ['c-type', 'what you\'re looking for']
-  ])) return;
-
-  const btn = e.target;
-  btn.textContent = 'Submitting…';
-  btn.disabled    = true;
-
-  const payload = {
-    name:    document.getElementById('c-name').value.trim(),
-    email:   document.getElementById('c-email').value.trim(),
-    phone:   document.getElementById('c-phone').value.trim()  || null,
-    city:    document.getElementById('c-city').value.trim(),
-    type:    document.getElementById('c-type').value,
-    budget:  document.getElementById('c-budget').value        || null,
-    message: document.getElementById('c-msg').value.trim()    || null
-  };
-
-  try {
-    const { error } = await sb.from('buyers').insert([payload]);
-    if(error) throw error;
-    document.getElementById('contactFormWrap').style.display = 'none';
-    document.getElementById('contactSuccess').style.display  = 'block';
-  } catch(err){
-    console.error('Contact submit error:', err);
-    showToast('Submission failed — please try again');
-    btn.textContent = 'Find My Top 3 Realtors →';
-    btn.disabled    = false;
-  }
+  if(!validate([['c-name','Full Name'],['c-email','Email Address'],['c-city','Your City'],['c-type','what you\'re looking for']])) return;
+  if(!validateProp('c')) return;
+  const btn=e.target; btn.textContent='Submitting…'; btn.disabled=true;
+  const payload={name:document.getElementById('c-name').value.trim(),email:document.getElementById('c-email').value.trim(),phone:document.getElementById('c-phone').value.trim()||null,city:document.getElementById('c-city').value.trim(),type:document.getElementById('c-type').value,property_type:document.getElementById('c-prop-type').value||null,budget:document.getElementById('c-budget').value||null,message:document.getElementById('c-msg').value.trim()||null};
+  try{ const{error}=await sb.from('buyers').insert([payload]); if(error) throw error; document.getElementById('contactFormWrap').style.display='none'; document.getElementById('contactSuccess').style.display='block'; }
+  catch(err){ console.error(err); showToast('Submission failed — please try again'); btn.textContent='Find My Top 3 Realtors →'; btn.disabled=false; }
 }
     </script>
 </body>
