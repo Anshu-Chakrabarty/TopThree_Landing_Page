@@ -1840,8 +1840,8 @@
         }
 
         async function handleSearch() {
-            const query = document.getElementById('searchInput').value.trim();
             const city = document.getElementById('cityInput').value.trim();
+
             if (!city) {
                 const inp = document.getElementById('cityInput');
                 inp.focus();
@@ -1850,30 +1850,45 @@
                 showToast('Please enter a city to search');
                 return;
             }
-            const btn = document.querySelector('.s-btn');
-            btn.textContent = 'Searching…';
-            btn.disabled = true;
-            try {
-                await sb.from('search_logs').insert([{
-                    search_query: query || null,
-                    city
-                }]);
-                const {
-                    data,
-                    error
-                } = await sb.from('realtors').select('id,name,email,agency,city,experience,specialty,score,is_verified').ilike('city', `%${city}%`).order('score', {
-                    ascending: false
-                }).limit(3);
-                if (error) throw error;
-                renderResults(data, city);
-            } catch (err) {
-                console.error(err);
-                showToast('Search failed — please try again');
-            } finally {
-                btn.textContent = 'Search';
-                btn.disabled = false;
-            }
+
+            // 👉 Use ONLY city now
+            const resultsTitle = document.getElementById('resultsTitle');
+            const resultsSub = document.getElementById('resultsSub');
+            const resultsSection = document.getElementById('resultsSection');
+
+            resultsTitle.innerText = `Top 3 Realtors in ${city}`;
+            resultsSub.innerText = `Showing the best verified agents in ${city}`;
+
+            // show results section
+            resultsSection.style.display = 'block';
+
+            // 👉 your existing logic (fetch / dummy data / supabase)
+            loadResults(city);
         }
+        const btn = document.querySelector('.s-btn');
+        btn.textContent = 'Searching…';
+        btn.disabled = true;
+        try {
+            await sb.from('search_logs').insert([{
+                search_query: query || null,
+                city
+            }]);
+            const {
+                data,
+                error
+            } = await sb.from('realtors').select('id,name,email,agency,city,experience,specialty,score,is_verified').ilike('city', `%${city}%`).order('score', {
+                ascending: false
+            }).limit(3);
+            if (error) throw error;
+            renderResults(data, city);
+        } catch (err) {
+            console.error(err);
+            showToast('Search failed — please try again');
+        } finally {
+            btn.textContent = 'Search';
+            btn.disabled = false;
+        }
+
 
         function renderResults(data, city) {
             const sec = document.getElementById('resultsSection');
