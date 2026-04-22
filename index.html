@@ -1975,42 +1975,62 @@
             btn.textContent = 'Submitting…';
             btn.disabled = true;
 
-            const payload = {
-                first_name: tfData.first,
-                last_name: tfData.last,
-                email: tfData.email,
-                phone: tfData.phone,
-                city: tfData.city || null,
-                property_type: tfData.prop || null,
-                sell_goal: tfData.goal || null,
-                sell_timeline: tfData.timeline || null,
-            };
-
             try {
+                // ✅ Combine name (matches DB)
+                const fullName = `${tfData.first || ''} ${tfData.last || ''}`.trim();
+
+                const payload = {
+                    name: fullName || "Unknown", // required
+                    email: tfData.email || "",
+                    phone: tfData.phone,
+
+                    // ⚠️ REQUIRED FIELD (your DB needs this)
+                    city: tfData.city || "Unknown",
+
+                    property_type: tfData.prop || null,
+
+                    // ✅ correct column names
+                    goal: tfData.goal || null,
+
+                    // map timeline → message (since DB doesn’t have timeline)
+                    message: tfData.timeline || null,
+
+                    // optional (exists in DB but not in form)
+                    estimated_value: null
+                };
+
                 const {
                     error
-                } = await sb.from('seller_leads').insert([payload]);
+                } = await sb
+                    .from('seller_leads') // ✅ correct table
+                    .insert([payload]);
+
                 if (error) throw error;
-                // Log the search
+
+                // ✅ Log search (this part was correct)
                 if (tfData.city) {
                     await sb.from('search_logs').insert([{
                         search_query: tfData.city,
                         city: tfData.city
                     }]);
                 }
-                // Show success
+
+                // ✅ SUCCESS UI
                 document.querySelectorAll('.tf-step').forEach(s => s.classList.remove('active'));
                 document.getElementById('tfSuccess').classList.add('active');
                 document.getElementById('tfProgressFill').style.width = '100%';
                 document.getElementById('tfStepLbl').textContent = 'Complete!';
+
             } catch (err) {
-                console.error(err);
+                console.error("Submit Error:", err);
+
+                // better feedback
                 showToast('Submission failed — please try again');
+
                 btn.textContent = 'Show Me The Top Agents →';
                 btn.disabled = false;
             }
         }
-
         /* Hero search → start flow */
         function prefill(city) {
             document.getElementById('searchInput').value = city;
