@@ -28,7 +28,7 @@
             --white: #FFFFFF;
             --r: 10px;
             --blue: #2563EB;
-            --blued: #1d4ed8;
+            --blued: #1d4ed8
         }
         
         html {
@@ -65,11 +65,6 @@
             align-items: center;
             gap: 10px;
             text-decoration: none
-        }
-        
-        .lm svg {
-            width: 20px;
-            height: 20px
         }
         
         .lt {
@@ -293,6 +288,7 @@
             margin-right: auto;
             text-shadow: 0 1px 14px rgba(0, 0, 0, .4)
         }
+        /* HERO SEARCH — address autocomplete */
         
         .search-box {
             display: flex;
@@ -303,9 +299,10 @@
             border: 1px solid rgba(255, 255, 255, .14);
             border-radius: 100px;
             padding: 6px 6px 6px 22px;
-            max-width: 580px;
+            max-width: 600px;
             margin: 0 auto 22px;
-            box-shadow: 0 12px 48px rgba(0, 0, 0, .35)
+            box-shadow: 0 12px 48px rgba(0, 0, 0, .35);
+            position: relative
         }
         
         .search-box svg.s-ico {
@@ -319,7 +316,8 @@
             flex: 1;
             display: flex;
             align-items: center;
-            min-width: 0
+            min-width: 0;
+            position: relative
         }
         
         .s-input {
@@ -361,39 +359,61 @@
             box-shadow: 0 6px 26px rgba(37, 99, 235, .55);
             transform: scale(1.02)
         }
+        /* Address autocomplete dropdown */
         
-        .popular {
+        .addr-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: -22px;
+            right: 0;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .22);
+            overflow: hidden;
+            z-index: 50;
+            display: none
+        }
+        
+        .addr-dropdown.show {
+            display: block
+        }
+        
+        .addr-item {
+            padding: 12px 18px;
+            font-size: 14px;
+            color: var(--ink);
+            cursor: pointer;
+            border-bottom: 1px solid #f0ede8;
+            transition: background .15s;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 7px;
-            flex-wrap: wrap
+            gap: 10px
         }
         
-        .pop-lbl {
-            color: rgba(255, 255, 255, .45);
-            font-size: 12.5px;
-            font-weight: 500
+        .addr-item:last-child {
+            border-bottom: none
         }
         
-        .pop-tag {
-            background: rgba(255, 255, 255, .08);
-            border: 1px solid rgba(255, 255, 255, .16);
-            color: rgba(255, 255, 255, .75);
-            font-size: 12px;
+        .addr-item:hover {
+            background: #f9f6f0
+        }
+        
+        .addr-item svg {
+            flex-shrink: 0;
+            opacity: .4
+        }
+        
+        .addr-item .addr-main {
             font-weight: 500;
-            padding: 5px 14px;
-            border-radius: 100px;
-            cursor: pointer;
-            transition: all .2s;
-            text-decoration: none
+            color: var(--ink)
         }
         
-        .pop-tag:hover {
-            background: rgba(201, 168, 76, .22);
-            border-color: rgba(201, 168, 76, .4);
-            color: #C9A84C
+        .addr-item .addr-sub {
+            font-size: 12px;
+            color: var(--hint);
+            margin-top: 1px
         }
+        /* Popular tags removed per feedback */
         /* TRUST STRIP */
         
         .strip {
@@ -714,7 +734,7 @@
             line-height: 1.7;
             font-weight: 300
         }
-        /* CONTACT FORM */
+        /* ══ CONTACT FORM ══ */
         
         .contact {
             padding: 80px 5%;
@@ -722,7 +742,7 @@
         }
         
         .contact-in {
-            max-width: 700px;
+            max-width: 720px;
             margin: 0 auto;
             text-align: center
         }
@@ -746,6 +766,10 @@
             margin-bottom: 14px
         }
         
+        .form-row.three {
+            grid-template-columns: 1fr 1fr 1fr
+        }
+        
         .form-group {
             display: flex;
             flex-direction: column;
@@ -756,12 +780,21 @@
             grid-column: span 2
         }
         
+        .form-group.full3 {
+            grid-column: span 3
+        }
+        
         .form-group label {
             font-size: 11.5px;
             font-weight: 600;
             color: var(--mid);
             letter-spacing: .5px;
             text-transform: uppercase
+        }
+        
+        .req {
+            color: var(--gold);
+            margin-left: 2px
         }
         
         .form-group input,
@@ -805,38 +838,61 @@
             background-position: right 14px center
         }
         
-        .form-submit {
-            width: 100%;
-            background: var(--ink);
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            padding: 14px;
+        .form-group input.err {
+            border-color: #ef4444!important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, .08)!important
+        }
+        /* Address autocomplete in form */
+        
+        .addr-wrap {
+            position: relative
+        }
+        
+        .form-dropdown {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: #fff;
             border-radius: 10px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            margin-top: 6px;
-            letter-spacing: .2px;
-            transition: all .2s
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .15);
+            overflow: hidden;
+            z-index: 50;
+            display: none;
+            border: 1px solid #E8E4DC
         }
         
-        .form-submit:hover {
-            background: var(--gold);
-            color: var(--ink)
+        .form-dropdown.show {
+            display: block
         }
         
-        .form-submit:disabled {
-            opacity: .6;
-            cursor: not-allowed
+        .form-addr-item {
+            padding: 11px 16px;
+            font-size: 13.5px;
+            color: var(--ink);
+            cursor: pointer;
+            border-bottom: 1px solid #f0ede8;
+            transition: background .15s
         }
         
-        .form-note {
+        .form-addr-item:last-child {
+            border-bottom: none
+        }
+        
+        .form-addr-item:hover {
+            background: #f9f6f0
+        }
+        
+        .form-addr-main {
+            font-weight: 500
+        }
+        
+        .form-addr-sub {
             font-size: 12px;
             color: var(--hint);
-            text-align: center;
-            margin-top: 10px
+            margin-top: 1px
         }
+        /* Property type */
         
         .prop-type-wrap {
             margin-bottom: 14px
@@ -852,12 +908,6 @@
             display: flex;
             align-items: center;
             gap: 5px
-        }
-        
-        .prop-type-lbl .req {
-            color: var(--gold);
-            font-size: 14px;
-            line-height: 1
         }
         
         .prop-grid {
@@ -901,11 +951,91 @@
             border-color: #ef4444!important;
             background: rgba(239, 68, 68, .05)!important
         }
+        /* Goal selector */
         
-        @media(max-width:520px) {
-            .prop-grid {
-                grid-template-columns: repeat(2, 1fr)
-            }
+        .goal-wrap {
+            margin-bottom: 14px
+        }
+        
+        .goal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px
+        }
+        
+        .goal-btn {
+            background: #fff;
+            border: 1.5px solid #E8E4DC;
+            border-radius: 9px;
+            padding: 12px 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--mid);
+            cursor: pointer;
+            transition: all .18s;
+            text-align: left;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 2px
+        }
+        
+        .goal-btn .goal-sub {
+            font-size: 11px;
+            color: var(--hint);
+            font-weight: 400
+        }
+        
+        .goal-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201, 168, 76, .05)
+        }
+        
+        .goal-btn.selected {
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, .1);
+            color: var(--goldd);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, .13)
+        }
+        
+        .goal-btn.err {
+            border-color: #ef4444!important;
+            background: rgba(239, 68, 68, .05)!important
+        }
+        
+        .form-submit {
+            width: 100%;
+            background: var(--ink);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 14px;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 6px;
+            letter-spacing: .2px;
+            transition: all .2s
+        }
+        
+        .form-submit:hover {
+            background: var(--gold);
+            color: var(--ink)
+        }
+        
+        .form-submit:disabled {
+            opacity: .6;
+            cursor: not-allowed
+        }
+        
+        .form-note {
+            font-size: 12px;
+            color: var(--hint);
+            text-align: center;
+            margin-top: 10px
         }
         
         .form-success {
@@ -945,9 +1075,7 @@
             line-height: 1.6;
             font-weight: 300
         }
-        /* ════════════════════════════════════════
-   TYPEFORM OVERLAY — full screen multi-step
-════════════════════════════════════════ */
+        /* ══ TYPEFORM OVERLAY ══ */
         
         .tf-overlay {
             position: fixed;
@@ -955,18 +1083,17 @@
             z-index: 900;
             display: none;
             flex-direction: column;
-            overflow: hidden;
+            overflow: hidden
         }
         
         .tf-overlay.open {
             display: flex
         }
-        /* Background image fills the overlay (same luxury home) */
         
         .tf-bg {
             position: absolute;
             inset: 0;
-            z-index: 0;
+            z-index: 0
         }
         
         .tf-bg img {
@@ -980,9 +1107,8 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(8, 7, 5, .78) 0%, rgba(8, 7, 5, .65) 100%);
+            background: linear-gradient(135deg, rgba(8, 7, 5, .78) 0%, rgba(8, 7, 5, .65) 100%)
         }
-        /* Top bar */
         
         .tf-topbar {
             position: relative;
@@ -990,7 +1116,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 18px 5%;
+            padding: 18px 5%
         }
         
         .tf-logo {
@@ -1002,20 +1128,6 @@
             display: flex;
             align-items: center;
             gap: 9px
-        }
-        
-        .tf-logo .lm {
-            width: 34px;
-            height: 34px;
-            border-radius: 8px
-        }
-        
-        .tf-logo .lt {
-            color: #fff
-        }
-        
-        .tf-logo .lt span {
-            color: var(--gold)
         }
         
         .tf-close {
@@ -1037,13 +1149,12 @@
         .tf-close:hover {
             background: rgba(255, 255, 255, .22)
         }
-        /* Progress bar */
         
         .tf-progress {
             position: relative;
             z-index: 2;
             padding: 0 5% 0;
-            margin-bottom: 0;
+            margin-bottom: 0
         }
         
         .tf-progress-bar {
@@ -1051,14 +1162,14 @@
             height: 3px;
             background: rgba(255, 255, 255, .15);
             border-radius: 100px;
-            overflow: hidden;
+            overflow: hidden
         }
         
         .tf-progress-fill {
             height: 100%;
             background: var(--gold);
             border-radius: 100px;
-            transition: width .4s ease;
+            transition: width .4s ease
         }
         
         .tf-step-lbl {
@@ -1066,9 +1177,8 @@
             font-size: 12px;
             font-weight: 500;
             margin-top: 8px;
-            letter-spacing: .3px;
+            letter-spacing: .3px
         }
-        /* Steps container */
         
         .tf-steps {
             position: relative;
@@ -1077,14 +1187,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px 5%;
+            padding: 20px 5%
         }
         
         .tf-step {
             display: none;
             max-width: 680px;
             width: 100%;
-            animation: stepIn .35s ease;
+            animation: stepIn .35s ease
         }
         
         .tf-step.active {
@@ -1109,7 +1219,7 @@
             color: #fff;
             line-height: 1.15;
             margin-bottom: 8px;
-            letter-spacing: -.3px;
+            letter-spacing: -.3px
         }
         
         .tf-hint {
@@ -1117,14 +1227,13 @@
             color: rgba(255, 255, 255, .55);
             font-weight: 300;
             margin-bottom: 28px;
-            line-height: 1.5;
+            line-height: 1.5
         }
-        /* Choice buttons (like property type, timeline, goal) */
         
         .tf-choices {
             display: grid;
             gap: 10px;
-            margin-bottom: 24px;
+            margin-bottom: 24px
         }
         
         .tf-choices.cols-3 {
@@ -1151,42 +1260,32 @@
             cursor: pointer;
             transition: all .18s;
             text-align: left;
-            line-height: 1.3;
+            line-height: 1.3
         }
         
         .tf-choice:hover {
             background: rgba(201, 168, 76, .18);
             border-color: rgba(201, 168, 76, .45);
-            color: #fff;
+            color: #fff
         }
         
         .tf-choice.selected {
             background: rgba(201, 168, 76, .22);
             border-color: var(--gold);
             color: #fff;
-            box-shadow: 0 0 0 3px rgba(201, 168, 76, .18);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, .18)
         }
         
         .tf-choice.err {
             border-color: #ef4444!important;
-            background: rgba(239, 68, 68, .08)!important;
+            background: rgba(239, 68, 68, .08)!important
         }
-        
-        @media(max-width:580px) {
-            .tf-choices.cols-3 {
-                grid-template-columns: repeat(2, 1fr)
-            }
-            .tf-choices.cols-2 {
-                grid-template-columns: 1fr
-            }
-        }
-        /* Text inputs in typeform */
         
         .tf-input-wrap {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 24px
         }
         
         .tf-input-row {
@@ -1195,19 +1294,13 @@
             gap: 12px
         }
         
-        @media(max-width:520px) {
-            .tf-input-row {
-                grid-template-columns: 1fr
-            }
-        }
-        
         .tf-label {
             font-size: 12px;
             font-weight: 600;
             color: rgba(255, 255, 255, .55);
             letter-spacing: .5px;
             text-transform: uppercase;
-            margin-bottom: 4px;
+            margin-bottom: 4px
         }
         
         .tf-field {
@@ -1221,7 +1314,7 @@
             color: #fff;
             outline: none;
             transition: all .2s;
-            width: 100%;
+            width: 100%
         }
         
         .tf-field::placeholder {
@@ -1231,13 +1324,12 @@
         .tf-field:focus {
             border-color: var(--gold);
             background: rgba(255, 255, 255, .14);
-            box-shadow: 0 0 0 3px rgba(201, 168, 76, .15);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, .15)
         }
         
         .tf-field.err {
             border-color: #ef4444!important
         }
-        /* OK button */
         
         .tf-ok {
             display: inline-flex;
@@ -1254,7 +1346,7 @@
             cursor: pointer;
             letter-spacing: .2px;
             transition: all .2s;
-            box-shadow: 0 4px 18px rgba(201, 168, 76, .35);
+            box-shadow: 0 4px 18px rgba(201, 168, 76, .35)
         }
         
         .tf-ok:hover {
@@ -1275,14 +1367,65 @@
             margin-top: 10px;
             font-weight: 400
         }
-        /* Success step */
+        /* Typeform address input */
+        
+        .tf-addr-wrap {
+            position: relative;
+            margin-bottom: 24px
+        }
+        
+        .tf-addr-dropdown {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            background: #1a1814;
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 10px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .4);
+            overflow: hidden;
+            z-index: 10;
+            display: none
+        }
+        
+        .tf-addr-dropdown.show {
+            display: block
+        }
+        
+        .tf-addr-item {
+            padding: 13px 18px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, .85);
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            transition: background .15s
+        }
+        
+        .tf-addr-item:last-child {
+            border-bottom: none
+        }
+        
+        .tf-addr-item:hover {
+            background: rgba(201, 168, 76, .15)
+        }
+        
+        .tf-addr-main {
+            font-weight: 500
+        }
+        
+        .tf-addr-sub {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .4);
+            margin-top: 2px
+        }
+        /* Success */
         
         .tf-success {
             display: none;
             text-align: center;
             max-width: 560px;
             width: 100%;
-            animation: stepIn .4s ease;
+            animation: stepIn .4s ease
         }
         
         .tf-success.active {
@@ -1298,7 +1441,7 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 24px;
-            box-shadow: 0 10px 32px rgba(201, 168, 76, .4);
+            box-shadow: 0 10px 32px rgba(201, 168, 76, .4)
         }
         
         .tf-success-ico svg {
@@ -1312,7 +1455,7 @@
             font-weight: 700;
             color: #fff;
             margin-bottom: 14px;
-            letter-spacing: -.5px;
+            letter-spacing: -.5px
         }
         
         .tf-success p {
@@ -1320,7 +1463,7 @@
             color: rgba(255, 255, 255, .7);
             line-height: 1.7;
             font-weight: 300;
-            margin-bottom: 30px;
+            margin-bottom: 30px
         }
         
         .tf-success-detail {
@@ -1331,7 +1474,7 @@
             font-size: 13.5px;
             color: rgba(255, 255, 255, .6);
             line-height: 1.6;
-            text-align: left;
+            text-align: left
         }
         
         .tf-success-detail strong {
@@ -1357,10 +1500,6 @@
             flex-wrap: wrap;
             gap: 14px;
             margin-bottom: 18px
-        }
-        
-        .ft-logo .lt {
-            color: #fff
         }
         
         .ft-soc {
@@ -1483,7 +1622,11 @@
             .form-row {
                 grid-template-columns: 1fr
             }
-            .form-group.full {
+            .form-row.three {
+                grid-template-columns: 1fr
+            }
+            .form-group.full,
+            .form-group.full3 {
                 grid-column: span 1
             }
             .ft-row {
@@ -1500,63 +1643,44 @@
             .tf-q {
                 font-size: clamp(22px, 5vw, 34px)
             }
-        }
-        
-        .logo-img {
-            height: 58px;
-            width: auto;
-            object-fit: contain;
-        }
-        
-        .tf-logo-img {
-            height: 54px;
-            width: auto;
+            .tf-choices.cols-3 {
+                grid-template-columns: repeat(2, 1fr)
+            }
+            .tf-choices.cols-2 {
+                grid-template-columns: 1fr
+            }
+            .tf-input-row {
+                grid-template-columns: 1fr
+            }
+            .goal-grid {
+                grid-template-columns: 1fr
+            }
+            .prop-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- ══════════════════════════════════════════════════════════
-     TYPEFORM OVERLAY — triggered by hero search
-══════════════════════════════════════════════════════════ -->
+    <!-- ══ TYPEFORM OVERLAY ══ -->
     <div class="tf-overlay" id="tfOverlay">
         <div class="tf-bg">
             <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1800&q=85&fit=crop" alt="">
         </div>
 
-        <!-- Top bar -->
         <div class="tf-topbar">
-            <a href="#" class="logo ft-logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-
-                <!-- LOGO IMAGE -->
+            <a href="#" class="logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
                 <img src="logo.png" alt="TopThree Realtors Logo" style="height:52px;width:auto;object-fit:contain;" />
-
-                <!-- TEXT -->
-                <span style="
-        font-family:'Cormorant Garamond', serif;
-        font-size:22px;
-        font-weight:700;
-        color: #FFFFFF;
-        letter-spacing:-0.3px;
-    ">
-        Top<span style="color:#C9A84C;">Three</span>
-                <span style="
-            display:block;
-            font-size:12px;
-            font-weight:500;
-            letter-spacing:1px;
-            color:#C9A84C;
-        ">
-            REALTORS
-        </span>
+                <span style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#fff;letter-spacing:-.3px;">
+                Top<span style="color:#C9A84C;">Three</span>
+                <span style="display:block;font-size:12px;font-weight:500;letter-spacing:1px;color:#C9A84C;">REALTORS</span>
                 </span>
-
             </a>
             <button class="tf-close" onclick="closeTf()" aria-label="Close">✕</button>
         </div>
 
-        <!-- Progress -->
         <div class="tf-progress">
             <div class="tf-progress-bar">
                 <div class="tf-progress-fill" id="tfProgressFill" style="width:0%"></div>
@@ -1564,11 +1688,22 @@
             <div class="tf-step-lbl" id="tfStepLbl">Step 1 of 6</div>
         </div>
 
-        <!-- Steps -->
         <div class="tf-steps">
 
-            <!-- STEP 1: Property Type -->
+            <!-- STEP 1: Address (Smarty autocomplete) -->
             <div class="tf-step active" id="tfStep1">
+                <div class="tf-q">What's the address of the<br>property you want to sell?</div>
+                <div class="tf-hint">Start typing your street address and select from the suggestions.</div>
+                <div class="tf-addr-wrap">
+                    <input class="tf-field" id="tf-address" type="text" placeholder="123 Main St, New York, NY 10001" autocomplete="off" oninput="tfAddressInput(this.value)" />
+                    <div class="tf-addr-dropdown" id="tfAddrDropdown"></div>
+                </div>
+                <button class="tf-ok" onclick="tfNext(1)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <div class="tf-ok-hint">Press Enter ↵</div>
+            </div>
+
+            <!-- STEP 2: Property Type -->
+            <div class="tf-step" id="tfStep2">
                 <div class="tf-q">What type of property are you<br>looking to sell?</div>
                 <div class="tf-hint">Select the option that best describes your property.</div>
                 <div class="tf-choices cols-3" id="tf-prop-grid">
@@ -1579,24 +1714,24 @@
                     <button class="tf-choice" onclick="tfSelect('prop','Commercial',this)">🏬 Commercial</button>
                     <button class="tf-choice" onclick="tfSelect('prop','Plot / Land',this)">🌱 Plot / Land</button>
                 </div>
-                <button class="tf-ok" onclick="tfNext(1)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <button class="tf-ok" onclick="tfNext(2)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
             </div>
 
-            <!-- STEP 2: Primary Goal -->
-            <div class="tf-step" id="tfStep2">
+            <!-- STEP 3: Primary Goal -->
+            <div class="tf-step" id="tfStep3">
                 <div class="tf-q">What is your primary goal<br>for the sale?</div>
                 <div class="tf-hint">Not sure? Choose the option that sounds most important to you right now.</div>
                 <div class="tf-choices cols-2" id="tf-goal-grid">
                     <button class="tf-choice" onclick="tfSelect('goal','Maximize my profit (Evaluate top agents)',this)">💰 Maximize my profit<br><span style="font-size:12px;opacity:.6;font-weight:400">Evaluate top agents</span></button>
                     <button class="tf-choice" onclick="tfSelect('goal','Sell fast for cash (No repairs or showings)',this)">⚡ Sell fast for cash<br><span style="font-size:12px;opacity:.6;font-weight:400">No repairs or showings</span></button>
                 </div>
-                <button class="tf-ok" onclick="tfNext(2)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <button class="tf-ok" onclick="tfNext(3)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
             </div>
 
-            <!-- STEP 3: Timeline -->
-            <div class="tf-step" id="tfStep3">
+            <!-- STEP 4: Timeline -->
+            <div class="tf-step" id="tfStep4">
                 <div class="tf-q">How soon are you looking<br>to sell?</div>
                 <div class="tf-choices cols-3" id="tf-timeline-grid">
                     <button class="tf-choice" onclick="tfSelect('timeline','Less than 2 weeks',this)">Less than 2 weeks</button>
@@ -1606,12 +1741,12 @@
                     <button class="tf-choice" onclick="tfSelect('timeline','4 – 6 months',this)">4 – 6 months</button>
                     <button class="tf-choice" onclick="tfSelect('timeline','More than 6 months',this)">More than 6 months</button>
                 </div>
-                <button class="tf-ok" onclick="tfNext(3)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <button class="tf-ok" onclick="tfNext(4)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
             </div>
 
-            <!-- STEP 4: Name -->
-            <div class="tf-step" id="tfStep4">
+            <!-- STEP 5: Name -->
+            <div class="tf-step" id="tfStep5">
                 <div class="tf-q">What's your name?</div>
                 <div class="tf-hint">So we know what to call you.</div>
                 <div class="tf-input-wrap">
@@ -1626,27 +1761,24 @@
                         </div>
                     </div>
                 </div>
-                <button class="tf-ok" onclick="tfNext(4)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                <div class="tf-ok-hint">Press Enter ↵</div>
-            </div>
-
-            <!-- STEP 5: Email -->
-            <div class="tf-step" id="tfStep5">
-                <div class="tf-q">What's your email address?</div>
-                <div class="tf-hint" id="tfEmailHint">We'll send you the top agents in your area.</div>
-                <div class="tf-input-wrap">
-                    <input class="tf-field" id="tf-email" type="email" placeholder="name@example.com" autocomplete="email" />
-                </div>
                 <button class="tf-ok" onclick="tfNext(5)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
             </div>
 
-            <!-- STEP 6: Phone -->
+            <!-- STEP 6: Email + Phone -->
             <div class="tf-step" id="tfStep6">
-                <div class="tf-q">Phone Number</div>
-                <div class="tf-hint">For account verification (I agree to receive communications via phone calls and SMS).</div>
+                <div class="tf-q">How can we reach you?</div>
+                <div class="tf-hint" id="tfEmailHint">We'll send you the top agents in your area.</div>
                 <div class="tf-input-wrap">
-                    <input class="tf-field" id="tf-phone" type="tel" placeholder="+1 (201) 555-1234" autocomplete="tel" />
+                    <div>
+                        <div class="tf-label">Email address *</div>
+                        <input class="tf-field" id="tf-email" type="email" placeholder="name@example.com" autocomplete="email" />
+                    </div>
+                    <div>
+                        <div class="tf-label">Phone number (optional — for account verification)</div>
+                        <input class="tf-field" id="tf-phone" type="tel" placeholder="+1 (201) 555-1234" autocomplete="tel" />
+                        <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:5px;">I agree to receive communications via phone calls and SMS.</div>
+                    </div>
                 </div>
                 <button class="tf-ok" id="tfSubmitBtn" onclick="tfSubmit()">Show Me The Top Agents <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Ctrl + Enter ↵</div>
@@ -1666,37 +1798,16 @@
             </div>
 
         </div>
-        <!-- /tf-steps -->
     </div>
-    <!-- /tf-overlay -->
 
     <!-- NAV -->
     <nav id="nav">
-        <a href="#" class="logo ft-logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-
-            <!-- LOGO IMAGE -->
+        <a href="#" class="logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
             <img src="logo.png" alt="TopThree Realtors Logo" style="height:52px;width:auto;object-fit:contain;" />
-
-            <!-- TEXT -->
-            <span style="
-        font-family:'Cormorant Garamond', serif;
-        font-size:22px;
-        font-weight:700;
-        color: #000;
-        letter-spacing:-0.3px;
-    ">
-        Top<span style="color:#C9A84C;">Three</span>
-            <span style="
-            display:block;
-            font-size:12px;
-            font-weight:500;
-            letter-spacing:1px;
-            color:#C9A84C;
-        ">
-            REALTORS
-        </span>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#000;letter-spacing:-.3px;">
+            Top<span style="color:#C9A84C;">Three</span>
+            <span style="display:block;font-size:12px;font-weight:500;letter-spacing:1px;color:#C9A84C;">REALTORS</span>
             </span>
-
         </a>
         <ul class="nav-links">
             <li><a href="#specs">Specialties</a></li>
@@ -1724,17 +1835,10 @@
             <div class="search-box">
                 <svg class="s-ico" viewBox="0 0 18 18" fill="none"><path d="M9 1C6.24 1 4 3.24 4 6c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5z" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/><circle cx="9" cy="6" r="2" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/></svg>
                 <div class="s-fields">
-                    <input class="s-input" id="searchInput" type="text" placeholder="Enter your property address or city" />
+                    <input class="s-input" id="searchInput" type="text" placeholder="Enter your full property address…" autocomplete="off" oninput="heroAddressInput(this.value)" />
+                    <div class="addr-dropdown" id="heroAddrDropdown"></div>
                 </div>
-                <button class="s-btn" onclick="startFlow()">Find My Agents</button>
-            </div>
-            <div class="popular">
-                <span class="pop-lbl">Popular:</span>
-                <a href="#" class="pop-tag" onclick="prefill('New York');return false">New York</a>
-                <a href="#" class="pop-tag" onclick="prefill('Los Angeles');return false">Los Angeles</a>
-                <a href="#" class="pop-tag" onclick="prefill('Miami');return false">Miami</a>
-                <a href="#" class="pop-tag" onclick="prefill('Chicago');return false">Chicago</a>
-                <a href="#" class="pop-tag" onclick="prefill('Houston');return false">Houston</a>
+                <button class="s-btn" onclick="startFlowFromHero()">Find My Agents</button>
             </div>
         </div>
     </section>
@@ -1756,12 +1860,12 @@
             <h2 class="sec-h">Whatever you're selling,<br><em>we have the right listing expert</em></h2>
             <p class="sec-sub">Every property type covered. Every agent manually vetted and ranked on real sales results.</p>
             <div class="spec-grid">
-                <button class="spec-card" onclick="startFlow('My Home')"><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&q=82&fit=crop" alt="Sell a Home"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M1 7.5l7-6 7 6V15H1V7.5z" stroke="#C9A84C" stroke-width="1.4" stroke-linejoin="round"/><rect x="5.5" y="9.5" width="5" height="5.5" rx="1" stroke="#C9A84C" stroke-width="1.2"/></svg></div><div class="spec-name">Sell a Home</div><div class="spec-cnt">3,800+ agents</div></div></button>
-                <button class="spec-card" onclick="startFlow('A Luxury Property')"><img src="https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=400&q=82&fit=crop" alt="Luxury"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1.5l1.4 4H14l-3.5 2.5 1.3 4L8 10 4.2 12l1.3-4L2 5.5h4.6z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="spec-name">Luxury Property</div><div class="spec-cnt">1,600+ agents</div></div></button>
-                <button class="spec-card" onclick="startFlow('An Investment Property')"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=82&fit=crop" alt="Investment"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="1.5" y="8" width="3" height="7" rx="1" stroke="#C9A84C" stroke-width="1.3"/><rect x="6.5" y="5" width="3" height="10" rx="1" stroke="#C9A84C" stroke-width="1.3"/><rect x="11.5" y="2" width="3" height="13" rx="1" stroke="#C9A84C" stroke-width="1.3"/></svg></div><div class="spec-name">Investment Property</div><div class="spec-cnt">2,100+ agents</div></div></button>
-                <button class="spec-card" onclick="startFlow('A Condo / Apartment')"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=82&fit=crop" alt="Condos"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="3" y="1" width="10" height="14" rx="2" stroke="#C9A84C" stroke-width="1.3"/><rect x="5" y="4" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/><rect x="9" y="4" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/><rect x="5" y="8" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/><rect x="9" y="8" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/></svg></div><div class="spec-name">Condos &amp; Apts</div><div class="spec-cnt">2,900+ agents</div></div></button>
-                <button class="spec-card" onclick="startFlow('Commercial Property')"><img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&q=82&fit=crop" alt="Commercial"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="1" y="4" width="14" height="11" rx="1.5" stroke="#C9A84C" stroke-width="1.3"/><path d="M5 4V3a3 3 0 016 0v1" stroke="#C9A84C" stroke-width="1.3"/></svg></div><div class="spec-name">Commercial</div><div class="spec-cnt">1,200+ agents</div></div></button>
-                <button class="spec-card" onclick="startFlow('Land / Lot')"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=82&fit=crop" alt="Land"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M2 12l4-6 3 4 2-2 3 4H2z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="spec-name">Land &amp; Lots</div><div class="spec-cnt">900+ agents</div></div></button>
+                <button class="spec-card" onclick="startFlowWithProp('Single Family')"><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&q=82&fit=crop" alt="Sell a Home"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M1 7.5l7-6 7 6V15H1V7.5z" stroke="#C9A84C" stroke-width="1.4" stroke-linejoin="round"/><rect x="5.5" y="9.5" width="5" height="5.5" rx="1" stroke="#C9A84C" stroke-width="1.2"/></svg></div><div class="spec-name">Sell a Home</div><div class="spec-cnt">3,800+ agents</div></div></button>
+                <button class="spec-card" onclick="startFlowWithProp('Luxury Property')"><img src="https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=400&q=82&fit=crop" alt="Luxury"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1.5l1.4 4H14l-3.5 2.5 1.3 4L8 10 4.2 12l1.3-4L2 5.5h4.6z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="spec-name">Luxury Property</div><div class="spec-cnt">1,600+ agents</div></div></button>
+                <button class="spec-card" onclick="startFlowWithProp('Investment Property')"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=82&fit=crop" alt="Investment"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="1.5" y="8" width="3" height="7" rx="1" stroke="#C9A84C" stroke-width="1.3"/><rect x="6.5" y="5" width="3" height="10" rx="1" stroke="#C9A84C" stroke-width="1.3"/><rect x="11.5" y="2" width="3" height="13" rx="1" stroke="#C9A84C" stroke-width="1.3"/></svg></div><div class="spec-name">Investment Property</div><div class="spec-cnt">2,100+ agents</div></div></button>
+                <button class="spec-card" onclick="startFlowWithProp('Condo / Townhouse')"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=82&fit=crop" alt="Condos"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="3" y="1" width="10" height="14" rx="2" stroke="#C9A84C" stroke-width="1.3"/><rect x="5" y="4" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/><rect x="9" y="4" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/><rect x="5" y="8" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/><rect x="9" y="8" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/></svg></div><div class="spec-name">Condos &amp; Apts</div><div class="spec-cnt">2,900+ agents</div></div></button>
+                <button class="spec-card" onclick="startFlowWithProp('Commercial')"><img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&q=82&fit=crop" alt="Commercial"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="1" y="4" width="14" height="11" rx="1.5" stroke="#C9A84C" stroke-width="1.3"/><path d="M5 4V3a3 3 0 016 0v1" stroke="#C9A84C" stroke-width="1.3"/></svg></div><div class="spec-name">Commercial</div><div class="spec-cnt">1,200+ agents</div></div></button>
+                <button class="spec-card" onclick="startFlowWithProp('Plot / Land')"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=82&fit=crop" alt="Land"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M2 12l4-6 3 4 2-2 3 4H2z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="spec-name">Land &amp; Lots</div><div class="spec-cnt">900+ agents</div></div></button>
             </div>
         </div>
     </section>
@@ -1773,12 +1877,12 @@
             <h2 class="sec-h">Top selling agents in <em>300+ cities</em></h2>
             <p class="sec-sub">From major metros to growing suburbs — our network of listing agents expands every month.</p>
             <div class="bento">
-                <button class="city big" onclick="startFlow(null,'New York')"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=900&q=82&fit=crop" alt="New York"><div class="city-gd"></div><div class="city-info"><div class="city-pill">Most Active</div><div class="city-name">New York</div><div class="city-count">820+ agents</div></div></button>
-                <button class="city" onclick="startFlow(null,'Chicago')"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=82&fit=crop" alt="Chicago"><div class="city-gd"></div><div class="city-info"><div class="city-name">Chicago</div><div class="city-count">560+ agents</div></div></button>
-                <button class="city" onclick="startFlow(null,'Los Angeles')"><img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=82&fit=crop" alt="Los Angeles"><div class="city-gd"></div><div class="city-info"><div class="city-name">Los Angeles</div><div class="city-count">640+ agents</div></div></button>
-                <button class="city" onclick="startFlow(null,'Miami')"><img src="https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=600&q=82&fit=crop" alt="Miami"><div class="city-gd"></div><div class="city-info"><div class="city-name">Miami</div><div class="city-count">420+ agents</div></div></button>
-                <button class="city" onclick="startFlow(null,'Houston')"><img src="https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=600&q=82&fit=crop" alt="Houston"><div class="city-gd"></div><div class="city-info"><div class="city-name">Houston</div><div class="city-count">480+ agents</div></div></button>
-                <button class="city" onclick="startFlow(null,'San Francisco')"><img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&q=82&fit=crop" alt="San Francisco"><div class="city-gd"></div><div class="city-info"><div class="city-name">San Francisco</div><div class="city-count">380+ agents</div></div></button>
+                <button class="city big" onclick="startFlowWithCity('New York')"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=900&q=82&fit=crop" alt="New York"><div class="city-gd"></div><div class="city-info"><div class="city-pill">Most Active</div><div class="city-name">New York</div><div class="city-count">820+ agents</div></div></button>
+                <button class="city" onclick="startFlowWithCity('Chicago')"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=82&fit=crop" alt="Chicago"><div class="city-gd"></div><div class="city-info"><div class="city-name">Chicago</div><div class="city-count">560+ agents</div></div></button>
+                <button class="city" onclick="startFlowWithCity('Los Angeles')"><img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=82&fit=crop" alt="Los Angeles"><div class="city-gd"></div><div class="city-info"><div class="city-name">Los Angeles</div><div class="city-count">640+ agents</div></div></button>
+                <button class="city" onclick="startFlowWithCity('Miami')"><img src="https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=600&q=82&fit=crop" alt="Miami"><div class="city-gd"></div><div class="city-info"><div class="city-name">Miami</div><div class="city-count">420+ agents</div></div></button>
+                <button class="city" onclick="startFlowWithCity('Houston')"><img src="https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=600&q=82&fit=crop" alt="Houston"><div class="city-gd"></div><div class="city-info"><div class="city-name">Houston</div><div class="city-count">480+ agents</div></div></button>
+                <button class="city" onclick="startFlowWithCity('San Francisco')"><img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&q=82&fit=crop" alt="San Francisco"><div class="city-gd"></div><div class="city-info"><div class="city-name">San Francisco</div><div class="city-count">380+ agents</div></div></button>
             </div>
         </div>
     </section>
@@ -1804,63 +1908,115 @@
         </div>
     </section>
 
-    <!-- CONTACT FORM (inline, as backup) -->
+    <!-- CONTACT FORM -->
     <section class="contact" id="contact">
         <div class="contact-in">
             <p class="sec-lbl">Find Your Selling Agent</p>
             <h2 class="sec-h">Get matched with top<br><em>listing agents</em> in minutes</h2>
             <p class="sec-sub">Tell us about the property you want to sell and we'll match you with the top 3 verified selling agents in your area — free, fast, no obligation.</p>
+
             <div id="contactFormWrap">
                 <div class="cform">
-                    <div class="form-row">
-                        <div class="form-group"><label for="c-fname">Full Name<span class="req">*</span></label><input id="c-fname" type="text" placeholder="Jane" /></div>
-                        <div class="form-group"><label for="c-lname">Last Name<span class="req">*</span></label><input id="c-lname" type="text" placeholder="Smith" /></div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group"><label for="c-email">Email Address<span class="req">*</span></label><input id="c-email" type="email" placeholder="jane@email.com" /></div>
-                        <div class="form-group"><label for="c-phone">Phone Number<span class="req">*</span></label><input id="c-phone" type="tel" placeholder="+1 (555) 000-0000" /></div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="c-city">Property City / Area<span class="req">*</span></label>
-                            <input id="c-city" type="text" placeholder="New York, NY" />
-                        </div>
 
+                    <!-- Row 1: Name -->
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="c-zip">ZIP / PIN Code<span class="req">*</span></label>
-                            <input id="c-zip" type="text" placeholder="00001" />
+                            <label for="c-fname">First Name<span class="req">*</span></label>
+                            <input id="c-fname" type="text" placeholder="Jane" autocomplete="given-name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="c-lname">Last Name<span class="req">*</span></label>
+                            <input id="c-lname" type="text" placeholder="Smith" autocomplete="family-name" />
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Contact -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="c-email">Email Address<span class="req">*</span></label>
+                            <input id="c-email" type="email" placeholder="jane@email.com" autocomplete="email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="c-phone">Phone Number<span class="req">*</span></label>
+                            <input id="c-phone" type="tel" placeholder="+1 (555) 000-0000" autocomplete="tel" />
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Street Address (NEW — with Smarty autocomplete) -->
+                    <div class="form-row">
+                        <div class="form-group full addr-wrap">
+                            <label for="c-street">Street Address<span class="req">*</span></label>
+                            <input id="c-street" type="text" placeholder="123 Main St" autocomplete="off" oninput="formAddressInput(this.value)" />
+                            <div class="form-dropdown" id="formAddrDropdown"></div>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: City / ZIP / Value -->
+                    <div class="form-row three">
+                        <div class="form-group">
+                            <label for="c-city">City<span class="req">*</span></label>
+                            <input id="c-city" type="text" placeholder="New York" autocomplete="address-level2" />
+                        </div>
+                        <div class="form-group">
+                            <label for="c-zip">ZIP Code<span class="req">*</span></label>
+                            <input id="c-zip" type="text" placeholder="10001" autocomplete="postal-code" />
                         </div>
                         <div class="form-group">
                             <label for="c-price">Estimated Value</label>
                             <select id="c-price">
-            <option value="" disabled selected>Select range</option>
-            <option>Under $250,000</option>
-            <option>$250,000 – $500,000</option>
-            <option>$500,000 – $1,000,000</option>
-            <option>$1M – $2M</option>
-            <option>$2M+</option>
-        </select>
+                            <option value="" disabled selected>Select range</option>
+                            <option>Under $250,000</option>
+                            <option>$250,000 – $500,000</option>
+                            <option>$500,000 – $1,000,000</option>
+                            <option>$1M – $2M</option>
+                            <option>$2M+</option>
+                        </select>
                         </div>
                     </div>
+
+                    <!-- Property Type -->
                     <div class="prop-type-wrap">
                         <div class="prop-type-lbl">Property Type <span class="req">*</span></div>
                         <div class="prop-grid" id="c-prop-grid">
-                            <button type="button" class="prop-btn" onclick="selectProp('c','Single Family')">🏠 Single Family</button>
-                            <button type="button" class="prop-btn" onclick="selectProp('c','Condo / Townhouse')">🏢 Condo / Townhouse</button>
-                            <button type="button" class="prop-btn" onclick="selectProp('c','Multi-Family')">🏘️ Multi-Family</button>
-                            <button type="button" class="prop-btn" onclick="selectProp('c','Mobile Home')">🚐 Mobile Home</button>
-                            <button type="button" class="prop-btn" onclick="selectProp('c','Commercial')">🏬 Commercial</button>
-                            <button type="button" class="prop-btn" onclick="selectProp('c','Plot / Land')">🌱 Plot / Land</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('Single Family')">🏠 Single Family</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('Condo / Townhouse')">🏢 Condo / Townhouse</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('Multi-Family')">🏘️ Multi-Family</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('Mobile Home')">🚐 Mobile Home</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('Commercial')">🏬 Commercial</button>
+                            <button type="button" class="prop-btn" onclick="selectProp('Plot / Land')">🌱 Plot / Land</button>
                         </div>
                         <input type="hidden" id="c-prop-type" />
                     </div>
-                    <div class="form-row">
-                        <div class="form-group full"><label for="c-msg">Anything else? <span style="color:var(--hint);font-weight:300;text-transform:none">(optional)</span></label><textarea id="c-msg" placeholder="Timeline, property condition, must-knows for the agent…"></textarea></div>
+
+                    <!-- Goal of Sale (NEW) -->
+                    <div class="goal-wrap">
+                        <div class="prop-type-lbl">Goal of Sale <span class="req">*</span></div>
+                        <div class="goal-grid" id="c-goal-grid">
+                            <button type="button" class="goal-btn" onclick="selectGoal('Maximize my profit (Evaluate top agents)')">
+                            💰 Maximize my profit
+                            <span class="goal-sub">Evaluate top agents</span>
+                        </button>
+                            <button type="button" class="goal-btn" onclick="selectGoal('Sell fast for cash (No repairs or showings)')">
+                            ⚡ Sell fast for cash
+                            <span class="goal-sub">No repairs or showings</span>
+                        </button>
+                        </div>
+                        <input type="hidden" id="c-goal" />
                     </div>
-                    <button class="form-submit" onclick="submitContact(event)">Find My Top 3 Agents →</button>
+
+                    <!-- Message -->
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label for="c-msg">Anything else? <span style="color:var(--hint);font-weight:300;text-transform:none">(optional)</span></label>
+                            <textarea id="c-msg" placeholder="Timeline, property condition, must-knows for the agent…"></textarea>
+                        </div>
+                    </div>
+
+                    <button class="form-submit" id="contactSubmitBtn" onclick="submitContact(event)">Find My Top 3 Agents →</button>
                     <p class="form-note">🔒 Your information is private and never shared without your consent.</p>
                 </div>
             </div>
+
             <div class="form-success" id="contactSuccess" style="display:none">
                 <div class="form-success-ico"><svg viewBox="0 0 28 28" fill="none"><path d="M5 14l6 6L23 8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                 <h3>You're all set!</h3>
@@ -1873,59 +2029,25 @@
     <footer>
         <div class="ft-in">
             <div class="ft-row">
-
-                <!-- LOGO UPDATED -->
-                <a href="#" class="logo ft-logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-
-                    <!-- LOGO IMAGE -->
+                <a href="#" class="logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
                     <img src="logo.png" alt="TopThree Realtors Logo" style="height:52px;width:auto;object-fit:contain;" />
-
-                    <!-- TEXT -->
-                    <span style="
-        font-family:'Cormorant Garamond', serif;
-        font-size:22px;
-        font-weight:700;
-        color: #FFFFFF;
-        letter-spacing:-0.3px;
-    ">
-        Top<span style="color:#C9A84C;">Three</span>
-                    <span style="
-            display:block;
-            font-size:12px;
-            font-weight:500;
-            letter-spacing:1px;
-            color:#C9A84C;
-        ">
-            REALTORS
-        </span>
+                    <span style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#fff;letter-spacing:-.3px;">
+                    Top<span style="color:#C9A84C;">Three</span>
+                    <span style="display:block;font-size:12px;font-weight:500;letter-spacing:1px;color:#C9A84C;">REALTORS</span>
                     </span>
-
                 </a>
-
-                <!-- SOCIAL ICONS (unchanged) -->
                 <div class="ft-soc">
                     <a href="https://twitter.com" target="_blank" rel="noopener" class="fsoc" aria-label="Twitter">
-                        <svg viewBox="0 0 16 16" fill="rgba(255,255,255,.4)">
-                        <path d="M15 2a7.6 7.6 0 01-2.2.6A3.8 3.8 0 0014.7.3a7.7 7.7 0 01-2.4.9A3.8 3.8 0 008 4.8a10.8 10.8 0 01-7.8-4A3.8 3.8 0 001.4 6a3.8 3.8 0 01-1.7-.5v.1a3.8 3.8 0 003 3.7 3.8 3.8 0 01-1.7.1 3.8 3.8 0 003.6 2.6A7.7 7.7 0 010 13.5a10.8 10.8 0 005.9 1.7C13 15.2 16.7 9.7 16.7 4.9v-.5A7.7 7.7 0 0015 2z"/>
-                    </svg>
+                        <svg viewBox="0 0 16 16" fill="rgba(255,255,255,.4)"><path d="M15 2a7.6 7.6 0 01-2.2.6A3.8 3.8 0 0014.7.3a7.7 7.7 0 01-2.4.9A3.8 3.8 0 008 4.8a10.8 10.8 0 01-7.8-4A3.8 3.8 0 001.4 6a3.8 3.8 0 01-1.7-.5v.1a3.8 3.8 0 003 3.7 3.8 3.8 0 01-1.7.1 3.8 3.8 0 003.6 2.6A7.7 7.7 0 010 13.5a10.8 10.8 0 005.9 1.7C13 15.2 16.7 9.7 16.7 4.9v-.5A7.7 7.7 0 0015 2z"/></svg>
                     </a>
-
                     <a href="https://instagram.com" target="_blank" rel="noopener" class="fsoc" aria-label="Instagram">
-                        <svg viewBox="0 0 16 16" fill="none">
-                        <rect x="1" y="1" width="14" height="14" rx="4" stroke="rgba(255,255,255,.4)" stroke-width="1.3"/>
-                        <circle cx="8" cy="8" r="3" stroke="rgba(255,255,255,.4)" stroke-width="1.3"/>
-                        <circle cx="11.5" cy="4.5" r=".8" fill="rgba(255,255,255,.4)"/>
-                    </svg>
+                        <svg viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="4" stroke="rgba(255,255,255,.4)" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="rgba(255,255,255,.4)" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r=".8" fill="rgba(255,255,255,.4)"/></svg>
                     </a>
-
                     <a href="https://linkedin.com" target="_blank" rel="noopener" class="fsoc" aria-label="LinkedIn">
-                        <svg viewBox="0 0 16 16" fill="rgba(255,255,255,.4)">
-                        <path d="M5.4 12.5H3.5V6.3h1.9v6.2zM4.4 5.5a1.1 1.1 0 110-2.2 1.1 1.1 0 010 2.2zm8.1 7h-1.9V9.5c0-.7 0-1.6-1-1.6s-1.1.8-1.1 1.6v3H6.7V6.3h1.8v.8h.1a2 2 0 011.8-1c1.9 0 2.2 1.2 2.2 2.9v3.5z"/>
-                    </svg>
+                        <svg viewBox="0 0 16 16" fill="rgba(255,255,255,.4)"><path d="M5.4 12.5H3.5V6.3h1.9v6.2zM4.4 5.5a1.1 1.1 0 110-2.2 1.1 1.1 0 010 2.2zm8.1 7h-1.9V9.5c0-.7 0-1.6-1-1.6s-1.1.8-1.1 1.6v3H6.7V6.3h1.8v.8h.1a2 2 0 011.8-1c1.9 0 2.2 1.2 2.2 2.9v3.5z"/></svg>
                     </a>
                 </div>
             </div>
-
             <div class="ft-bot">
                 <span class="ft-copy">© 2025 TopThree. Not a licensed real estate brokerage.</span>
                 <div class="ft-legal">
@@ -1939,18 +2061,192 @@
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        /* ── SUPABASE ── */
+        /* ══════════════════════════════════════════════
+                   SUPABASE
+                ══════════════════════════════════════════════ */
         const sb = window.supabase.createClient(
             "https://jobfhtcnwnmpdyryptpy.supabase.co",
             "sb_publishable_BWDnlqjX5G-T8LxVOVzcHg_QlTEqAfc"
         );
 
-        /* ── NAV SHADOW ── */
+        /* ══════════════════════════════════════════════
+           SMARTY ADDRESS AUTOCOMPLETE
+           Replace YOUR_SMARTY_KEY with your actual key
+           Embedded key is safe for browser (publishable)
+        ══════════════════════════════════════════════ */
+        const SMARTY_KEY = 'YOUR_SMARTY_WEBSITE_KEY'; // ← replace this
+        let addressDebounce = null;
+
+        async function fetchSmartyAddresses(query) {
+            if (!query || query.length < 4) return [];
+            try {
+                const url = `https://us-autocomplete-pro.api.smartystreets.com/lookup?key=${SMARTY_KEY}&search=${encodeURIComponent(query)}&max_results=5`;
+                const res = await fetch(url);
+                if (!res.ok) return [];
+                const data = await res.json();
+                return (data.suggestions || []).map(s => ({
+                    street: s.street_line,
+                    secondary: s.secondary || '',
+                    city: s.city,
+                    state: s.state,
+                    zip: s.zipcode,
+                    full: `${s.street_line}${s.secondary ? ' ' + s.secondary : ''}, ${s.city}, ${s.state} ${s.zipcode}`
+                }));
+            } catch (e) {
+                console.warn('Smarty fetch error:', e);
+                return [];
+            }
+        }
+
+        function renderHeroDropdown(suggestions) {
+            const dd = document.getElementById('heroAddrDropdown');
+            if (!suggestions.length) {
+                dd.classList.remove('show');
+                dd.innerHTML = '';
+                return;
+            }
+            dd.innerHTML = suggestions.map(s => `
+        <div class="addr-item" onclick="selectHeroAddress('${escHtml(s.full)}','${escHtml(s.city)}','${escHtml(s.state)}','${escHtml(s.zip)}')">
+            <svg width="14" height="14" viewBox="0 0 18 18" fill="none"><path d="M9 1C6.24 1 4 3.24 4 6c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5z" stroke="#9B9690" stroke-width="1.4"/></svg>
+            <div>
+                <div class="addr-main">${escHtml(s.street)}${s.secondary ? ' '+escHtml(s.secondary) : ''}</div>
+                <div class="addr-sub">${escHtml(s.city)}, ${escHtml(s.state)} ${escHtml(s.zip)}</div>
+            </div>
+        </div>`).join('');
+            dd.classList.add('show');
+        }
+
+        function selectHeroAddress(full, city, state, zip) {
+            document.getElementById('searchInput').value = full;
+            document.getElementById('heroAddrDropdown').classList.remove('show');
+            // store for flow
+            heroSelectedAddress = {
+                full,
+                city,
+                state,
+                zip
+            };
+        }
+
+        let heroSelectedAddress = null;
+
+        function heroAddressInput(val) {
+            heroSelectedAddress = null;
+            clearTimeout(addressDebounce);
+            if (!val || val.length < 4) {
+                document.getElementById('heroAddrDropdown').classList.remove('show');
+                return;
+            }
+            addressDebounce = setTimeout(async() => {
+                const sug = await fetchSmartyAddresses(val);
+                renderHeroDropdown(sug);
+            }, 300);
+        }
+
+        /* Form address autocomplete */
+        let formAddressDebounce = null;
+
+        async function formAddressInput(val) {
+            clearTimeout(formAddressDebounce);
+            if (!val || val.length < 4) {
+                document.getElementById('formAddrDropdown').classList.remove('show');
+                return;
+            }
+            formAddressDebounce = setTimeout(async() => {
+                const sug = await fetchSmartyAddresses(val);
+                renderFormDropdown(sug);
+            }, 300);
+        }
+
+        function renderFormDropdown(suggestions) {
+            const dd = document.getElementById('formAddrDropdown');
+            if (!suggestions.length) {
+                dd.classList.remove('show');
+                dd.innerHTML = '';
+                return;
+            }
+            dd.innerHTML = suggestions.map(s => `
+        <div class="form-addr-item" onclick="selectFormAddress('${escHtml(s.street)}','${escHtml(s.city)}','${escHtml(s.zip)}','${escHtml(s.full)}')">
+            <div class="form-addr-main">${escHtml(s.street)}${s.secondary ? ' '+escHtml(s.secondary) : ''}</div>
+            <div class="form-addr-sub">${escHtml(s.city)}, ${escHtml(s.state)} ${escHtml(s.zip)}</div>
+        </div>`).join('');
+            dd.classList.add('show');
+        }
+
+        function selectFormAddress(street, city, zip, full) {
+            document.getElementById('c-street').value = street;
+            document.getElementById('c-city').value = city;
+            document.getElementById('c-zip').value = zip;
+            document.getElementById('formAddrDropdown').classList.remove('show');
+        }
+
+        /* Typeform address autocomplete */
+        let tfAddressDebounce = null;
+        let tfSelectedAddress = null;
+
+        async function tfAddressInput(val) {
+            tfSelectedAddress = null;
+            clearTimeout(tfAddressDebounce);
+            const dd = document.getElementById('tfAddrDropdown');
+            if (!val || val.length < 4) {
+                dd.classList.remove('show');
+                dd.innerHTML = '';
+                return;
+            }
+            tfAddressDebounce = setTimeout(async() => {
+                const sug = await fetchSmartyAddresses(val);
+                if (!sug.length) {
+                    dd.classList.remove('show');
+                    dd.innerHTML = '';
+                    return;
+                }
+                dd.innerHTML = sug.map(s => `
+            <div class="tf-addr-item" onclick="selectTfAddress('${escHtml(s.full)}','${escHtml(s.street)}','${escHtml(s.city)}','${escHtml(s.state)}','${escHtml(s.zip)}')">
+                <div class="tf-addr-main">${escHtml(s.street)}${s.secondary?' '+escHtml(s.secondary):''}</div>
+                <div class="tf-addr-sub">${escHtml(s.city)}, ${escHtml(s.state)} ${escHtml(s.zip)}</div>
+            </div>`).join('');
+                dd.classList.add('show');
+            }, 300);
+        }
+
+        function selectTfAddress(full, street, city, state, zip) {
+            document.getElementById('tf-address').value = full;
+            document.getElementById('tfAddrDropdown').classList.remove('show');
+            tfSelectedAddress = {
+                full,
+                street,
+                city,
+                state,
+                zip
+            };
+            tfData.address = full;
+            tfData.street = street;
+            tfData.city = city;
+            tfData.state = state;
+            tfData.zip = zip;
+        }
+
+        function escHtml(s) {
+            return String(s || '').replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+        }
+
+        /* Close dropdowns when clicking outside */
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.s-fields')) document.getElementById('heroAddrDropdown').classList.remove('show');
+            if (!e.target.closest('.addr-wrap')) document.getElementById('formAddrDropdown').classList.remove('show');
+            if (!e.target.closest('.tf-addr-wrap')) {
+                const d = document.getElementById('tfAddrDropdown');
+                if (d) d.classList.remove('show');
+            }
+        });
+
+        /* ══════════════════════════════════════════════
+           NAV
+        ══════════════════════════════════════════════ */
         window.addEventListener('scroll', () => {
             document.getElementById('nav').style.boxShadow = window.scrollY > 10 ? '0 2px 24px rgba(0,0,0,.07)' : 'none';
         });
 
-        /* ── MOBILE MENU ── */
         function closeMob() {
             document.getElementById('mob').classList.remove('open');
         }
@@ -1960,7 +2256,11 @@
         ══════════════════════════════════════════════ */
         const TF_TOTAL = 6;
         const tfData = {
+            address: '',
+            street: '',
             city: '',
+            state: '',
+            zip: '',
             prop: '',
             goal: '',
             timeline: '',
@@ -1977,20 +2277,23 @@
             document.getElementById('tfStepLbl').textContent = 'Step ' + step + ' of ' + TF_TOTAL;
         }
 
-        /* Open the typeform overlay */
         function openTf() {
             document.getElementById('tfOverlay').classList.add('open');
             document.body.style.overflow = 'hidden';
-            // Reset to step 1
             tfCurrent = 1;
             showTfStep(1);
-            // Reset all selections
             document.querySelectorAll('.tf-choice').forEach(b => b.classList.remove('selected', 'err'));
             document.querySelectorAll('.tf-field').forEach(f => {
                 f.value = '';
                 f.classList.remove('err');
             });
-            ['tf-prop', 'tf-goal', 'tf-timeline'].forEach(k => tfData[k.replace('tf-', '')] = '');
+            ['prop', 'goal', 'timeline'].forEach(k => tfData[k] = '');
+            tfData.address = '';
+            tfData.street = '';
+            tfData.city = '';
+            tfData.state = '';
+            tfData.zip = '';
+            tfSelectedAddress = null;
             document.getElementById('tfSuccess').classList.remove('active');
             updateProgress(1);
         }
@@ -2004,13 +2307,10 @@
             document.querySelectorAll('.tf-step').forEach(s => s.classList.remove('active'));
             document.getElementById('tfSuccess').classList.remove('active');
             const el = document.getElementById('tfStep' + n);
-            if (el) {
-                el.classList.add('active');
-            }
+            if (el) el.classList.add('active');
             updateProgress(n);
         }
 
-        /* Select a choice button */
         function tfSelect(key, value, btn) {
             const grid = btn.closest('.tf-choices');
             grid.querySelectorAll('.tf-choice').forEach(b => b.classList.remove('selected', 'err'));
@@ -2018,27 +2318,43 @@
             tfData[key] = value;
         }
 
-        /* Advance to next step with validation */
         function tfNext(step) {
             if (step === 1) {
-                if (!tfData.prop) {
-                    document.querySelectorAll('#tf-prop-grid .tf-choice').forEach(b => b.classList.add('err'));
+                // Address step — must have typed something meaningful
+                const addrVal = document.getElementById('tf-address').value.trim();
+                if (!addrVal || addrVal.length < 5) {
+                    document.getElementById('tf-address').classList.add('err');
+                    showToast('Please enter your property address');
                     return;
+                }
+                // If user typed without picking from dropdown, store what they typed
+                if (!tfSelectedAddress) {
+                    tfData.address = addrVal;
+                    tfData.city = addrVal; // fallback
                 }
             }
             if (step === 2) {
-                if (!tfData.goal) {
-                    document.querySelectorAll('#tf-goal-grid .tf-choice').forEach(b => b.classList.add('err'));
+                if (!tfData.prop) {
+                    document.querySelectorAll('#tf-prop-grid .tf-choice').forEach(b => b.classList.add('err'));
+                    showToast('Please select a property type');
                     return;
                 }
             }
             if (step === 3) {
-                if (!tfData.timeline) {
-                    document.querySelectorAll('#tf-timeline-grid .tf-choice').forEach(b => b.classList.add('err'));
+                if (!tfData.goal) {
+                    document.querySelectorAll('#tf-goal-grid .tf-choice').forEach(b => b.classList.add('err'));
+                    showToast('Please select your goal');
                     return;
                 }
             }
             if (step === 4) {
+                if (!tfData.timeline) {
+                    document.querySelectorAll('#tf-timeline-grid .tf-choice').forEach(b => b.classList.add('err'));
+                    showToast('Please select a timeline');
+                    return;
+                }
+            }
+            if (step === 5) {
                 const f = document.getElementById('tf-first').value.trim();
                 const l = document.getElementById('tf-last').value.trim();
                 if (!f) {
@@ -2053,102 +2369,111 @@
                 }
                 tfData.first = f;
                 tfData.last = l;
-                // Update email hint with city
                 if (tfData.city) document.getElementById('tfEmailHint').textContent = "We'll email you the top agents in " + tfData.city + '.';
-            }
-            if (step === 5) {
-                const e = document.getElementById('tf-email').value.trim();
-                if (!e || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) {
-                    document.getElementById('tf-email').classList.add('err');
-                    showToast('Please enter a valid email address');
-                    return;
-                }
-                tfData.email = e;
             }
             tfCurrent = step + 1;
             showTfStep(tfCurrent);
         }
 
-        /* Final submit */
         async function tfSubmit() {
-            const phone = document.getElementById('tf-phone').value.trim();
-            tfData.phone = phone || null;
+            const emailVal = document.getElementById('tf-email').value.trim();
+            if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+                document.getElementById('tf-email').classList.add('err');
+                showToast('Please enter a valid email address');
+                return;
+            }
+            tfData.email = emailVal;
+            tfData.phone = document.getElementById('tf-phone').value.trim() || null;
 
             const btn = document.getElementById('tfSubmitBtn');
             btn.textContent = 'Submitting…';
             btn.disabled = true;
 
             try {
-                // ✅ Combine name (matches DB)
                 const fullName = `${tfData.first || ''} ${tfData.last || ''}`.trim();
-
                 const payload = {
-                    name: fullName || "Unknown", // required
-                    email: tfData.email || "",
+                    name: fullName || 'Unknown',
+                    email: tfData.email,
                     phone: tfData.phone,
-
-                    // ⚠️ REQUIRED FIELD (your DB needs this)
-                    city: tfData.city || "Unknown",
+                    street_address: tfData.street || tfData.address || null,
+                    city: tfData.city || 'Unknown',
+                    state: tfData.state || null,
                     zip: tfData.zip || null,
-
                     property_type: tfData.prop || null,
-
-                    // ✅ correct column names
                     goal: tfData.goal || null,
-
-                    // map timeline → message (since DB doesn’t have timeline)
                     message: tfData.timeline || null,
-
-                    // optional (exists in DB but not in form)
-                    estimated_value: null
+                    estimated_value: null,
+                    source: 'typeform'
                 };
 
                 const {
                     error
-                } = await sb
-                    .from('seller_leads') // ✅ correct table
-                    .insert([payload]);
-
+                } = await sb.from('seller_leads').insert([payload]);
                 if (error) throw error;
 
-                // ✅ Log search (this part was correct)
                 if (tfData.city) {
                     await sb.from('search_logs').insert([{
-                        search_query: tfData.city,
+                        search_query: tfData.address || tfData.city,
                         city: tfData.city
                     }]);
                 }
 
-                // ✅ SUCCESS UI
                 document.querySelectorAll('.tf-step').forEach(s => s.classList.remove('active'));
                 document.getElementById('tfSuccess').classList.add('active');
                 document.getElementById('tfProgressFill').style.width = '100%';
                 document.getElementById('tfStepLbl').textContent = 'Complete!';
 
             } catch (err) {
-                console.error("Submit Error:", err);
-
-                // better feedback
+                console.error('Typeform submit error:', err);
                 showToast('Submission failed — please try again');
-
-                btn.textContent = 'Show Me The Top Agents →';
+                btn.innerHTML = 'Show Me The Top Agents <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
                 btn.disabled = false;
             }
         }
-        /* Hero search → start flow */
-        function prefill(city) {
-            document.getElementById('searchInput').value = city;
-            document.getElementById('searchInput').focus();
-        }
 
-        function startFlow(specialty = null, city = null) {
-            // Read city from search input if not passed directly
-            const inputCity = city || document.getElementById('searchInput').value.trim();
-            tfData.city = inputCity;
+        /* ── Flow entry points ── */
+        function startFlowFromHero() {
+            const inputVal = document.getElementById('searchInput').value.trim();
+            if (!inputVal || inputVal.length < 4) {
+                document.getElementById('searchInput').focus();
+                showToast('Please enter your property address first');
+                return;
+            }
+            if (heroSelectedAddress) {
+                tfData.address = heroSelectedAddress.full;
+                tfData.city = heroSelectedAddress.city;
+                tfData.state = heroSelectedAddress.state;
+                tfData.zip = heroSelectedAddress.zip;
+                tfSelectedAddress = heroSelectedAddress;
+            } else {
+                tfData.address = inputVal;
+                tfData.city = inputVal;
+            }
             openTf();
+            // Pre-fill address field in step 1
+            setTimeout(() => {
+                document.getElementById('tf-address').value = tfData.address;
+            }, 100);
         }
 
-        /* Enter key support for typeform */
+        function startFlowWithProp(propType) {
+            // Open typeform at step 1 (address); pre-select prop type for step 2
+            openTf();
+            // Pre-select property type so user doesn't need to pick again
+            tfData.prop = propType;
+        }
+
+        function startFlowWithCity(city) {
+            // Open at step 1 so user must enter address
+            tfData.city = city;
+            openTf();
+            // Pre-fill city hint in address field
+            setTimeout(() => {
+                document.getElementById('tf-address').placeholder = '123 Main St, ' + city;
+            }, 100);
+        }
+
+        /* Enter key support */
         document.addEventListener('keydown', e => {
             const overlay = document.getElementById('tfOverlay');
             if (!overlay.classList.contains('open')) return;
@@ -2156,8 +2481,8 @@
                 closeTf();
                 return;
             }
-            if (e.key === 'Enter') {
-                if (tfCurrent <= 5) tfNext(tfCurrent);
+            if (e.key === 'Enter' && !e.ctrlKey && !e.metaKey) {
+                if (tfCurrent >= 1 && tfCurrent <= 5) tfNext(tfCurrent);
             }
             if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
                 if (tfCurrent === 6) tfSubmit();
@@ -2165,87 +2490,145 @@
         });
 
         /* ══════════════════════════════════════════════
-           INLINE CONTACT FORM (backup / section form)
-           → seller_leads table
+           INLINE CONTACT FORM
         ══════════════════════════════════════════════ */
-        function selectProp(prefix, value) {
-            document.querySelectorAll('#' + prefix + '-prop-grid .prop-btn').forEach(btn => {
+        let cPropType = '';
+        let cGoal = '';
+
+        function selectProp(value) {
+            cPropType = value;
+            document.getElementById('c-prop-type').value = value;
+            document.querySelectorAll('#c-prop-grid .prop-btn').forEach(btn => {
                 btn.classList.remove('selected', 'err');
-                if (btn.textContent.includes(value.split(' / ')[0].replace(/[^a-zA-Z]/g, '')) || btn.textContent.includes(value))
+                if (btn.textContent.trim().includes(value.split(' /')[0].replace(/[^\w]/g, '').substring(0, 5)) ||
+                    btn.textContent.includes(value)) {
                     btn.classList.add('selected');
+                }
             });
-            document.getElementById(prefix + '-prop-type').value = value;
         }
 
-        function validateProp(prefix) {
-            const val = document.getElementById(prefix + '-prop-type').value;
-            if (!val) {
-                document.querySelectorAll('#' + prefix + '-prop-grid .prop-btn').forEach(b => b.classList.add('err'));
-                showToast('Please select a property type');
-                return false;
-            }
-            return true;
+        function selectGoal(value) {
+            cGoal = value;
+            document.getElementById('c-goal').value = value;
+            document.querySelectorAll('#c-goal-grid .goal-btn').forEach(btn => {
+                btn.classList.remove('selected', 'err');
+                if (btn.textContent.trim().startsWith(value.split(' (')[0].substring(0, 12).trim()) ||
+                    btn.dataset && btn.onclick) {
+                    btn.classList.remove('selected');
+                }
+            });
+            // simpler: just match by index
+            document.querySelectorAll('#c-goal-grid .goal-btn').forEach(btn => {
+                btn.classList.remove('selected', 'err');
+                if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(value.substring(0, 20))) {
+                    btn.classList.add('selected');
+                }
+            });
         }
 
-        function validateFields(fields) {
-            for (const [id, label] of fields) {
-                const el = document.getElementById(id);
-                const val = el.value.trim();
-                if (!val) {
-                    el.focus();
-                    el.style.borderColor = 'var(--gold)';
-                    el.style.boxShadow = '0 0 0 3px rgba(201,168,76,.15)';
-                    setTimeout(() => {
-                        el.style.borderColor = '';
-                        el.style.boxShadow = '';
-                    }, 1800);
-                    showToast('Please fill in: ' + label);
-                    return false;
-                }
-                if (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-                    el.focus();
-                    el.style.borderColor = 'var(--gold)';
-                    setTimeout(() => el.style.borderColor = '', 1800);
-                    showToast('Please enter a valid email address');
-                    return false;
-                }
-            }
-            return true;
+        function isValidEmail(e) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+        }
+
+        function markErr(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('err');
+            setTimeout(() => {
+                if (el) el.classList.remove('err');
+            }, 2000);
         }
 
         async function submitContact(e) {
-            if (!validateFields([
-                    ['c-fname', 'First Name'],
-                    ['c-lname', 'Last Name'],
-                    ['c-email', 'Email Address'],
-                    ['c-city', 'Property City']
-                    ['c-zip', 'ZIP Code']
-                ])) return;
-            if (!validateProp('c')) return;
+            e.preventDefault();
 
-            const btn = e.target;
+            const fname = document.getElementById('c-fname').value.trim();
+            const lname = document.getElementById('c-lname').value.trim();
+            const email = document.getElementById('c-email').value.trim();
+            const phone = document.getElementById('c-phone').value.trim();
+            const street = document.getElementById('c-street').value.trim();
+            const city = document.getElementById('c-city').value.trim();
+            const zip = document.getElementById('c-zip').value.trim();
+            const price = document.getElementById('c-price').value;
+            const propType = document.getElementById('c-prop-type').value;
+            const goal = document.getElementById('c-goal').value;
+            const msg = document.getElementById('c-msg').value.trim();
+
+            // Validation
+            if (!fname) {
+                markErr('c-fname');
+                showToast('Please enter your first name');
+                return;
+            }
+            if (!lname) {
+                markErr('c-lname');
+                showToast('Please enter your last name');
+                return;
+            }
+            if (!email || !isValidEmail(email)) {
+                markErr('c-email');
+                showToast('Please enter a valid email address');
+                return;
+            }
+            if (!phone) {
+                markErr('c-phone');
+                showToast('Please enter your phone number');
+                return;
+            }
+            if (!street) {
+                markErr('c-street');
+                showToast('Please enter the property street address');
+                return;
+            }
+            if (!city) {
+                markErr('c-city');
+                showToast('Please enter the property city');
+                return;
+            }
+            if (!zip) {
+                markErr('c-zip');
+                showToast('Please enter the ZIP code');
+                return;
+            }
+            if (!propType) {
+                document.querySelectorAll('#c-prop-grid .prop-btn').forEach(b => b.classList.add('err'));
+                showToast('Please select a property type');
+                return;
+            }
+            if (!goal) {
+                document.querySelectorAll('#c-goal-grid .goal-btn').forEach(b => b.classList.add('err'));
+                showToast('Please select your goal of sale');
+                return;
+            }
+
+            const btn = document.getElementById('contactSubmitBtn');
             btn.textContent = 'Submitting…';
             btn.disabled = true;
-            const payload = {
-                first_name: document.getElementById('c-fname').value.trim(),
-                last_name: document.getElementById('c-lname').value.trim(),
-                email: document.getElementById('c-email').value.trim(),
-                phone: document.getElementById('c-phone').value.trim() || null,
-                city: document.getElementById('c-city').value.trim(),
-                zip: document.getElementById('c-zip').value.trim(), // ✅ ADD THIS
-                property_type: document.getElementById('c-prop-type').value || null,
-                estimated_value: document.getElementById('c-price').value || null,
-                message: document.getElementById('c-msg').value.trim() || null,
-            };
+
             try {
+                const payload = {
+                    name: `${fname} ${lname}`,
+                    email,
+                    phone: phone || null,
+                    street_address: street,
+                    city,
+                    zip,
+                    property_type: propType || null,
+                    goal: goal || null,
+                    estimated_value: price || null,
+                    message: msg || null,
+                    source: 'inline_form'
+                };
+
                 const {
                     error
                 } = await sb.from('seller_leads').insert([payload]);
                 if (error) throw error;
+
                 document.getElementById('contactFormWrap').style.display = 'none';
                 document.getElementById('contactSuccess').style.display = 'block';
+
             } catch (err) {
-                console.error(err);
+                console.error('Contact form error:', err);
                 showToast('Submission failed — please try again');
                 btn.textContent = 'Find My Top 3 Agents →';
                 btn.disabled = false;
