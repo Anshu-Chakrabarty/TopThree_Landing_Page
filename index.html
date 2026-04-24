@@ -1813,17 +1813,33 @@
             <div id="contactFormWrap">
                 <div class="cform">
                     <div class="form-row">
-                        <div class="form-group"><label for="c-fname">First Name</label><input id="c-fname" type="text" placeholder="Jane" /></div>
-                        <div class="form-group"><label for="c-lname">Last Name</label><input id="c-lname" type="text" placeholder="Smith" /></div>
+                        <div class="form-group"><label for="c-fname">Full Name<span class="req">*</span></label><input id="c-fname" type="text" placeholder="Jane" /></div>
+                        <div class="form-group"><label for="c-lname">Last Name<span class="req">*</span></label><input id="c-lname" type="text" placeholder="Smith" /></div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group"><label for="c-email">Email Address</label><input id="c-email" type="email" placeholder="jane@email.com" /></div>
-                        <div class="form-group"><label for="c-phone">Phone Number</label><input id="c-phone" type="tel" placeholder="+1 (555) 000-0000" /></div>
+                        <div class="form-group"><label for="c-email">Email Address<span class="req">*</span></label><input id="c-email" type="email" placeholder="jane@email.com" /></div>
+                        <div class="form-group"><label for="c-phone">Phone Number<span class="req">*</span></label><input id="c-phone" type="tel" placeholder="+1 (555) 000-0000" /></div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group"><label for="c-city">Property City / Area</label><input id="c-city" type="text" placeholder="New York, NY" /></div>
-                        <div class="form-group"><label for="c-price">Estimated Value</label>
-                            <select id="c-price"><option value="" disabled selected>Select range</option><option>Under $250,000</option><option>$250,000 – $500,000</option><option>$500,000 – $1,000,000</option><option>$1M – $2M</option><option>$2M+</option></select>
+                        <div class="form-group">
+                            <label for="c-city">Property City / Area<span class="req">*</span></label>
+                            <input id="c-city" type="text" placeholder="New York, NY" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="c-zip">ZIP / PIN Code<span class="req">*</span></label>
+                            <input id="c-zip" type="text" placeholder="00001" />
+                        </div>
+                        <div class="form-group">
+                            <label for="c-price">Estimated Value</label>
+                            <select id="c-price">
+            <option value="" disabled selected>Select range</option>
+            <option>Under $250,000</option>
+            <option>$250,000 – $500,000</option>
+            <option>$500,000 – $1,000,000</option>
+            <option>$1M – $2M</option>
+            <option>$2M+</option>
+        </select>
                         </div>
                     </div>
                     <div class="prop-type-wrap">
@@ -2073,6 +2089,7 @@
 
                     // ⚠️ REQUIRED FIELD (your DB needs this)
                     city: tfData.city || "Unknown",
+                    zip: tfData.zip || null,
 
                     property_type: tfData.prop || null,
 
@@ -2202,6 +2219,7 @@
                     ['c-lname', 'Last Name'],
                     ['c-email', 'Email Address'],
                     ['c-city', 'Property City']
+                    ['c-zip', 'ZIP Code']
                 ])) return;
             if (!validateProp('c')) return;
 
@@ -2214,6 +2232,7 @@
                 email: document.getElementById('c-email').value.trim(),
                 phone: document.getElementById('c-phone').value.trim() || null,
                 city: document.getElementById('c-city').value.trim(),
+                zip: document.getElementById('c-zip').value.trim(), // ✅ ADD THIS
                 property_type: document.getElementById('c-prop-type').value || null,
                 estimated_value: document.getElementById('c-price').value || null,
                 message: document.getElementById('c-msg').value.trim() || null,
