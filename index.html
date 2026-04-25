@@ -2362,10 +2362,9 @@
             document.getElementById('tfEmailHint').textContent = "We'll send you the top agents in your area.";
         }
 
-        function openTf(preAddr) {
+        function openTf(preAddr, skipToStep) {
             document.getElementById('tfOverlay').classList.add('open');
             document.body.style.overflow = 'hidden';
-            tfCurrent = 1;
             resetTfForm();
 
             if (preAddr) {
@@ -2377,18 +2376,22 @@
                     zip: preAddr.zip || ''
                 });
                 tfSelectedAddress = preAddr;
+                // Pre-fill the address input even if we skip step 1
+                setTimeout(() => {
+                    const addrInput = document.getElementById('tf-address');
+                    if (preAddr.full || preAddr.address) addrInput.value = preAddr.full || preAddr.address;
+                }, 60);
             }
 
-            showTfStep(1);
-            updateProgress(1);
+            // If a pre-filled address is provided, skip step 1 and jump straight to step 2
+            const startStep = skipToStep || (preAddr && (preAddr.full || preAddr.address) ? 2 : 1);
+            tfCurrent = startStep;
+            showTfStep(startStep);
+            updateProgress(startStep);
 
-            setTimeout(() => {
-                const addrInput = document.getElementById('tf-address');
-                if (preAddr && (preAddr.full || preAddr.address)) {
-                    addrInput.value = preAddr.full || preAddr.address;
-                }
-                addrInput.focus();
-            }, 120);
+            if (startStep === 1) {
+                setTimeout(() => document.getElementById('tf-address').focus(), 120);
+            }
         }
 
         function closeTf() {
@@ -2559,7 +2562,7 @@
                     zip: ''
                 };
             }
-            openTf(preAddr);
+            openTf(preAddr, 2); // skip step 1 — address already entered in hero
         }
 
         function startFlowWithProp(propType) {
