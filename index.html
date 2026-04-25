@@ -1165,6 +1165,31 @@
         .tf-close:hover {
             background: rgba(255, 255, 255, .22)
         }
+        /* ── Back button ── */
+        
+        .tf-back-btn {
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .18);
+            color: rgba(255, 255, 255, .75);
+            height: 36px;
+            padding: 0 16px;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transition: all .2s;
+            font-family: 'DM Sans', sans-serif;
+            letter-spacing: .2px
+        }
+        
+        .tf-back-btn:hover {
+            background: rgba(255, 255, 255, .16);
+            color: #fff;
+            border-color: rgba(255, 255, 255, .3)
+        }
         
         .tf-progress {
             position: relative;
@@ -1695,6 +1720,9 @@
             .prop-grid {
                 grid-template-columns: repeat(2, 1fr)
             }
+            .tf-back-btn span {
+                display: none
+            }
         }
     </style>
 </head>
@@ -1714,7 +1742,14 @@
                 <span style="display:block;font-size:12px;font-weight:500;letter-spacing:1px;color:#C9A84C;">REALTORS</span>
                 </span>
             </a>
-            <button class="tf-close" onclick="closeTf()" aria-label="Close">✕</button>
+            <!-- Right side: back button + close -->
+            <div style="display:flex;align-items:center;gap:10px;">
+                <button id="tfBackBtn" class="tf-back-btn" onclick="tfBack()" aria-label="Previous step" style="display:none;">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Previous</span>
+                </button>
+                <button class="tf-close" onclick="closeTf()" aria-label="Close">✕</button>
+            </div>
         </div>
         <div class="tf-progress">
             <div class="tf-progress-bar">
@@ -1744,8 +1779,8 @@
                     <button class="tf-choice" onclick="tfSelect('prop','Commercial',this)">🏬 Commercial</button>
                     <button class="tf-choice" onclick="tfSelect('prop','Plot / Land',this)">🌱 Plot / Land</button>
                 </div>
-                <button class="tf-ok" onclick="tfNext(2)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                <div class="tf-ok-hint">Press Enter ↵</div>
+                <!-- OK button hidden on step 2/3/4 since auto-advance handles it; kept as fallback -->
+                <button class="tf-ok" onclick="tfNext(2)" style="display:none;" id="tfOk2">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
             <div class="tf-step" id="tfStep3">
                 <div class="tf-q">What is your primary goal<br>for the sale?</div>
@@ -1754,8 +1789,7 @@
                     <button class="tf-choice" onclick="tfSelect('goal','Maximize my profit (Evaluate top agents)',this)">💰 Maximize my profit<br><span style="font-size:12px;opacity:.6;font-weight:400">Evaluate top agents</span></button>
                     <button class="tf-choice" onclick="tfSelect('goal','Sell fast for cash (No repairs or showings)',this)">⚡ Sell fast for cash<br><span style="font-size:12px;opacity:.6;font-weight:400">No repairs or showings</span></button>
                 </div>
-                <button class="tf-ok" onclick="tfNext(3)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                <div class="tf-ok-hint">Press Enter ↵</div>
+                <button class="tf-ok" onclick="tfNext(3)" style="display:none;" id="tfOk3">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
             <div class="tf-step" id="tfStep4">
                 <div class="tf-q">How soon are you looking<br>to sell?</div>
@@ -1767,8 +1801,7 @@
                     <button class="tf-choice" onclick="tfSelect('timeline','4 – 6 months',this)">4 – 6 months</button>
                     <button class="tf-choice" onclick="tfSelect('timeline','More than 6 months',this)">More than 6 months</button>
                 </div>
-                <button class="tf-ok" onclick="tfNext(4)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                <div class="tf-ok-hint">Press Enter ↵</div>
+                <button class="tf-ok" onclick="tfNext(4)" style="display:none;" id="tfOk4">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
             <div class="tf-step" id="tfStep5">
                 <div class="tf-q">What's your name?</div>
@@ -2089,11 +2122,6 @@
             return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
 
-        /* ════════════════════════════════════════
-           FIX 2: KEYBOARD NAVIGATION HELPER
-           Attach to any address input + its dropdown.
-           ArrowDown/Up to move, Enter to select.
-        ════════════════════════════════════════ */
         function attachKeyNav(inputEl, getItems, onSelect) {
             let idx = -1;
 
@@ -2121,7 +2149,7 @@
                     });
                 } else if (e.key === 'Enter' && idx >= 0 && items[idx]) {
                     e.preventDefault();
-                    e.stopPropagation(); // stop bubbling to global keydown handler
+                    e.stopPropagation();
                     onSelect(items[idx]);
                     idx = -1;
                 } else {
@@ -2268,6 +2296,8 @@
                 state,
                 zip
             });
+            // ── AUTO-ADVANCE: move to next step after address selection ──
+            setTimeout(() => tfNext(1), 380);
         }
 
         /* Close dropdowns on outside click */
@@ -2332,14 +2362,12 @@
             document.getElementById('tfEmailHint').textContent = "We'll send you the top agents in your area.";
         }
 
-        /* ── FIX 1: openTf accepts optional preAddr so address survives resetTfForm ── */
         function openTf(preAddr) {
             document.getElementById('tfOverlay').classList.add('open');
             document.body.style.overflow = 'hidden';
             tfCurrent = 1;
-            resetTfForm(); // clears everything
+            resetTfForm();
 
-            // Re-apply pre-filled address AFTER reset
             if (preAddr) {
                 Object.assign(tfData, {
                     address: preAddr.address || preAddr.full || '',
@@ -2374,12 +2402,26 @@
             const el = document.getElementById('tfStep' + n);
             if (el) el.classList.add('active');
             updateProgress(n);
+
+            // Show ← Previous button on steps 2+, hide on step 1 and success
+            const backBtn = document.getElementById('tfBackBtn');
+            if (backBtn) backBtn.style.display = n > 1 ? 'flex' : 'none';
+        }
+
+        /* ── BACK BUTTON ── */
+        function tfBack() {
+            if (tfCurrent > 1) {
+                tfCurrent -= 1;
+                showTfStep(tfCurrent);
+            }
         }
 
         function tfSelect(key, value, btn) {
             btn.closest('.tf-choices').querySelectorAll('.tf-choice').forEach(b => b.classList.remove('selected', 'err'));
             btn.classList.add('selected');
             tfData[key] = value;
+            // ── AUTO-ADVANCE: brief visual feedback then move to next step ──
+            setTimeout(() => tfNext(tfCurrent), 300);
         }
 
         function tfNext(step) {
@@ -2478,6 +2520,9 @@
                 document.getElementById('tfSuccess').classList.add('active');
                 document.getElementById('tfProgressFill').style.width = '100%';
                 document.getElementById('tfStepLbl').textContent = 'Complete!';
+                // Hide back button on success
+                const backBtn = document.getElementById('tfBackBtn');
+                if (backBtn) backBtn.style.display = 'none';
             } catch (err) {
                 console.error('Typeform submit error:', err);
                 showToast('Submission failed — please try again');
@@ -2487,8 +2532,6 @@
         }
 
         /* ══ FLOW ENTRY POINTS ══ */
-
-        /* ── FIX 1 applied: pass preAddr so address survives resetTfForm ── */
         function startFlowFromHero() {
             const inputVal = document.getElementById('searchInput').value.trim();
             if (!inputVal || inputVal.length < 4) {
@@ -2538,7 +2581,7 @@
             }, 100);
         }
 
-        /* ── FIX 2: Global keydown — block Enter when address dropdown is open ── */
+        /* Global keydown */
         document.addEventListener('keydown', e => {
             const overlay = document.getElementById('tfOverlay');
             if (!overlay.classList.contains('open')) return;
@@ -2688,21 +2731,18 @@
             }, 2800);
         }
 
-        /* ── Attach keyboard navigation to all 3 address inputs ── */
+        /* ── Keyboard navigation for address inputs ── */
         document.addEventListener('DOMContentLoaded', () => {
-            // Hero search bar
             attachKeyNav(
                 document.getElementById('searchInput'),
                 () => document.querySelectorAll('#heroAddrDropdown .addr-item'),
                 item => item.click()
             );
-            // Typeform address field
             attachKeyNav(
                 document.getElementById('tf-address'),
                 () => document.querySelectorAll('#tfAddrDropdown .tf-addr-item'),
                 item => item.click()
             );
-            // Contact form address field
             attachKeyNav(
                 document.getElementById('c-street'),
                 () => document.querySelectorAll('#formAddrDropdown .form-addr-item'),
