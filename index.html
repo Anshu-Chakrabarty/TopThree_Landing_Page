@@ -41,7 +41,6 @@
             color: var(--ink);
             overflow-x: hidden
         }
-        /* NAV */
         
         nav {
             position: fixed;
@@ -165,7 +164,6 @@
             color: var(--gold);
             font-weight: 600
         }
-        /* HERO */
         
         .hero {
             position: relative;
@@ -276,7 +274,6 @@
             margin-right: auto;
             text-shadow: 0 1px 14px rgba(0, 0, 0, .4)
         }
-        /* HERO SEARCH */
         
         .search-box {
             display: flex;
@@ -347,7 +344,6 @@
             box-shadow: 0 6px 26px rgba(37, 99, 235, .55);
             transform: scale(1.02)
         }
-        /* Address dropdowns */
         
         .addr-dropdown {
             position: absolute;
@@ -433,7 +429,6 @@
             font-size: 13px;
             color: var(--hint)
         }
-        /* TRUST STRIP */
         
         .strip {
             background: #fff;
@@ -505,7 +500,6 @@
             margin-bottom: 38px;
             font-weight: 300
         }
-        /* SPECIALTIES */
         
         .specs {
             padding: 80px 5%;
@@ -599,7 +593,6 @@
             font-size: 11px;
             color: rgba(255, 255, 255, .4)
         }
-        /* CITIES */
         
         .cities {
             padding: 80px 5%;
@@ -702,7 +695,6 @@
             color: rgba(255, 255, 255, .5);
             font-weight: 400
         }
-        /* WHY */
         
         .why {
             padding: 80px 5%;
@@ -753,7 +745,6 @@
             line-height: 1.7;
             font-weight: 300
         }
-        /* CONTACT FORM */
         
         .contact {
             padding: 80px 5%;
@@ -897,7 +888,8 @@
             border-bottom: none
         }
         
-        .form-addr-item:hover {
+        .form-addr-item:hover,
+        .form-addr-item:focus {
             background: #f9f6f0
         }
         
@@ -1111,7 +1103,6 @@
             line-height: 1.6;
             font-weight: 300
         }
-        /* TYPEFORM OVERLAY */
         
         .tf-overlay {
             position: fixed;
@@ -1529,7 +1520,6 @@
             color: rgba(255, 255, 255, .85);
             font-weight: 600
         }
-        /* FOOTER */
         
         footer {
             background: #0B0A08;
@@ -1609,7 +1599,6 @@
         .ft-legal a:hover {
             color: rgba(255, 255, 255, .6)
         }
-        /* RESPONSIVE */
         
         @media(max-width:900px) {
             .bento {
@@ -1734,8 +1723,6 @@
             <div class="tf-step-lbl" id="tfStepLbl">Step 1 of 6</div>
         </div>
         <div class="tf-steps">
-
-            <!-- STEP 1: Address — ALWAYS shown first, address is REQUIRED -->
             <div class="tf-step active" id="tfStep1">
                 <div class="tf-q">What's the address of the<br>property you want to sell?</div>
                 <div class="tf-hint" id="tfStep1Hint">Start typing your street address and select from the suggestions.</div>
@@ -1746,8 +1733,6 @@
                 <button class="tf-ok" onclick="tfNext(1)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
             </div>
-
-            <!-- STEP 2: Property Type -->
             <div class="tf-step" id="tfStep2">
                 <div class="tf-q">What type of property are you<br>looking to sell?</div>
                 <div class="tf-hint">Select the option that best describes your property.</div>
@@ -1762,8 +1747,6 @@
                 <button class="tf-ok" onclick="tfNext(2)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
             </div>
-
-            <!-- STEP 3: Primary Goal -->
             <div class="tf-step" id="tfStep3">
                 <div class="tf-q">What is your primary goal<br>for the sale?</div>
                 <div class="tf-hint">Not sure? Choose the option that sounds most important to you right now.</div>
@@ -1774,8 +1757,6 @@
                 <button class="tf-ok" onclick="tfNext(3)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
             </div>
-
-            <!-- STEP 4: Timeline -->
             <div class="tf-step" id="tfStep4">
                 <div class="tf-q">How soon are you looking<br>to sell?</div>
                 <div class="tf-choices cols-3" id="tf-timeline-grid">
@@ -1789,8 +1770,6 @@
                 <button class="tf-ok" onclick="tfNext(4)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
             </div>
-
-            <!-- STEP 5: Name -->
             <div class="tf-step" id="tfStep5">
                 <div class="tf-q">What's your name?</div>
                 <div class="tf-hint">So we know what to call you.</div>
@@ -1809,8 +1788,6 @@
                 <button class="tf-ok" onclick="tfNext(5)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
             </div>
-
-            <!-- STEP 6: Email + Phone -->
             <div class="tf-step" id="tfStep6">
                 <div class="tf-q">How can we reach you?</div>
                 <div class="tf-hint" id="tfEmailHint">We'll send you the top agents in your area.</div>
@@ -1828,8 +1805,6 @@
                 <button class="tf-ok" id="tfSubmitBtn" onclick="tfSubmit()">Show Me The Top Agents <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Ctrl + Enter ↵</div>
             </div>
-
-            <!-- SUCCESS -->
             <div class="tf-success" id="tfSuccess">
                 <div class="tf-success-ico">
                     <svg viewBox="0 0 34 34" fill="none"><path d="M6 17l7 7L28 9" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1897,7 +1872,7 @@
         </div>
     </div>
 
-    <!-- SPECIALTIES — clicking opens Step 1 (address required), prop type pre-selected so Step 2 is skipped -->
+    <!-- SPECIALTIES -->
     <section class="specs" id="specs">
         <div class="specs-in">
             <p class="sec-lbl">Browse by Specialty</p>
@@ -1914,7 +1889,7 @@
         </div>
     </section>
 
-    <!-- CITIES — clicking opens Step 1 (user must enter their real property address) -->
+    <!-- CITIES -->
     <section class="cities" id="cities">
         <div class="cities-in">
             <p class="sec-lbl">Markets We Cover</p>
@@ -1952,7 +1927,7 @@
         </div>
     </section>
 
-    <!-- CONTACT FORM — full address + goal of sale included -->
+    <!-- CONTACT FORM -->
     <section class="contact" id="contact">
         <div class="contact-in">
             <p class="sec-lbl">Find Your Selling Agent</p>
@@ -1961,26 +1936,13 @@
             <div id="contactFormWrap">
                 <div class="cform">
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="c-fname">First Name<span class="req">*</span></label>
-                            <input id="c-fname" type="text" placeholder="Jane" autocomplete="given-name" />
-                        </div>
-                        <div class="form-group">
-                            <label for="c-lname">Last Name<span class="req">*</span></label>
-                            <input id="c-lname" type="text" placeholder="Smith" autocomplete="family-name" />
-                        </div>
+                        <div class="form-group"><label for="c-fname">First Name<span class="req">*</span></label><input id="c-fname" type="text" placeholder="Jane" autocomplete="given-name" /></div>
+                        <div class="form-group"><label for="c-lname">Last Name<span class="req">*</span></label><input id="c-lname" type="text" placeholder="Smith" autocomplete="family-name" /></div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="c-email">Email Address<span class="req">*</span></label>
-                            <input id="c-email" type="email" placeholder="jane@email.com" autocomplete="email" />
-                        </div>
-                        <div class="form-group">
-                            <label for="c-phone">Phone Number<span class="req">*</span></label>
-                            <input id="c-phone" type="tel" placeholder="+1 (555) 000-0000" autocomplete="tel" />
-                        </div>
+                        <div class="form-group"><label for="c-email">Email Address<span class="req">*</span></label><input id="c-email" type="email" placeholder="jane@email.com" autocomplete="email" /></div>
+                        <div class="form-group"><label for="c-phone">Phone Number<span class="req">*</span></label><input id="c-phone" type="tel" placeholder="+1 (555) 000-0000" autocomplete="tel" /></div>
                     </div>
-                    <!-- Street Address with Smarty autocomplete -->
                     <div class="form-row">
                         <div class="form-group full addr-wrap">
                             <label for="c-street">Street Address<span class="req">*</span></label>
@@ -1989,27 +1951,10 @@
                         </div>
                     </div>
                     <div class="form-row three">
-                        <div class="form-group">
-                            <label for="c-city">City<span class="req">*</span></label>
-                            <input id="c-city" type="text" placeholder="New York" autocomplete="address-level2" />
-                        </div>
-                        <div class="form-group">
-                            <label for="c-zip">ZIP Code<span class="req">*</span></label>
-                            <input id="c-zip" type="text" placeholder="10001" autocomplete="postal-code" />
-                        </div>
-                        <div class="form-group">
-                            <label for="c-price">Estimated Value</label>
-                            <select id="c-price">
-                                <option value="" disabled selected>Select range</option>
-                                <option>Under $250,000</option>
-                                <option>$250,000 – $500,000</option>
-                                <option>$500,000 – $1,000,000</option>
-                                <option>$1M – $2M</option>
-                                <option>$2M+</option>
-                            </select>
-                        </div>
+                        <div class="form-group"><label for="c-city">City<span class="req">*</span></label><input id="c-city" type="text" placeholder="New York" autocomplete="address-level2" /></div>
+                        <div class="form-group"><label for="c-zip">ZIP Code<span class="req">*</span></label><input id="c-zip" type="text" placeholder="10001" autocomplete="postal-code" /></div>
+                        <div class="form-group"><label for="c-price">Estimated Value</label><select id="c-price"><option value="" disabled selected>Select range</option><option>Under $250,000</option><option>$250,000 – $500,000</option><option>$500,000 – $1,000,000</option><option>$1M – $2M</option><option>$2M+</option></select></div>
                     </div>
-                    <!-- Property Type -->
                     <div class="prop-type-wrap">
                         <div class="prop-type-lbl">Property Type <span class="req">*</span></div>
                         <div class="prop-grid" id="c-prop-grid">
@@ -2022,26 +1967,16 @@
                         </div>
                         <input type="hidden" id="c-prop-type" />
                     </div>
-                    <!-- Goal of Sale -->
                     <div class="goal-wrap">
                         <div class="prop-type-lbl">Goal of Sale <span class="req">*</span></div>
                         <div class="goal-grid" id="c-goal-grid">
-                            <button type="button" class="goal-btn" onclick="selectGoal('Maximize my profit (Evaluate top agents)')">
-                                💰 Maximize my profit
-                                <span class="goal-sub">Evaluate top agents</span>
-                            </button>
-                            <button type="button" class="goal-btn" onclick="selectGoal('Sell fast for cash (No repairs or showings)')">
-                                ⚡ Sell fast for cash
-                                <span class="goal-sub">No repairs or showings</span>
-                            </button>
+                            <button type="button" class="goal-btn" onclick="selectGoal('Maximize my profit (Evaluate top agents)')">💰 Maximize my profit<span class="goal-sub">Evaluate top agents</span></button>
+                            <button type="button" class="goal-btn" onclick="selectGoal('Sell fast for cash (No repairs or showings)')">⚡ Sell fast for cash<span class="goal-sub">No repairs or showings</span></button>
                         </div>
                         <input type="hidden" id="c-goal" />
                     </div>
                     <div class="form-row">
-                        <div class="form-group full">
-                            <label for="c-msg">Anything else? <span style="color:var(--hint);font-weight:300;text-transform:none">(optional)</span></label>
-                            <textarea id="c-msg" placeholder="Timeline, property condition, must-knows for the agent…"></textarea>
-                        </div>
+                        <div class="form-group full"><label for="c-msg">Anything else? <span style="color:var(--hint);font-weight:300;text-transform:none">(optional)</span></label><textarea id="c-msg" placeholder="Timeline, property condition, must-knows for the agent…"></textarea></div>
                     </div>
                     <button class="form-submit" id="contactSubmitBtn" onclick="submitContact(event)">Find My Top 3 Agents →</button>
                     <p class="form-note">🔒 Your information is private and never shared without your consent.</p>
@@ -2067,23 +2002,14 @@
                     </span>
                 </a>
                 <div class="ft-soc">
-                    <a href="https://twitter.com" target="_blank" rel="noopener" class="fsoc" aria-label="Twitter">
-                        <svg viewBox="0 0 16 16" fill="rgba(255,255,255,.4)"><path d="M15 2a7.6 7.6 0 01-2.2.6A3.8 3.8 0 0014.7.3a7.7 7.7 0 01-2.4.9A3.8 3.8 0 008 4.8a10.8 10.8 0 01-7.8-4A3.8 3.8 0 001.4 6a3.8 3.8 0 01-1.7-.5v.1a3.8 3.8 0 003 3.7 3.8 3.8 0 01-1.7.1 3.8 3.8 0 003.6 2.6A7.7 7.7 0 010 13.5a10.8 10.8 0 005.9 1.7C13 15.2 16.7 9.7 16.7 4.9v-.5A7.7 7.7 0 0015 2z"/></svg>
-                    </a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener" class="fsoc" aria-label="Instagram">
-                        <svg viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="4" stroke="rgba(255,255,255,.4)" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="rgba(255,255,255,.4)" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r=".8" fill="rgba(255,255,255,.4)"/></svg>
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="fsoc" aria-label="LinkedIn">
-                        <svg viewBox="0 0 16 16" fill="rgba(255,255,255,.4)"><path d="M5.4 12.5H3.5V6.3h1.9v6.2zM4.4 5.5a1.1 1.1 0 110-2.2 1.1 1.1 0 010 2.2zm8.1 7h-1.9V9.5c0-.7 0-1.6-1-1.6s-1.1.8-1.1 1.6v3H6.7V6.3h1.8v.8h.1a2 2 0 011.8-1c1.9 0 2.2 1.2 2.2 2.9v3.5z"/></svg>
-                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener" class="fsoc" aria-label="Twitter"><svg viewBox="0 0 16 16" fill="rgba(255,255,255,.4)"><path d="M15 2a7.6 7.6 0 01-2.2.6A3.8 3.8 0 0014.7.3a7.7 7.7 0 01-2.4.9A3.8 3.8 0 008 4.8a10.8 10.8 0 01-7.8-4A3.8 3.8 0 001.4 6a3.8 3.8 0 01-1.7-.5v.1a3.8 3.8 0 003 3.7 3.8 3.8 0 01-1.7.1 3.8 3.8 0 003.6 2.6A7.7 7.7 0 010 13.5a10.8 10.8 0 005.9 1.7C13 15.2 16.7 9.7 16.7 4.9v-.5A7.7 7.7 0 0015 2z"/></svg></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener" class="fsoc" aria-label="Instagram"><svg viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="4" stroke="rgba(255,255,255,.4)" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="rgba(255,255,255,.4)" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r=".8" fill="rgba(255,255,255,.4)"/></svg></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="fsoc" aria-label="LinkedIn"><svg viewBox="0 0 16 16" fill="rgba(255,255,255,.4)"><path d="M5.4 12.5H3.5V6.3h1.9v6.2zM4.4 5.5a1.1 1.1 0 110-2.2 1.1 1.1 0 010 2.2zm8.1 7h-1.9V9.5c0-.7 0-1.6-1-1.6s-1.1.8-1.1 1.6v3H6.7V6.3h1.8v.8h.1a2 2 0 011.8-1c1.9 0 2.2 1.2 2.2 2.9v3.5z"/></svg></a>
                 </div>
             </div>
             <div class="ft-bot">
                 <span class="ft-copy">© 2025 TopThree. Not a licensed real estate brokerage.</span>
-                <div class="ft-legal">
-                    <a href="#contact">Find an Agent</a>
-                    <a href="#why">How It Works</a>
-                </div>
+                <div class="ft-legal"><a href="#contact">Find an Agent</a><a href="#why">How It Works</a></div>
             </div>
         </div>
     </footer>
@@ -2096,14 +2022,9 @@
             "sb_publishable_BWDnlqjX5G-T8LxVOVzcHg_QlTEqAfc"
         );
 
-        /* ══════════════════════════════════════════════
-           SMARTY CONFIG
-           Switch USE_EMBEDDED_KEY to true + paste your
-           Embedded Key once created at account.smarty.com
-        ══════════════════════════════════════════════ */
         const SMARTY_CONFIG = {
             USE_EMBEDDED_KEY: true,
-            EMBEDDED_KEY: '271938193138627229', // ← replace with real embedded key
+            EMBEDDED_KEY: '271938193138627229',
             AUTH_ID: '7e1347de-2ef9-379d-a13c-d3e7b3cefa99',
             AUTH_TOKEN: '1VbZ087ntk3KUQ8qKcgQ',
             MAX_RESULTS: 6,
@@ -2168,6 +2089,47 @@
             return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
 
+        /* ════════════════════════════════════════
+           FIX 2: KEYBOARD NAVIGATION HELPER
+           Attach to any address input + its dropdown.
+           ArrowDown/Up to move, Enter to select.
+        ════════════════════════════════════════ */
+        function attachKeyNav(inputEl, getItems, onSelect) {
+            let idx = -1;
+
+            function highlight(items) {
+                items.forEach((el, i) => {
+                    el.style.background = i === idx ? 'rgba(201,168,76,.22)' : '';
+                });
+            }
+            inputEl.addEventListener('keydown', function(e) {
+                const items = Array.from(getItems());
+                if (!items.length) return;
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    idx = Math.min(idx + 1, items.length - 1);
+                    highlight(items);
+                    items[idx].scrollIntoView({
+                        block: 'nearest'
+                    });
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    idx = Math.max(idx - 1, 0);
+                    highlight(items);
+                    items[idx].scrollIntoView({
+                        block: 'nearest'
+                    });
+                } else if (e.key === 'Enter' && idx >= 0 && items[idx]) {
+                    e.preventDefault();
+                    e.stopPropagation(); // stop bubbling to global keydown handler
+                    onSelect(items[idx]);
+                    idx = -1;
+                } else {
+                    idx = -1;
+                }
+            });
+        }
+
         /* ══ HERO AUTOCOMPLETE ══ */
         let heroDebounce = null,
             heroSelectedAddr = null;
@@ -2198,8 +2160,7 @@
             dd.innerHTML = suggestions.map(s => `
             <div class="addr-item" onclick="selectHeroAddress('${escHtml(s.full)}','${escHtml(s.city)}','${escHtml(s.state)}','${escHtml(s.zip)}')">
                 <svg width="14" height="14" viewBox="0 0 18 18" fill="none"><path d="M9 1C6.24 1 4 3.24 4 6c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5z" stroke="#9B9690" stroke-width="1.4"/></svg>
-                <div><div class="addr-main">${escHtml(s.street)}${s.secondary?' '+escHtml(s.secondary):''}</div>
-                <div class="addr-sub">${escHtml(s.city)}, ${escHtml(s.state)} ${escHtml(s.zip)}</div></div>
+                <div><div class="addr-main">${escHtml(s.street)}${s.secondary?' '+escHtml(s.secondary):''}</div><div class="addr-sub">${escHtml(s.city)}, ${escHtml(s.state)} ${escHtml(s.zip)}</div></div>
             </div>`).join('');
             dd.classList.add('show');
         }
@@ -2328,9 +2289,7 @@
             document.getElementById('mob').classList.remove('open');
         }
 
-        /* ══════════════════════════════════════════════
-           TYPEFORM STATE
-        ══════════════════════════════════════════════ */
+        /* ══ TYPEFORM STATE ══ */
         const TF_TOTAL = 6;
         const tfData = {
             address: '',
@@ -2359,7 +2318,7 @@
                 f.value = '';
                 f.classList.remove('err');
             });
-            ['prop', 'goal', 'timeline'].forEach(k => tfData[k] = '');
+            ['prop', 'goal', 'timeline', 'first', 'last', 'email', 'phone'].forEach(k => tfData[k] = '');
             Object.assign(tfData, {
                 address: '',
                 street: '',
@@ -2373,16 +2332,34 @@
             document.getElementById('tfEmailHint').textContent = "We'll send you the top agents in your area.";
         }
 
-        function openTf() {
+        /* ── FIX 1: openTf accepts optional preAddr so address survives resetTfForm ── */
+        function openTf(preAddr) {
             document.getElementById('tfOverlay').classList.add('open');
             document.body.style.overflow = 'hidden';
             tfCurrent = 1;
-            resetTfForm();
+            resetTfForm(); // clears everything
+
+            // Re-apply pre-filled address AFTER reset
+            if (preAddr) {
+                Object.assign(tfData, {
+                    address: preAddr.address || preAddr.full || '',
+                    street: preAddr.street || preAddr.full || '',
+                    city: preAddr.city || '',
+                    state: preAddr.state || '',
+                    zip: preAddr.zip || ''
+                });
+                tfSelectedAddress = preAddr;
+            }
+
             showTfStep(1);
             updateProgress(1);
-            // Auto-focus address field so user can type immediately
+
             setTimeout(() => {
-                document.getElementById('tf-address').focus();
+                const addrInput = document.getElementById('tf-address');
+                if (preAddr && (preAddr.full || preAddr.address)) {
+                    addrInput.value = preAddr.full || preAddr.address;
+                }
+                addrInput.focus();
             }, 120);
         }
 
@@ -2417,7 +2394,6 @@
                     tfData.address = addrVal;
                     tfData.city = addrVal;
                 }
-                // If property type was pre-selected (specialty card), jump directly to Step 3 (goal)
                 if (tfData.prop) {
                     tfCurrent = 3;
                     showTfStep(3);
@@ -2471,11 +2447,9 @@
             }
             tfData.email = emailVal;
             tfData.phone = document.getElementById('tf-phone').value.trim() || null;
-
             const btn = document.getElementById('tfSubmitBtn');
             btn.textContent = 'Submitting…';
             btn.disabled = true;
-
             try {
                 const {
                     error
@@ -2494,19 +2468,16 @@
                     source: 'typeform'
                 }]);
                 if (error) throw error;
-
                 if (tfData.city) {
                     await sb.from('search_logs').insert([{
                         search_query: tfData.address || tfData.city,
                         city: tfData.city
                     }]);
                 }
-
                 document.querySelectorAll('.tf-step').forEach(s => s.classList.remove('active'));
                 document.getElementById('tfSuccess').classList.add('active');
                 document.getElementById('tfProgressFill').style.width = '100%';
                 document.getElementById('tfStepLbl').textContent = 'Complete!';
-
             } catch (err) {
                 console.error('Typeform submit error:', err);
                 showToast('Submission failed — please try again');
@@ -2515,19 +2486,9 @@
             }
         }
 
-        /* ══════════════════════════════════════════════
-           FLOW ENTRY POINTS
-           ─────────────────────────────────────────────
-           ALL CTAs open at Step 1 with address field
-           empty and focused. Address is always required.
+        /* ══ FLOW ENTRY POINTS ══ */
 
-           • Hero search bar  → pre-fills address if typed
-           • Specialty cards  → pre-selects prop type,
-                                skips Step 2 after address
-           • City cards       → sets placeholder hint only,
-                                user still types full address
-        ══════════════════════════════════════════════ */
-
+        /* ── FIX 1 applied: pass preAddr so address survives resetTfForm ── */
         function startFlowFromHero() {
             const inputVal = document.getElementById('searchInput').value.trim();
             if (!inputVal || inputVal.length < 4) {
@@ -2535,51 +2496,49 @@
                 showToast('Please enter your property address first');
                 return;
             }
+            let preAddr;
             if (heroSelectedAddr) {
-                tfSelectedAddress = heroSelectedAddr;
-                Object.assign(tfData, {
+                preAddr = {
+                    full: heroSelectedAddr.full,
                     address: heroSelectedAddr.full,
+                    street: heroSelectedAddr.full,
                     city: heroSelectedAddr.city,
                     state: heroSelectedAddr.state,
                     zip: heroSelectedAddr.zip
-                });
+                };
             } else {
-                tfData.address = inputVal;
-                tfData.city = inputVal;
+                preAddr = {
+                    full: inputVal,
+                    address: inputVal,
+                    street: inputVal,
+                    city: inputVal,
+                    state: '',
+                    zip: ''
+                };
             }
-            openTf();
-            setTimeout(() => {
-                document.getElementById('tf-address').value = tfData.address;
-            }, 100);
+            openTf(preAddr);
         }
 
         function startFlowWithProp(propType) {
-            // Open at Step 1. Pre-set prop type — after address is entered, Step 2 is skipped automatically.
             openTf();
             tfData.prop = propType;
-            // Visually highlight the matching choice in the prop grid (for when user reaches Step 2 if needed)
             setTimeout(() => {
                 document.querySelectorAll('#tf-prop-grid .tf-choice').forEach(btn => {
                     const text = btn.textContent.trim();
-                    if (text.includes(propType.split('/')[0].trim().substring(0, 6)) || text.includes(propType.split(' ')[1] || '')) {
-                        btn.classList.add('selected');
-                    }
+                    if (text.includes(propType.split('/')[0].trim().substring(0, 6)) || text.includes(propType.split(' ')[1] || '')) btn.classList.add('selected');
                 });
             }, 80);
         }
 
         function startFlowWithCity(city) {
-            // Open at Step 1 with city hint in placeholder.
-            // User MUST type their full property address — city alone is not sufficient.
             openTf();
             setTimeout(() => {
                 document.getElementById('tf-address').placeholder = 'e.g. 123 Main St, ' + city;
-                document.getElementById('tfStep1Hint').textContent =
-                    'Enter your full property address in ' + city + ' to find your top 3 agents.';
+                document.getElementById('tfStep1Hint').textContent = 'Enter your full property address in ' + city + ' to find your top 3 agents.';
             }, 100);
         }
 
-        /* Keyboard shortcuts */
+        /* ── FIX 2: Global keydown — block Enter when address dropdown is open ── */
         document.addEventListener('keydown', e => {
             const overlay = document.getElementById('tfOverlay');
             if (!overlay.classList.contains('open')) return;
@@ -2587,7 +2546,9 @@
                 closeTf();
                 return;
             }
-            if (e.key === 'Enter' && !e.ctrlKey && !e.metaKey && tfCurrent >= 1 && tfCurrent <= 5) tfNext(tfCurrent);
+            const tfDd = document.getElementById('tfAddrDropdown');
+            const ddOpen = tfDd && tfDd.classList.contains('show');
+            if (e.key === 'Enter' && !e.ctrlKey && !e.metaKey && tfCurrent >= 1 && tfCurrent <= 5 && !ddOpen) tfNext(tfCurrent);
             if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && tfCurrent === 6) tfSubmit();
         });
 
@@ -2633,7 +2594,6 @@
                 propType = document.getElementById('c-prop-type').value,
                 goal = document.getElementById('c-goal').value,
                 msg = document.getElementById('c-msg').value.trim();
-
             if (!fname) {
                 markErr('c-fname');
                 showToast('Please enter your first name');
@@ -2679,11 +2639,9 @@
                 showToast('Please select your goal of sale');
                 return;
             }
-
             const btn = document.getElementById('contactSubmitBtn');
             btn.textContent = 'Submitting…';
             btn.disabled = true;
-
             try {
                 const {
                     error
@@ -2729,6 +2687,28 @@
                 t.style.transform = 'translateX(-50%) translateY(20px)';
             }, 2800);
         }
+
+        /* ── Attach keyboard navigation to all 3 address inputs ── */
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hero search bar
+            attachKeyNav(
+                document.getElementById('searchInput'),
+                () => document.querySelectorAll('#heroAddrDropdown .addr-item'),
+                item => item.click()
+            );
+            // Typeform address field
+            attachKeyNav(
+                document.getElementById('tf-address'),
+                () => document.querySelectorAll('#tfAddrDropdown .tf-addr-item'),
+                item => item.click()
+            );
+            // Contact form address field
+            attachKeyNav(
+                document.getElementById('c-street'),
+                () => document.querySelectorAll('#formAddrDropdown .form-addr-item'),
+                item => item.click()
+            );
+        });
     </script>
 </body>
 
