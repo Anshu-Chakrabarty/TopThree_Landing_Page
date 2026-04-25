@@ -2122,7 +2122,7 @@
             return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
 
-        function attachKeyNav(inputEl, getItems, onSelect) {
+        function attachKeyNav(inputEl, getItems, onSelect, onEnterFallback) {
             let idx = -1;
 
             function highlight(items) {
@@ -2132,26 +2132,33 @@
             }
             inputEl.addEventListener('keydown', function(e) {
                 const items = Array.from(getItems());
-                if (!items.length) return;
-                if (e.key === 'ArrowDown') {
+                if (e.key === 'ArrowDown' && items.length) {
                     e.preventDefault();
                     idx = Math.min(idx + 1, items.length - 1);
                     highlight(items);
                     items[idx].scrollIntoView({
                         block: 'nearest'
                     });
-                } else if (e.key === 'ArrowUp') {
+                } else if (e.key === 'ArrowUp' && items.length) {
                     e.preventDefault();
                     idx = Math.max(idx - 1, 0);
                     highlight(items);
                     items[idx].scrollIntoView({
                         block: 'nearest'
                     });
-                } else if (e.key === 'Enter' && idx >= 0 && items[idx]) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    onSelect(items[idx]);
-                    idx = -1;
+                } else if (e.key === 'Enter') {
+                    if (idx >= 0 && items[idx]) {
+                        // Item highlighted in dropdown — select it
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onSelect(items[idx]);
+                        idx = -1;
+                    } else if (onEnterFallback) {
+                        // No item highlighted — run the fallback (e.g. submit/next)
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onEnterFallback();
+                    }
                 } else {
                     idx = -1;
                 }
@@ -2202,6 +2209,8 @@
                 state,
                 zip
             };
+            // Auto-launch flow after address is selected from dropdown
+            setTimeout(() => startFlowFromHero(), 300);
         }
 
         /* ══ FORM AUTOCOMPLETE ══ */
@@ -2736,16 +2745,21 @@
 
         /* ── Keyboard navigation for address inputs ── */
         document.addEventListener('DOMContentLoaded', () => {
+            // Hero search: Enter with dropdown item = select it; Enter with no item = launch flow
             attachKeyNav(
                 document.getElementById('searchInput'),
                 () => document.querySelectorAll('#heroAddrDropdown .addr-item'),
-                item => item.click()
+                item => item.click(),
+                () => startFlowFromHero()
             );
+            // Typeform address: Enter with dropdown item = select it (auto-advance fires inside selectTfAddress)
             attachKeyNav(
                 document.getElementById('tf-address'),
                 () => document.querySelectorAll('#tfAddrDropdown .tf-addr-item'),
-                item => item.click()
+                item => item.click(),
+                () => tfNext(1)
             );
+            // Contact form address: Enter with dropdown item = select it
             attachKeyNav(
                 document.getElementById('c-street'),
                 () => document.querySelectorAll('#formAddrDropdown .form-addr-item'),
