@@ -593,6 +593,7 @@
             font-size: 11px;
             color: rgba(255, 255, 255, .4)
         }
+        /* ── Nationwide Coverage Section ── */
         
         .cities {
             padding: 80px 5%;
@@ -604,96 +605,66 @@
             margin: 0 auto
         }
         
-        .bento {
+        .coverage-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: 200px 200px;
-            gap: 12px
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 8px
         }
         
-        .city {
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            display: block;
-            transition: transform .28s, box-shadow .28s;
-            border: none;
-            padding: 0;
-            background: none;
-            text-decoration: none
+        .coverage-card {
+            background: var(--cream);
+            border: 1px solid rgba(201, 168, 76, .15);
+            border-radius: 18px;
+            padding: 36px 28px;
+            text-align: center;
+            transition: box-shadow .25s, transform .25s
         }
         
-        .city:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 22px 60px rgba(0, 0, 0, .18)
+        .coverage-card:hover {
+            box-shadow: 0 14px 48px rgba(0, 0, 0, .08);
+            transform: translateY(-3px)
         }
         
-        .city img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform .4s
+        .coverage-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            background: rgba(201, 168, 76, .12);
+            border: 1px solid rgba(201, 168, 76, .25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px
         }
         
-        .city:hover img {
-            transform: scale(1.07)
+        .coverage-icon svg {
+            width: 26px;
+            height: 26px
         }
         
-        .city-gd {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(8, 7, 5, .9) 0%, rgba(8, 7, 5, .15) 55%, transparent 100%)
-        }
-        
-        .city.big {
-            grid-column: span 2;
-            grid-row: span 2
-        }
-        
-        .city-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 18px 20px;
-            z-index: 2
-        }
-        
-        .city-pill {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--ink);
-            font-size: 10px;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 100px;
-            margin-bottom: 6px;
-            letter-spacing: .5px
-        }
-        
-        .city-name {
+        .coverage-stat {
             font-family: 'Cormorant Garamond', serif;
+            font-size: 38px;
             font-weight: 700;
-            color: #fff;
-            margin-bottom: 2px
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 6px;
+            letter-spacing: -.5px
         }
         
-        .city.big .city-name {
-            font-size: 32px
+        .coverage-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 8px
         }
         
-        .city:not(.big) .city-name {
-            font-size: 19px
-        }
-        
-        .city-count {
-            font-size: 12px;
-            color: rgba(255, 255, 255, .5);
-            font-weight: 400
+        .coverage-desc {
+            font-size: 13.5px;
+            color: var(--mid);
+            line-height: 1.6;
+            font-weight: 300
         }
         
         .why {
@@ -776,10 +747,6 @@
             margin-bottom: 14px
         }
         
-        .form-row.three {
-            grid-template-columns: 1fr 1fr 1fr
-        }
-        
         .form-group {
             display: flex;
             flex-direction: column;
@@ -788,10 +755,6 @@
         
         .form-group.full {
             grid-column: span 2
-        }
-        
-        .form-group.full3 {
-            grid-column: span 3
         }
         
         .form-group label {
@@ -833,19 +796,6 @@
         .form-group textarea:focus {
             border-color: var(--gold);
             box-shadow: 0 0 0 3px rgba(201, 168, 76, .12)
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 90px
-        }
-        
-        .form-group select {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239B9690' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 14px center
         }
         
         .form-group input.err {
@@ -1032,6 +982,50 @@
             border-color: #ef4444!important;
             background: rgba(239, 68, 68, .05)!important
         }
+        /* ── Timeline selector (inline form) ── */
+        
+        .timeline-wrap {
+            margin-bottom: 14px
+        }
+        
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px
+        }
+        
+        .timeline-btn {
+            background: #fff;
+            border: 1.5px solid #E8E4DC;
+            border-radius: 9px;
+            padding: 10px 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--mid);
+            cursor: pointer;
+            transition: all .18s;
+            text-align: center;
+            line-height: 1.35
+        }
+        
+        .timeline-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201, 168, 76, .05)
+        }
+        
+        .timeline-btn.selected {
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, .1);
+            color: var(--goldd);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, .13)
+        }
+        
+        .timeline-btn.err {
+            border-color: #ef4444!important;
+            background: rgba(239, 68, 68, .05)!important
+        }
         
         .form-submit {
             width: 100%;
@@ -1165,7 +1159,6 @@
         .tf-close:hover {
             background: rgba(255, 255, 255, .22)
         }
-        /* ── Back button ── */
         
         .tf-back-btn {
             background: rgba(255, 255, 255, .08);
@@ -1565,34 +1558,6 @@
             margin-bottom: 18px
         }
         
-        .ft-soc {
-            display: flex;
-            gap: 8px
-        }
-        
-        .fsoc {
-            width: 34px;
-            height: 34px;
-            border-radius: 9px;
-            background: rgba(255, 255, 255, .05);
-            border: 1px solid rgba(255, 255, 255, .08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all .2s;
-            text-decoration: none
-        }
-        
-        .fsoc:hover {
-            background: rgba(201, 168, 76, .2);
-            border-color: rgba(201, 168, 76, .35)
-        }
-        
-        .fsoc svg {
-            width: 15px;
-            height: 15px
-        }
-        
         .ft-bot {
             border-top: 1px solid rgba(255, 255, 255, .05);
             padding-top: 16px;
@@ -1626,16 +1591,8 @@
         }
         
         @media(max-width:900px) {
-            .bento {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: auto
-            }
-            .city.big {
-                grid-column: span 2;
-                height: 260px
-            }
-            .city:not(.big) {
-                height: 180px
+            .coverage-grid {
+                grid-template-columns: 1fr
             }
             .why-in {
                 grid-template-columns: 1fr 1fr
@@ -1663,14 +1620,8 @@
                 padding: 12px 20px;
                 font-size: 13px
             }
-            .bento {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto
-            }
-            .city.big,
-            .city:not(.big) {
-                grid-column: span 1;
-                height: 200px
+            .coverage-grid {
+                grid-template-columns: 1fr
             }
             .spec-grid {
                 grid-template-columns: repeat(2, 1fr)
@@ -1684,11 +1635,7 @@
             .form-row {
                 grid-template-columns: 1fr
             }
-            .form-row.three {
-                grid-template-columns: 1fr
-            }
-            .form-group.full,
-            .form-group.full3 {
+            .form-group.full {
                 grid-column: span 1
             }
             .ft-row {
@@ -1720,6 +1667,9 @@
             .prop-grid {
                 grid-template-columns: repeat(2, 1fr)
             }
+            .timeline-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
             .tf-back-btn span {
                 display: none
             }
@@ -1742,7 +1692,6 @@
                 <span style="display:block;font-size:12px;font-weight:500;letter-spacing:1px;color:#C9A84C;">REALTORS</span>
                 </span>
             </a>
-            <!-- Right side: back button + close -->
             <div style="display:flex;align-items:center;gap:10px;">
                 <button id="tfBackBtn" class="tf-back-btn" onclick="tfBack()" aria-label="Previous step" style="display:none;">
                     <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1779,7 +1728,6 @@
                     <button class="tf-choice" onclick="tfSelect('prop','Commercial',this)">🏬 Commercial</button>
                     <button class="tf-choice" onclick="tfSelect('prop','Plot / Land',this)">🌱 Plot / Land</button>
                 </div>
-                <!-- OK button hidden on step 2/3/4 since auto-advance handles it; kept as fallback -->
                 <button class="tf-ok" onclick="tfNext(2)" id="tfOk2">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
             <div class="tf-step" id="tfStep3">
@@ -1863,7 +1811,7 @@
         </a>
         <ul class="nav-links">
             <li><a href="#specs">Specialties</a></li>
-            <li><a href="#cities">Cities</a></li>
+            <li><a href="#cities">Coverage</a></li>
             <li><a href="#why">How It Works</a></li>
             <li><a href="#contact" class="nav-cta">Find My Agent</a></li>
         </ul>
@@ -1871,7 +1819,7 @@
     </nav>
     <div class="mob" id="mob">
         <a href="#specs" onclick="closeMob()">Specialties<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="#cities" onclick="closeMob()">Cities<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#cities" onclick="closeMob()">Coverage<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <a href="#why" onclick="closeMob()">How It Works<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <a href="#contact" onclick="closeMob()">Find My Agent →</a>
     </div>
@@ -1922,19 +1870,37 @@
         </div>
     </section>
 
-    <!-- CITIES -->
+    <!-- NATIONWIDE COVERAGE -->
     <section class="cities" id="cities">
         <div class="cities-in">
-            <p class="sec-lbl">Markets We Cover</p>
-            <h2 class="sec-h">Active selling agents in <em>300+ cities</em></h2>
-            <p class="sec-sub">We cover major metros and growing suburbs across the US. Enter your property address to find the top 3 verified agents in your specific market.</p>
-            <div class="bento">
-                <button class="city big" onclick="startFlowWithCity('New York')"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=900&q=82&fit=crop" alt="New York"><div class="city-gd"></div><div class="city-info"><div class="city-pill">Most Active</div><div class="city-name">New York</div><div class="city-count">820+ agents</div></div></button>
-                <button class="city" onclick="startFlowWithCity('Chicago')"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=82&fit=crop" alt="Chicago"><div class="city-gd"></div><div class="city-info"><div class="city-name">Chicago</div><div class="city-count">560+ agents</div></div></button>
-                <button class="city" onclick="startFlowWithCity('Los Angeles')"><img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=82&fit=crop" alt="Los Angeles"><div class="city-gd"></div><div class="city-info"><div class="city-name">Los Angeles</div><div class="city-count">640+ agents</div></div></button>
-                <button class="city" onclick="startFlowWithCity('Miami')"><img src="https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=600&q=82&fit=crop" alt="Miami"><div class="city-gd"></div><div class="city-info"><div class="city-name">Miami</div><div class="city-count">420+ agents</div></div></button>
-                <button class="city" onclick="startFlowWithCity('Houston')"><img src="https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=600&q=82&fit=crop" alt="Houston"><div class="city-gd"></div><div class="city-info"><div class="city-name">Houston</div><div class="city-count">480+ agents</div></div></button>
-                <button class="city" onclick="startFlowWithCity('San Francisco')"><img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&q=82&fit=crop" alt="San Francisco"><div class="city-gd"></div><div class="city-info"><div class="city-name">San Francisco</div><div class="city-count">380+ agents</div></div></button>
+            <p class="sec-lbl">Nationwide Coverage</p>
+            <h2 class="sec-h">Verified agents across the<br><em>entire United States</em></h2>
+            <p class="sec-sub">Whether you're in a major metro or a rural community, we have vetted local experts ready to sell your property. Enter your address to find your top 3 agents.</p>
+            <div class="coverage-grid">
+                <div class="coverage-card">
+                    <div class="coverage-icon">
+                        <svg viewBox="0 0 26 26" fill="none"><path d="M13 2C8.03 2 4 6.03 4 11c0 7.25 9 15 9 15s9-7.75 9-15c0-4.97-4.03-9-9-9z" stroke="#C9A84C" stroke-width="1.6"/><circle cx="13" cy="11" r="3" stroke="#C9A84C" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="coverage-stat">50</div>
+                    <div class="coverage-title">Nationwide Reach</div>
+                    <div class="coverage-desc">Active verified agents across all 50 states — from New York to rural Montana, we've got you covered.</div>
+                </div>
+                <div class="coverage-card">
+                    <div class="coverage-icon">
+                        <svg viewBox="0 0 26 26" fill="none"><circle cx="13" cy="10" r="4" stroke="#C9A84C" stroke-width="1.6"/><path d="M5 22c0-4.42 3.58-8 8-8s8 3.58 8 8" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="coverage-stat">12K+</div>
+                    <div class="coverage-title">Active Agents</div>
+                    <div class="coverage-desc">Over 12,000 individually vetted listing agents, ranked on verified sales data — not paid placements.</div>
+                </div>
+                <div class="coverage-card">
+                    <div class="coverage-icon">
+                        <svg viewBox="0 0 26 26" fill="none"><path d="M4 13h4l3-8 4 16 3-8h4" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="coverage-stat">300+</div>
+                    <div class="coverage-title">Local Market Experts</div>
+                    <div class="coverage-desc">Deep coverage across 300+ metro areas and growing suburbs — with agents who know your specific market inside and out.</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1983,10 +1949,9 @@
                             <div class="form-dropdown" id="formAddrDropdown"></div>
                         </div>
                     </div>
-                    <div class="form-row three">
+                    <div class="form-row">
                         <div class="form-group"><label for="c-city">City<span class="req">*</span></label><input id="c-city" type="text" placeholder="New York" autocomplete="address-level2" /></div>
                         <div class="form-group"><label for="c-zip">ZIP Code<span class="req">*</span></label><input id="c-zip" type="text" placeholder="10001" autocomplete="postal-code" /></div>
-                        <div class="form-group"><label for="c-price">Estimated Value</label><select id="c-price"><option value="" disabled selected>Select range</option><option>Under $250,000</option><option>$250,000 – $500,000</option><option>$500,000 – $1,000,000</option><option>$1M – $2M</option><option>$2M+</option></select></div>
                     </div>
                     <div class="prop-type-wrap">
                         <div class="prop-type-lbl">Property Type <span class="req">*</span></div>
@@ -2008,8 +1973,17 @@
                         </div>
                         <input type="hidden" id="c-goal" />
                     </div>
-                    <div class="form-row">
-                        <div class="form-group full"><label for="c-msg">Anything else? <span style="color:var(--hint);font-weight:300;text-transform:none">(optional)</span></label><textarea id="c-msg" placeholder="Timeline, property condition, must-knows for the agent…"></textarea></div>
+                    <div class="timeline-wrap">
+                        <div class="prop-type-lbl">How Soon Are You Looking to Sell? <span class="req">*</span></div>
+                        <div class="timeline-grid" id="c-timeline-grid">
+                            <button type="button" class="timeline-btn" onclick="selectTimeline('Less than 2 weeks')">Less than 2 weeks</button>
+                            <button type="button" class="timeline-btn" onclick="selectTimeline('2 – 4 weeks')">2 – 4 weeks</button>
+                            <button type="button" class="timeline-btn" onclick="selectTimeline('1 – 2 months')">1 – 2 months</button>
+                            <button type="button" class="timeline-btn" onclick="selectTimeline('2 – 4 months')">2 – 4 months</button>
+                            <button type="button" class="timeline-btn" onclick="selectTimeline('4 – 6 months')">4 – 6 months</button>
+                            <button type="button" class="timeline-btn" onclick="selectTimeline('More than 6 months')">More than 6 months</button>
+                        </div>
+                        <input type="hidden" id="c-timeline" />
                     </div>
                     <button class="form-submit" id="contactSubmitBtn" onclick="submitContact(event)">Find My Top 3 Agents →</button>
                     <p class="form-note">🔒 Your information is private and never shared without your consent.</p>
@@ -2034,14 +2008,9 @@
                     <span style="display:block;font-size:12px;font-weight:500;letter-spacing:1px;color:#C9A84C;">REALTORS</span>
                     </span>
                 </a>
-                <div class="ft-soc">
-                    <a href="https://twitter.com" target="_blank" rel="noopener" class="fsoc" aria-label="Twitter"><svg viewBox="0 0 16 16" fill="rgba(255,255,255,.4)"><path d="M15 2a7.6 7.6 0 01-2.2.6A3.8 3.8 0 0014.7.3a7.7 7.7 0 01-2.4.9A3.8 3.8 0 008 4.8a10.8 10.8 0 01-7.8-4A3.8 3.8 0 001.4 6a3.8 3.8 0 01-1.7-.5v.1a3.8 3.8 0 003 3.7 3.8 3.8 0 01-1.7.1 3.8 3.8 0 003.6 2.6A7.7 7.7 0 010 13.5a10.8 10.8 0 005.9 1.7C13 15.2 16.7 9.7 16.7 4.9v-.5A7.7 7.7 0 0015 2z"/></svg></a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener" class="fsoc" aria-label="Instagram"><svg viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="4" stroke="rgba(255,255,255,.4)" stroke-width="1.3"/><circle cx="8" cy="8" r="3" stroke="rgba(255,255,255,.4)" stroke-width="1.3"/><circle cx="11.5" cy="4.5" r=".8" fill="rgba(255,255,255,.4)"/></svg></a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="fsoc" aria-label="LinkedIn"><svg viewBox="0 0 16 16" fill="rgba(255,255,255,.4)"><path d="M5.4 12.5H3.5V6.3h1.9v6.2zM4.4 5.5a1.1 1.1 0 110-2.2 1.1 1.1 0 010 2.2zm8.1 7h-1.9V9.5c0-.7 0-1.6-1-1.6s-1.1.8-1.1 1.6v3H6.7V6.3h1.8v.8h.1a2 2 0 011.8-1c1.9 0 2.2 1.2 2.2 2.9v3.5z"/></svg></a>
-                </div>
             </div>
             <div class="ft-bot">
-                <span class="ft-copy">© 2025 TopThree. Not a licensed real estate brokerage.</span>
+                <span class="ft-copy">© 2026 TopThree. Not a licensed real estate brokerage.</span>
                 <div class="ft-legal"><a href="#contact">Find an Agent</a><a href="#why">How It Works</a></div>
             </div>
         </div>
@@ -2148,13 +2117,11 @@
                     });
                 } else if (e.key === 'Enter') {
                     if (idx >= 0 && items[idx]) {
-                        // Item highlighted in dropdown — select it
                         e.preventDefault();
                         e.stopPropagation();
                         onSelect(items[idx]);
                         idx = -1;
                     } else if (onEnterFallback) {
-                        // No item highlighted — run the fallback (e.g. submit/next)
                         e.preventDefault();
                         e.stopPropagation();
                         onEnterFallback();
@@ -2209,7 +2176,6 @@
                 state,
                 zip
             };
-            // Auto-launch flow after address is selected from dropdown
             setTimeout(() => startFlowFromHero(), 300);
         }
 
@@ -2305,7 +2271,6 @@
                 state,
                 zip
             });
-            // ── AUTO-ADVANCE: move to next step after address selection ──
             setTimeout(() => tfNext(1), 380);
         }
 
@@ -2375,7 +2340,6 @@
             document.getElementById('tfOverlay').classList.add('open');
             document.body.style.overflow = 'hidden';
             resetTfForm();
-
             if (preAddr) {
                 Object.assign(tfData, {
                     address: preAddr.address || preAddr.full || '',
@@ -2385,22 +2349,16 @@
                     zip: preAddr.zip || ''
                 });
                 tfSelectedAddress = preAddr;
-                // Pre-fill the address input even if we skip step 1
                 setTimeout(() => {
                     const addrInput = document.getElementById('tf-address');
                     if (preAddr.full || preAddr.address) addrInput.value = preAddr.full || preAddr.address;
                 }, 60);
             }
-
-            // If a pre-filled address is provided, skip step 1 and jump straight to step 2
             const startStep = skipToStep || (preAddr && (preAddr.full || preAddr.address) ? 2 : 1);
             tfCurrent = startStep;
             showTfStep(startStep);
             updateProgress(startStep);
-
-            if (startStep === 1) {
-                setTimeout(() => document.getElementById('tf-address').focus(), 120);
-            }
+            if (startStep === 1) setTimeout(() => document.getElementById('tf-address').focus(), 120);
         }
 
         function closeTf() {
@@ -2414,13 +2372,10 @@
             const el = document.getElementById('tfStep' + n);
             if (el) el.classList.add('active');
             updateProgress(n);
-
-            // Show ← Previous button on steps 2+, hide on step 1 and success
             const backBtn = document.getElementById('tfBackBtn');
             if (backBtn) backBtn.style.display = n > 1 ? 'flex' : 'none';
         }
 
-        /* ── BACK BUTTON ── */
         function tfBack() {
             if (tfCurrent > 1) {
                 tfCurrent -= 1;
@@ -2432,7 +2387,6 @@
             btn.closest('.tf-choices').querySelectorAll('.tf-choice').forEach(b => b.classList.remove('selected', 'err'));
             btn.classList.add('selected');
             tfData[key] = value;
-            // ── AUTO-ADVANCE: brief visual feedback then move to next step ──
             setTimeout(() => tfNext(tfCurrent), 300);
         }
 
@@ -2484,9 +2438,7 @@
                 }
                 tfData.first = f;
                 tfData.last = l;
-                if (tfData.city && tfData.city.length < 60) {
-                    document.getElementById('tfEmailHint').textContent = "We'll email you the top agents near " + tfData.city + '.';
-                }
+                if (tfData.city && tfData.city.length < 60) document.getElementById('tfEmailHint').textContent = "We'll email you the top agents near " + tfData.city + '.';
             }
             tfCurrent = step + 1;
             showTfStep(tfCurrent);
@@ -2522,17 +2474,14 @@
                     source: 'typeform'
                 }]);
                 if (error) throw error;
-                if (tfData.city) {
-                    await sb.from('search_logs').insert([{
-                        search_query: tfData.address || tfData.city,
-                        city: tfData.city
-                    }]);
-                }
+                if (tfData.city) await sb.from('search_logs').insert([{
+                    search_query: tfData.address || tfData.city,
+                    city: tfData.city
+                }]);
                 document.querySelectorAll('.tf-step').forEach(s => s.classList.remove('active'));
                 document.getElementById('tfSuccess').classList.add('active');
                 document.getElementById('tfProgressFill').style.width = '100%';
                 document.getElementById('tfStepLbl').textContent = 'Complete!';
-                // Hide back button on success
                 const backBtn = document.getElementById('tfBackBtn');
                 if (backBtn) backBtn.style.display = 'none';
             } catch (err) {
@@ -2571,7 +2520,7 @@
                     zip: ''
                 };
             }
-            openTf(preAddr, 2); // skip step 1 — address already entered in hero
+            openTf(preAddr, 2);
         }
 
         function startFlowWithProp(propType) {
@@ -2624,6 +2573,14 @@
             });
         }
 
+        function selectTimeline(value) {
+            document.getElementById('c-timeline').value = value;
+            document.querySelectorAll('#c-timeline-grid .timeline-btn').forEach(btn => {
+                btn.classList.remove('selected', 'err');
+                if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(value)) btn.classList.add('selected');
+            });
+        }
+
         function isValidEmail(e) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
         }
@@ -2645,10 +2602,9 @@
                 street = document.getElementById('c-street').value.trim(),
                 city = document.getElementById('c-city').value.trim(),
                 zip = document.getElementById('c-zip').value.trim(),
-                price = document.getElementById('c-price').value,
                 propType = document.getElementById('c-prop-type').value,
                 goal = document.getElementById('c-goal').value,
-                msg = document.getElementById('c-msg').value.trim();
+                timeline = document.getElementById('c-timeline').value;
             if (!fname) {
                 markErr('c-fname');
                 showToast('Please enter your first name');
@@ -2694,6 +2650,11 @@
                 showToast('Please select your goal of sale');
                 return;
             }
+            if (!timeline) {
+                document.querySelectorAll('#c-timeline-grid .timeline-btn').forEach(b => b.classList.add('err'));
+                showToast('Please select your selling timeframe');
+                return;
+            }
             const btn = document.getElementById('contactSubmitBtn');
             btn.textContent = 'Submitting…';
             btn.disabled = true;
@@ -2709,8 +2670,8 @@
                     zip,
                     property_type: propType || null,
                     goal: goal || null,
-                    estimated_value: price || null,
-                    message: msg || null,
+                    estimated_value: null,
+                    message: timeline || null,
                     source: 'inline_form'
                 }]);
                 if (error) throw error;
@@ -2745,26 +2706,9 @@
 
         /* ── Keyboard navigation for address inputs ── */
         document.addEventListener('DOMContentLoaded', () => {
-            // Hero search: Enter with dropdown item = select it; Enter with no item = launch flow
-            attachKeyNav(
-                document.getElementById('searchInput'),
-                () => document.querySelectorAll('#heroAddrDropdown .addr-item'),
-                item => item.click(),
-                () => startFlowFromHero()
-            );
-            // Typeform address: Enter with dropdown item = select it (auto-advance fires inside selectTfAddress)
-            attachKeyNav(
-                document.getElementById('tf-address'),
-                () => document.querySelectorAll('#tfAddrDropdown .tf-addr-item'),
-                item => item.click(),
-                () => tfNext(1)
-            );
-            // Contact form address: Enter with dropdown item = select it
-            attachKeyNav(
-                document.getElementById('c-street'),
-                () => document.querySelectorAll('#formAddrDropdown .form-addr-item'),
-                item => item.click()
-            );
+            attachKeyNav(document.getElementById('searchInput'), () => document.querySelectorAll('#heroAddrDropdown .addr-item'), item => item.click(), () => startFlowFromHero());
+            attachKeyNav(document.getElementById('tf-address'), () => document.querySelectorAll('#tfAddrDropdown .tf-addr-item'), item => item.click(), () => tfNext(1));
+            attachKeyNav(document.getElementById('c-street'), () => document.querySelectorAll('#formAddrDropdown .form-addr-item'), item => item.click());
         });
     </script>
 </body>
