@@ -1701,17 +1701,8 @@
             <a href="#" class="logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
                 <img src="logo.png" alt="TopThree Realtors Logo" style="height:52px;width:auto;object-fit:contain;" />
                 <span style="font-family:'Cormorant Garamond',serif;color:#fff;line-height:1.1;">
-    
-    <!-- Top line -->
-    <span style="display:block;font-size:22px;font-weight:700;">
-        Top <span style="color:#C9A84C;">3</span> in
-                </span>
-
-                <!-- Bottom line -->
-                <span style="display:block;color:#C9A84C;font-size:16px;font-weight:600;letter-spacing:2px;">
-        REALTY
-    </span>
-
+                    <span style="display:block;font-size:22px;font-weight:700;">Top <span style="color:#C9A84C;">3</span> in</span>
+                <span style="display:block;color:#C9A84C;font-size:16px;font-weight:600;letter-spacing:2px;">REALTY</span>
                 </span>
             </a>
             <div style="display:flex;align-items:center;gap:10px;">
@@ -1827,17 +1818,8 @@
         <a href="#" class="logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
             <img src="logo.png" alt="TopThree Realtors Logo" style="height:52px;width:auto;object-fit:contain;" />
             <span style="font-family:'Cormorant Garamond',serif;color:#0B0A08;line-height:1.1;">
-    
-    <!-- Top line -->
-    <span style="display:block;font-size:22px;font-weight:700;">
-        Top <span style="color:#C9A84C;">3</span> in
-            </span>
-
-            <!-- Bottom line -->
-            <span style="display:block;color:#C9A84C;font-size:16px;font-weight:600;letter-spacing:2px;">
-        REALTY
-    </span>
-
+                <span style="display:block;font-size:22px;font-weight:700;">Top <span style="color:#C9A84C;">3</span> in</span>
+            <span style="display:block;color:#C9A84C;font-size:16px;font-weight:600;letter-spacing:2px;">REALTY</span>
             </span>
         </a>
         <ul class="nav-links">
@@ -1912,41 +1894,31 @@
                     <img class="coverage-card-img" src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=82&fit=crop" alt="Nationwide">
                     <div class="coverage-card-grad"></div>
                     <div class="coverage-body">
-                        <div class="coverage-icon">
-                            <!-- your existing SVG -->
-                        </div>
                         <div class="coverage-stat">50</div>
                         <div class="coverage-title">Nationwide Reach</div>
                         <div class="coverage-desc">Active verified agents across all 50 states — from New York to rural Montana, we've got you covered.</div>
                     </div>
                 </div>
-
                 <div class="coverage-card">
                     <img class="coverage-card-img" src="https://images.unsplash.com/photo-1560472355-536de3962603?w=600&q=82&fit=crop" alt="Active Agents">
                     <div class="coverage-card-grad"></div>
                     <div class="coverage-body">
-                        <div class="coverage-icon">
-                            <!-- your existing SVG -->
-                        </div>
                         <div class="coverage-stat">12K+</div>
                         <div class="coverage-title">Active Agents</div>
                         <div class="coverage-desc">Over 12,000 individually vetted listing agents, ranked on verified sales data — not paid placements.</div>
                     </div>
                 </div>
-
                 <div class="coverage-card">
                     <img class="coverage-card-img" src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&q=82&fit=crop" alt="Local Markets">
                     <div class="coverage-card-grad"></div>
                     <div class="coverage-body">
-                        <div class="coverage-icon">
-                            <!-- your existing SVG -->
-                        </div>
                         <div class="coverage-stat">300+</div>
                         <div class="coverage-title">Local Market Experts</div>
                         <div class="coverage-desc">Deep coverage across 300+ metro areas — with agents who know your specific market inside and out.</div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
     <!-- WHY -->
@@ -2048,17 +2020,8 @@
                 <a href="#" class="logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
                     <img src="logo.png" alt="TopThree Realtors Logo" style="height:52px;width:auto;object-fit:contain;" />
                     <span style="font-family:'Cormorant Garamond',serif;color:#fff;line-height:1.1;">
-    
-    <!-- Top line -->
-    <span style="display:block;font-size:22px;font-weight:700;">
-        Top <span style="color:#C9A84C;">3</span> in
-                    </span>
-
-                    <!-- Bottom line -->
-                    <span style="display:block;color:#C9A84C;font-size:16px;font-weight:600;letter-spacing:2px;">
-        REALTY
-    </span>
-
+                        <span style="display:block;font-size:22px;font-weight:700;">Top <span style="color:#C9A84C;">3</span> in</span>
+                    <span style="display:block;color:#C9A84C;font-size:16px;font-weight:600;letter-spacing:2px;">REALTY</span>
                     </span>
                 </a>
             </div>
@@ -2076,6 +2039,24 @@
             "https://jobfhtcnwnmpdyryptpy.supabase.co",
             "sb_publishable_BWDnlqjX5G-T8LxVOVzcHg_QlTEqAfc"
         );
+
+        /* ══ ZAPIER WEBHOOK ══ */
+        const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/321420/uvx8s3a/';
+
+        async function fireZapierWebhook(payload) {
+            try {
+                await fetch(ZAPIER_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+            } catch (err) {
+                // Webhook failure is non-blocking — log but don't surface to user
+                console.warn('Zapier webhook error:', err);
+            }
+        }
 
         const SMARTY_CONFIG = {
             USE_EMBEDDED_KEY: true,
@@ -2509,28 +2490,39 @@
             const btn = document.getElementById('tfSubmitBtn');
             btn.textContent = 'Submitting…';
             btn.disabled = true;
+
+            // Build the shared lead payload
+            const tfLeadPayload = {
+                name: (`${tfData.first||''} ${tfData.last||''}`).trim() || 'Unknown',
+                email: tfData.email,
+                phone: tfData.phone,
+                street_address: tfData.street || tfData.address || null,
+                city: tfData.city || 'Unknown',
+                state: tfData.state || null,
+                zip: tfData.zip || null,
+                property_type: tfData.prop || null,
+                goal: tfData.goal || null,
+                message: tfData.timeline || null,
+                estimated_value: null,
+                source: 'typeform'
+            };
+
             try {
+                // ── 1. Supabase insert ──
                 const {
                     error
-                } = await sb.from('seller_leads').insert([{
-                    name: (`${tfData.first||''} ${tfData.last||''}`).trim() || 'Unknown',
-                    email: tfData.email,
-                    phone: tfData.phone,
-                    street_address: tfData.street || tfData.address || null,
-                    city: tfData.city || 'Unknown',
-                    state: tfData.state || null,
-                    zip: tfData.zip || null,
-                    property_type: tfData.prop || null,
-                    goal: tfData.goal || null,
-                    message: tfData.timeline || null,
-                    estimated_value: null,
-                    source: 'typeform'
-                }]);
+                } = await sb.from('seller_leads').insert([tfLeadPayload]);
                 if (error) throw error;
+
                 if (tfData.city) await sb.from('search_logs').insert([{
                     search_query: tfData.address || tfData.city,
                     city: tfData.city
                 }]);
+
+                // ── 2. Zapier webhook (fire-and-forget, non-blocking) ──
+                fireZapierWebhook(tfLeadPayload);
+
+                // Show success
                 document.querySelectorAll('.tf-step').forEach(s => s.classList.remove('active'));
                 document.getElementById('tfSuccess').classList.add('active');
                 document.getElementById('tfProgressFill').style.width = '100%';
@@ -2658,6 +2650,7 @@
                 propType = document.getElementById('c-prop-type').value,
                 goal = document.getElementById('c-goal').value,
                 timeline = document.getElementById('c-timeline').value;
+
             if (!fname) {
                 markErr('c-fname');
                 showToast('Please enter your first name');
@@ -2708,26 +2701,36 @@
                 showToast('Please select your selling timeframe');
                 return;
             }
+
             const btn = document.getElementById('contactSubmitBtn');
             btn.textContent = 'Submitting…';
             btn.disabled = true;
+
+            // Build the shared lead payload
+            const contactLeadPayload = {
+                name: `${fname} ${lname}`,
+                email,
+                phone: phone || null,
+                street_address: street,
+                city,
+                zip,
+                property_type: propType || null,
+                goal: goal || null,
+                estimated_value: null,
+                message: timeline || null,
+                source: 'inline_form'
+            };
+
             try {
+                // ── 1. Supabase insert ──
                 const {
                     error
-                } = await sb.from('seller_leads').insert([{
-                    name: `${fname} ${lname}`,
-                    email,
-                    phone: phone || null,
-                    street_address: street,
-                    city,
-                    zip,
-                    property_type: propType || null,
-                    goal: goal || null,
-                    estimated_value: null,
-                    message: timeline || null,
-                    source: 'inline_form'
-                }]);
+                } = await sb.from('seller_leads').insert([contactLeadPayload]);
                 if (error) throw error;
+
+                // ── 2. Zapier webhook (fire-and-forget, non-blocking) ──
+                fireZapierWebhook(contactLeadPayload);
+
                 document.getElementById('contactFormWrap').style.display = 'none';
                 document.getElementById('contactSuccess').style.display = 'block';
             } catch (err) {
