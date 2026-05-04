@@ -2508,19 +2508,32 @@
             };
 
             try {
-                // ── 1. Supabase insert ──
-                const {
+                // ── 1. Zapier webhook — PRIMARY, must succeed ──
+                const zapRes = await fetch(ZAPIER_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(tfLeadPayload)
+                });
+                if (!zapRes.ok) throw new Error('Zapier error ' + zapRes.status);
+
+                // ── 2. Supabase — secondary, non-blocking ──
+                sb.from('seller_leads').insert([tfLeadPayload]).then(({
                     error
-                } = await sb.from('seller_leads').insert([tfLeadPayload]);
-                if (error) throw error;
-
-                if (tfData.city) await sb.from('search_logs').insert([{
-                    search_query: tfData.address || tfData.city,
-                    city: tfData.city
-                }]);
-
-                // ── 2. Zapier webhook (fire-and-forget, non-blocking) ──
-                fireZapierWebhook(tfLeadPayload);
+                }) => {
+                    if (error) console.warn('Supabase insert error:', error);
+                });
+                if (tfData.city) {
+                    sb.from('search_logs').insert([{
+                        search_query: tfData.address || tfData.city,
+                        city: tfData.city
+                    }]).then(({
+                        error
+                    }) => {
+                        if (error) console.warn('Supabase search_logs error:', error);
+                    });
+                }
 
                 // Show success
                 document.querySelectorAll('.tf-step').forEach(s => s.classList.remove('active'));
@@ -2722,14 +2735,22 @@
             };
 
             try {
-                // ── 1. Supabase insert ──
-                const {
-                    error
-                } = await sb.from('seller_leads').insert([contactLeadPayload]);
-                if (error) throw error;
+                // ── 1. Zapier webhook — PRIMARY, must succeed ──
+                const zapRes = await fetch(ZAPIER_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(contactLeadPayload)
+                });
+                if (!zapRes.ok) throw new Error('Zapier error ' + zapRes.status);
 
-                // ── 2. Zapier webhook (fire-and-forget, non-blocking) ──
-                fireZapierWebhook(contactLeadPayload);
+                // ── 2. Supabase — secondary, non-blocking ──
+                sb.from('seller_leads').insert([contactLeadPayload]).then(({
+                    error
+                }) => {
+                    if (error) console.warn('Supabase insert error:', error);
+                });
 
                 document.getElementById('contactFormWrap').style.display = 'none';
                 document.getElementById('contactSuccess').style.display = 'block';
