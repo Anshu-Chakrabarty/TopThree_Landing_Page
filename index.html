@@ -2043,21 +2043,6 @@
         /* ══ ZAPIER WEBHOOK ══ */
         const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/321420/uvx8s3a/';
 
-        async function fireZapierWebhook(payload) {
-            try {
-                await fetch(ZAPIER_WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-            } catch (err) {
-                // Webhook failure is non-blocking — log but don't surface to user
-                console.warn('Zapier webhook error:', err);
-            }
-        }
-
         const SMARTY_CONFIG = {
             USE_EMBEDDED_KEY: true,
             EMBEDDED_KEY: '271938193138627229',
@@ -2508,17 +2493,15 @@
             };
 
             try {
-                // ── 1. Zapier webhook — PRIMARY, must succeed ──
-                const zapRes = await fetch(ZAPIER_WEBHOOK_URL, {
+                // ── 1. Zapier webhook — no-cors avoids preflight CORS block ──
+                // Response is opaque in no-cors mode so we can't read .ok; if fetch throws, the catch handles it
+                await fetch(ZAPIER_WEBHOOK_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    mode: 'no-cors',
                     body: JSON.stringify(tfLeadPayload)
                 });
-                if (!zapRes.ok) throw new Error('Zapier error ' + zapRes.status);
 
-                // ── 2. Supabase — secondary, non-blocking ──
+                // ── 2. Supabase — secondary, fully non-blocking ──
                 sb.from('seller_leads').insert([tfLeadPayload]).then(({
                     error
                 }) => {
@@ -2735,17 +2718,14 @@
             };
 
             try {
-                // ── 1. Zapier webhook — PRIMARY, must succeed ──
-                const zapRes = await fetch(ZAPIER_WEBHOOK_URL, {
+                // ── 1. Zapier webhook — no-cors avoids preflight CORS block ──
+                await fetch(ZAPIER_WEBHOOK_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    mode: 'no-cors',
                     body: JSON.stringify(contactLeadPayload)
                 });
-                if (!zapRes.ok) throw new Error('Zapier error ' + zapRes.status);
 
-                // ── 2. Supabase — secondary, non-blocking ──
+                // ── 2. Supabase — secondary, fully non-blocking ──
                 sb.from('seller_leads').insert([contactLeadPayload]).then(({
                     error
                 }) => {
