@@ -2043,6 +2043,26 @@
         /* ══ ZAPIER WEBHOOK ══ */
         const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/321420/uvx8s3a/';
 
+        /* ══ UTM / TRACKING PARAM CAPTURE ══
+           Reads UTMs, gclid, fbclid from the URL at page load and
+           attaches them to every form submission payload.           */
+        function getTrackingParams() {
+            const p = new URLSearchParams(window.location.search);
+            return {
+                utm_source: p.get('utm_source') || null,
+                utm_medium: p.get('utm_medium') || null,
+                utm_campaign: p.get('utm_campaign') || null,
+                utm_term: p.get('utm_term') || null,
+                utm_content: p.get('utm_content') || null,
+                gclid: p.get('gclid') || null,
+                fbclid: p.get('fbclid') || null,
+                landing_page: window.location.href || null
+            };
+        }
+        // Captured once at load so even SPA navigation doesn't lose the original params
+        const TRACKING = getTrackingParams();
+
+
         const SMARTY_CONFIG = {
             USE_EMBEDDED_KEY: true,
             EMBEDDED_KEY: '271938193138627229',
@@ -2489,7 +2509,8 @@
                 goal: tfData.goal || null,
                 message: tfData.timeline || null,
                 estimated_value: null,
-                source: 'typeform'
+                source: 'typeform',
+                ...TRACKING
             };
 
             try {
@@ -2714,7 +2735,8 @@
                 goal: goal || null,
                 estimated_value: null,
                 message: timeline || null,
-                source: 'inline_form'
+                source: 'inline_form',
+                ...TRACKING
             };
 
             try {
