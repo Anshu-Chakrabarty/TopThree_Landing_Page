@@ -593,7 +593,6 @@
             font-size: 11px;
             color: rgba(255, 255, 255, .4)
         }
-        /* ── Nationwide Coverage Section ── */
         
         .cities {
             padding: 80px 5%;
@@ -622,7 +621,7 @@
             justify-content: flex-end;
             cursor: pointer;
             transition: transform .28s, box-shadow .28s;
-            border: 1px solid rgba(201, 168, 76, .15);
+            border: 1px solid rgba(201, 168, 76, .15)
         }
         
         .coverage-card:hover {
@@ -637,7 +636,7 @@
             height: 100%;
             object-fit: cover;
             transition: transform .45s;
-            display: block;
+            display: block
         }
         
         .coverage-card:hover .coverage-card-img {
@@ -995,7 +994,6 @@
             border-color: #ef4444!important;
             background: rgba(239, 68, 68, .05)!important
         }
-        /* ── Timeline selector (inline form) ── */
         
         .timeline-wrap {
             margin-bottom: 14px
@@ -1110,6 +1108,303 @@
             line-height: 1.6;
             font-weight: 300
         }
+        /* ══ PHONE INPUT COMPONENT — Light Theme (underline style) ══ */
+        
+        .phone-wrap {
+            display: flex;
+            align-items: flex-end;
+            border: none;
+            border-bottom: 1.5px solid #D4CFC8;
+            background: transparent;
+            transition: border-color .2s;
+            position: relative;
+            padding-bottom: 6px;
+        }
+        
+        .phone-wrap:focus-within {
+            border-bottom-color: var(--gold);
+        }
+        
+        .phone-wrap.err {
+            border-bottom-color: #ef4444 !important;
+        }
+        
+        .phone-flag-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 0 10px 0 0;
+            border: none;
+            border-right: 1.5px solid #D4CFC8;
+            background: transparent;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--mid);
+            white-space: nowrap;
+            flex-shrink: 0;
+            padding-bottom: 2px;
+            transition: opacity .15s;
+        }
+        
+        .phone-flag-btn:hover {
+            opacity: .75;
+        }
+        
+        .phone-flag-btn .pflag {
+            font-size: 20px;
+            line-height: 1;
+        }
+        
+        .phone-flag-btn .pchev {
+            opacity: .5;
+            flex-shrink: 0;
+        }
+        
+        .phone-field-inner {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--ink);
+            background: transparent;
+            padding: 0 0 2px 12px;
+            min-width: 0;
+        }
+        
+        .phone-field-inner::placeholder {
+            color: #C4BFB6;
+        }
+        
+        .phone-country-dd {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 270px;
+            background: #fff;
+            border: 1px solid #E8E4DC;
+            border-radius: 10px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .14);
+            z-index: 300;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .phone-country-dd.show {
+            display: block;
+        }
+        
+        .phone-dd-header {
+            padding: 10px 14px 8px;
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--hint);
+            border-bottom: 1px solid #f0ede8;
+        }
+        
+        .phone-country-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: 13.5px;
+            color: var(--ink);
+            border-bottom: 1px solid #f0ede8;
+            transition: background .13s;
+        }
+        
+        .phone-country-item:last-child {
+            border-bottom: none;
+        }
+        
+        .phone-country-item:hover {
+            background: #f9f6f0;
+        }
+        
+        .phone-country-item.active {
+            background: rgba(201, 168, 76, .08);
+        }
+        
+        .phone-country-item .c-flag {
+            font-size: 20px;
+        }
+        
+        .phone-country-item .c-name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .phone-country-item .c-dial {
+            font-size: 12px;
+            color: var(--hint);
+        }
+        
+        .phone-error-msg {
+            font-size: 11.5px;
+            color: #ef4444;
+            margin-top: 5px;
+            display: none;
+            font-weight: 500;
+        }
+        
+        .phone-error-msg.show {
+            display: block;
+        }
+        /* ══ PHONE INPUT COMPONENT — Dark (Typeform) Theme — underline style ══ */
+        
+        .tf-phone-wrap {
+            display: flex;
+            align-items: flex-end;
+            border: none;
+            border-bottom: 1.5px solid rgba(255, 255, 255, .3);
+            background: transparent;
+            transition: border-color .2s;
+            position: relative;
+            padding-bottom: 8px;
+            margin-bottom: 0;
+        }
+        
+        .tf-phone-wrap:focus-within {
+            border-bottom-color: var(--gold);
+        }
+        
+        .tf-phone-wrap.err {
+            border-bottom-color: #ef4444 !important;
+        }
+        
+        .tf-phone-flag-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0 12px 2px 0;
+            border: none;
+            border-right: 1.5px solid rgba(255, 255, 255, .25);
+            background: transparent;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .75);
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: opacity .15s;
+        }
+        
+        .tf-phone-flag-btn:hover {
+            opacity: .75;
+        }
+        
+        .tf-phone-flag-btn .pflag {
+            font-size: 22px;
+            line-height: 1;
+        }
+        
+        .tf-phone-flag-btn .pchev {
+            opacity: .5;
+            flex-shrink: 0;
+        }
+        
+        .tf-phone-inner {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 17px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, .75);
+            background: transparent;
+            padding: 0 0 2px 14px;
+            min-width: 0;
+            letter-spacing: .2px;
+        }
+        
+        .tf-phone-inner::placeholder {
+            color: rgba(255, 255, 255, .3);
+        }
+        
+        .tf-phone-country-dd {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            min-width: 270px;
+            background: #1a1814;
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 10px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .5);
+            z-index: 300;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .tf-phone-country-dd.show {
+            display: block;
+        }
+        
+        .tf-phone-dd-header {
+            padding: 10px 14px 8px;
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+        
+        .tf-phone-country-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 18px;
+            cursor: pointer;
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, .85);
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            transition: background .13s;
+        }
+        
+        .tf-phone-country-item:last-child {
+            border-bottom: none;
+        }
+        
+        .tf-phone-country-item:hover {
+            background: rgba(201, 168, 76, .15);
+        }
+        
+        .tf-phone-country-item.active {
+            background: rgba(201, 168, 76, .12);
+        }
+        
+        .tf-phone-country-item .c-flag {
+            font-size: 20px;
+        }
+        
+        .tf-phone-country-item .c-name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .tf-phone-country-item .c-dial {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .4);
+        }
+        
+        .tf-phone-error {
+            font-size: 12px;
+            color: #fca5a5;
+            margin-top: 8px;
+            display: none;
+            font-weight: 400;
+        }
+        
+        .tf-phone-error.show {
+            display: block;
+        }
+        /* ══ TYPEFORM OVERLAY ══ */
         
         .tf-overlay {
             position: fixed;
@@ -1686,6 +1981,10 @@
             .tf-back-btn span {
                 display: none
             }
+            .phone-country-dd,
+            .tf-phone-country-dd {
+                min-width: 220px;
+            }
         }
     </style>
 </head>
@@ -1720,6 +2019,7 @@
             <div class="tf-step-lbl" id="tfStepLbl">Step 1 of 6</div>
         </div>
         <div class="tf-steps">
+            <!-- Step 1: Address -->
             <div class="tf-step active" id="tfStep1">
                 <div class="tf-q">What's the address of the<br>property you want to sell?</div>
                 <div class="tf-hint" id="tfStep1Hint">Start typing your street address and select from the suggestions.</div>
@@ -1730,6 +2030,7 @@
                 <button class="tf-ok" onclick="tfNext(1)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
             </div>
+            <!-- Step 2: Property Type -->
             <div class="tf-step" id="tfStep2">
                 <div class="tf-q">What type of property are you<br>looking to sell?</div>
                 <div class="tf-hint">Select the option that best describes your property.</div>
@@ -1743,6 +2044,7 @@
                 </div>
                 <button class="tf-ok" onclick="tfNext(2)" id="tfOk2">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
+            <!-- Step 3: Goal -->
             <div class="tf-step" id="tfStep3">
                 <div class="tf-q">What is your primary goal<br>for the sale?</div>
                 <div class="tf-hint">Not sure? Choose the option that sounds most important to you right now.</div>
@@ -1752,6 +2054,7 @@
                 </div>
                 <button class="tf-ok" onclick="tfNext(3)" id="tfOk3">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
+            <!-- Step 4: Timeline -->
             <div class="tf-step" id="tfStep4">
                 <div class="tf-q">How soon are you looking<br>to sell?</div>
                 <div class="tf-choices cols-3" id="tf-timeline-grid">
@@ -1764,6 +2067,7 @@
                 </div>
                 <button class="tf-ok" onclick="tfNext(4)" id="tfOk4">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
+            <!-- Step 5: Name -->
             <div class="tf-step" id="tfStep5">
                 <div class="tf-q">What's your name?</div>
                 <div class="tf-hint">So we know what to call you.</div>
@@ -1782,6 +2086,7 @@
                 <button class="tf-ok" onclick="tfNext(5)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
             </div>
+            <!-- Step 6: Contact -->
             <div class="tf-step" id="tfStep6">
                 <div class="tf-q">How can we reach you?</div>
                 <div class="tf-hint" id="tfEmailHint">We'll send you the top agents in your area.</div>
@@ -1792,13 +2097,23 @@
                     </div>
                     <div>
                         <div class="tf-label">Phone number (optional — for account verification)</div>
-                        <input class="tf-field" id="tf-phone" type="tel" placeholder="+1 (201) 555-1234" autocomplete="tel" />
-                        <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:5px;">I agree to receive communications via phone calls and SMS.</div>
+                        <!-- Dark phone input -->
+                        <div class="tf-phone-wrap" id="tfPhoneWrap">
+                            <button type="button" class="tf-phone-flag-btn" id="tfPhoneFlagBtn" onclick="toggleTfPhoneDd(event)" aria-label="Select country">
+                                <span class="pflag" id="tfPhoneFlag">🇺🇸</span>
+                                <svg class="pchev" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                            <div class="tf-phone-country-dd" id="tfPhoneCountryDd"></div>
+                            <input class="tf-phone-inner" id="tf-phone" type="tel" placeholder="(201) 555-0123" autocomplete="tel" oninput="onTfPhoneInput(this)" />
+                        </div>
+                        <div class="tf-phone-error" id="tfPhoneError">Please enter a valid US phone number.</div>
+                        <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:6px;">I agree to receive communications via phone calls and SMS.</div>
                     </div>
                 </div>
                 <button class="tf-ok" id="tfSubmitBtn" onclick="tfSubmit()">Show Me The Top Agents <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Ctrl + Enter ↵</div>
             </div>
+            <!-- Success -->
             <div class="tf-success" id="tfSuccess">
                 <div class="tf-success-ico">
                     <svg viewBox="0 0 34 34" fill="none"><path d="M6 17l7 7L28 9" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1956,7 +2271,19 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group"><label for="c-email">Email Address<span class="req">*</span></label><input id="c-email" type="email" placeholder="jane@email.com" autocomplete="email" /></div>
-                        <div class="form-group"><label for="c-phone">Phone Number<span class="req">*</span></label><input id="c-phone" type="tel" placeholder="+1 (555) 000-0000" autocomplete="tel" /></div>
+                        <div class="form-group">
+                            <label>Phone Number<span class="req">*</span></label>
+                            <!-- Light phone input -->
+                            <div class="phone-wrap" id="cPhoneWrap">
+                                <button type="button" class="phone-flag-btn" id="cPhoneFlagBtn" onclick="toggleCPhoneDd(event)" aria-label="Select country">
+                                    <span class="pflag" id="cPhoneFlag">🇺🇸</span>
+                                    <svg class="pchev" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </button>
+                                <div class="phone-country-dd" id="cPhoneCountryDd"></div>
+                                <input class="phone-field-inner" id="c-phone" type="tel" placeholder="(555) 000-0000" autocomplete="tel" oninput="onCPhoneInput(this)" />
+                            </div>
+                            <div class="phone-error-msg" id="cPhoneError">Please enter a valid US phone number.</div>
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group full addr-wrap">
@@ -2043,9 +2370,7 @@
         /* ══ ZAPIER WEBHOOK ══ */
         const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/321420/uvx8s3a/';
 
-        /* ══ UTM / TRACKING PARAM CAPTURE ══
-           Reads UTMs, gclid, fbclid from the URL at page load and
-           attaches them to every form submission payload.           */
+        /* ══ UTM / TRACKING PARAM CAPTURE ══ */
         function getTrackingParams() {
             const p = new URLSearchParams(window.location.search);
             return {
@@ -2059,10 +2384,252 @@
                 landing_page: window.location.href || null
             };
         }
-        // Captured once at load so even SPA navigation doesn't lose the original params
         const TRACKING = getTrackingParams();
 
+        /* ══ PHONE COMPONENT — Countries list ══ */
+        const PHONE_COUNTRIES = [{
+            flag: '🇺🇸',
+            name: 'United States',
+            dial: '+1',
+            code: 'US',
+            mask: '(###) ###-####',
+            maxDigits: 10
+        }, {
+            flag: '🇨🇦',
+            name: 'Canada',
+            dial: '+1',
+            code: 'CA',
+            mask: '(###) ###-####',
+            maxDigits: 10
+        }, {
+            flag: '🇬🇧',
+            name: 'United Kingdom',
+            dial: '+44',
+            code: 'GB',
+            mask: '#### ######',
+            maxDigits: 10
+        }, {
+            flag: '🇦🇺',
+            name: 'Australia',
+            dial: '+61',
+            code: 'AU',
+            mask: '#### ### ###',
+            maxDigits: 9
+        }, {
+            flag: '🇮🇳',
+            name: 'India',
+            dial: '+91',
+            code: 'IN',
+            mask: '#####-#####',
+            maxDigits: 10
+        }, {
+            flag: '🇲🇽',
+            name: 'Mexico',
+            dial: '+52',
+            code: 'MX',
+            mask: '## #### ####',
+            maxDigits: 10
+        }, {
+            flag: '🇩🇪',
+            name: 'Germany',
+            dial: '+49',
+            code: 'DE',
+            mask: '### #######',
+            maxDigits: 10
+        }, {
+            flag: '🇫🇷',
+            name: 'France',
+            dial: '+33',
+            code: 'FR',
+            mask: '## ## ## ## ##',
+            maxDigits: 9
+        }, {
+            flag: '🇧🇷',
+            name: 'Brazil',
+            dial: '+55',
+            code: 'BR',
+            mask: '## #####-####',
+            maxDigits: 11
+        }, {
+            flag: '🇨🇳',
+            name: 'China',
+            dial: '+86',
+            code: 'CN',
+            mask: '### #### ####',
+            maxDigits: 11
+        }, {
+            flag: '🇵🇭',
+            name: 'Philippines',
+            dial: '+63',
+            code: 'PH',
+            mask: '### ### ####',
+            maxDigits: 10
+        }, {
+            flag: '🇮🇱',
+            name: 'Israel',
+            dial: '+972',
+            code: 'IL',
+            mask: '##-###-####',
+            maxDigits: 9
+        }, {
+            flag: '🇦🇪',
+            name: 'UAE',
+            dial: '+971',
+            code: 'AE',
+            mask: '## ### ####',
+            maxDigits: 9
+        }, ];
 
+        /* Active country state per form */
+        const phoneState = {
+            tf: {
+                country: PHONE_COUNTRIES[0]
+            }, // typeform
+            c: {
+                country: PHONE_COUNTRIES[0]
+            }, // contact form
+        };
+
+        /* ── Build dropdown HTML ── */
+        function buildPhoneDdHTML(type) {
+            const isDark = type === 'tf';
+            const itemClass = isDark ? 'tf-phone-country-item' : 'phone-country-item';
+            const headerClass = isDark ? 'tf-phone-dd-header' : 'phone-dd-header';
+            const activeCountry = phoneState[type].country;
+            return `<div class="${headerClass}">Select country</div>` +
+                PHONE_COUNTRIES.map(c => `
+                <div class="${itemClass}${c.code === activeCountry.code ? ' active' : ''}"
+                     onclick="selectPhoneCountry('${type}','${c.code}')">
+                    <span class="c-flag">${c.flag}</span>
+                    <span class="c-name">${c.name}</span>
+                    <span class="c-dial">${c.dial}</span>
+                </div>`).join('');
+        }
+
+        function renderPhoneDds() {
+            const tfDd = document.getElementById('tfPhoneCountryDd');
+            const cDd = document.getElementById('cPhoneCountryDd');
+            if (tfDd) tfDd.innerHTML = buildPhoneDdHTML('tf');
+            if (cDd) cDd.innerHTML = buildPhoneDdHTML('c');
+        }
+
+        function selectPhoneCountry(type, code) {
+            const country = PHONE_COUNTRIES.find(c => c.code === code);
+            if (!country) return;
+            phoneState[type].country = country;
+
+            if (type === 'tf') {
+                document.getElementById('tfPhoneFlag').textContent = country.flag;
+                const inp = document.getElementById('tf-phone');
+                inp.value = '';
+                inp.placeholder = country.mask.replace(/#/g, '0');
+                document.getElementById('tfPhoneCountryDd').classList.remove('show');
+                document.getElementById('tfPhoneError').classList.remove('show');
+                document.getElementById('tfPhoneWrap').classList.remove('err');
+                inp.focus();
+            } else {
+                document.getElementById('cPhoneFlag').textContent = country.flag;
+                const inp = document.getElementById('c-phone');
+                inp.value = '';
+                inp.placeholder = country.mask.replace(/#/g, '0');
+                document.getElementById('cPhoneCountryDd').classList.remove('show');
+                document.getElementById('cPhoneError').classList.remove('show');
+                document.getElementById('cPhoneWrap').classList.remove('err');
+                inp.focus();
+            }
+            renderPhoneDds();
+        }
+
+        function toggleTfPhoneDd(e) {
+            e.stopPropagation();
+            const dd = document.getElementById('tfPhoneCountryDd');
+            dd.classList.toggle('show');
+            document.getElementById('cPhoneCountryDd').classList.remove('show');
+        }
+
+        function toggleCPhoneDd(e) {
+            e.stopPropagation();
+            const dd = document.getElementById('cPhoneCountryDd');
+            dd.classList.toggle('show');
+            document.getElementById('tfPhoneCountryDd').classList.remove('show');
+        }
+
+        /* ── US phone masking → (XXX) XXX-XXXX ── */
+        function maskUSPhone(raw) {
+            const digits = raw.replace(/\D/g, '').slice(0, 10);
+            if (digits.length === 0) return '';
+            if (digits.length <= 3) return `(${digits}`;
+            if (digits.length <= 6) return `(${digits.slice(0,3)}) ${digits.slice(3)}`;
+            return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
+        }
+
+        /* Generic digit extractor */
+        function extractDigits(val) {
+            return val.replace(/\D/g, '');
+        }
+
+        function onTfPhoneInput(input) {
+            const country = phoneState.tf.country;
+            if (country.code === 'US' || country.code === 'CA') {
+                const prev = input.value;
+                const masked = maskUSPhone(prev);
+                if (masked !== prev) {
+                    const sel = input.selectionStart;
+                    input.value = masked;
+                    // restore cursor unless at end
+                    try {
+                        input.setSelectionRange(sel, sel);
+                    } catch (e) {}
+                }
+            }
+            document.getElementById('tfPhoneWrap').classList.remove('err');
+            document.getElementById('tfPhoneError').classList.remove('show');
+        }
+
+        function onCPhoneInput(input) {
+            const country = phoneState.c.country;
+            if (country.code === 'US' || country.code === 'CA') {
+                const prev = input.value;
+                const masked = maskUSPhone(prev);
+                if (masked !== prev) {
+                    const sel = input.selectionStart;
+                    input.value = masked;
+                    try {
+                        input.setSelectionRange(sel, sel);
+                    } catch (e) {}
+                }
+            }
+            document.getElementById('cPhoneWrap').classList.remove('err');
+            document.getElementById('cPhoneError').classList.remove('show');
+        }
+
+        /* ── Validate: digits must match maxDigits for selected country ── */
+        function validatePhone(type) {
+            const country = phoneState[type].country;
+            const inputId = type === 'tf' ? 'tf-phone' : 'c-phone';
+            const val = document.getElementById(inputId).value;
+            const digits = extractDigits(val);
+            return digits.length === country.maxDigits;
+        }
+
+        /* Get formatted phone for submission */
+        function getPhoneForSubmit(type) {
+            const country = phoneState[type].country;
+            const inputId = type === 'tf' ? 'tf-phone' : 'c-phone';
+            const val = document.getElementById(inputId).value.trim();
+            if (!val) return null;
+            return country.dial + ' ' + val;
+        }
+
+        /* Close phone dropdowns on outside click */
+        document.addEventListener('click', e => {
+            const tfDd = document.getElementById('tfPhoneCountryDd');
+            const cDd = document.getElementById('cPhoneCountryDd');
+            if (!e.target.closest('#tfPhoneWrap') && tfDd) tfDd.classList.remove('show');
+            if (!e.target.closest('#cPhoneWrap') && cDd) cDd.classList.remove('show');
+        });
+
+        /* ══ SMARTY ══ */
         const SMARTY_CONFIG = {
             USE_EMBEDDED_KEY: true,
             EMBEDDED_KEY: '271938193138627229',
@@ -2313,7 +2880,7 @@
             setTimeout(() => tfNext(1), 380);
         }
 
-        /* Close dropdowns on outside click */
+        /* Close address dropdowns on outside click */
         document.addEventListener('click', e => {
             if (!e.target.closest('.s-fields')) document.getElementById('heroAddrDropdown').classList.remove('show');
             if (!e.target.closest('.addr-wrap')) document.getElementById('formAddrDropdown').classList.remove('show');
@@ -2373,6 +2940,14 @@
             document.getElementById('tfSuccess').classList.remove('active');
             document.getElementById('tfStep1Hint').textContent = 'Start typing your street address and select from the suggestions.';
             document.getElementById('tfEmailHint').textContent = "We'll send you the top agents in your area.";
+            // Reset TF phone
+            phoneState.tf.country = PHONE_COUNTRIES[0];
+            document.getElementById('tfPhoneFlag').textContent = '🇺🇸';
+            document.getElementById('tf-phone').value = '';
+            document.getElementById('tf-phone').placeholder = '(201) 555-0123';
+            document.getElementById('tfPhoneWrap').classList.remove('err');
+            document.getElementById('tfPhoneError').classList.remove('show');
+            renderPhoneDds();
         }
 
         function openTf(preAddr, skipToStep) {
@@ -2463,8 +3038,8 @@
                 return;
             }
             if (step === 5) {
-                const f = document.getElementById('tf-first').value.trim();
-                const l = document.getElementById('tf-last').value.trim();
+                const f = document.getElementById('tf-first').value.trim(),
+                    l = document.getElementById('tf-last').value.trim();
                 if (!f) {
                     document.getElementById('tf-first').classList.add('err');
                     showToast('Please enter your first name');
@@ -2491,12 +3066,23 @@
                 return;
             }
             tfData.email = emailVal;
-            tfData.phone = document.getElementById('tf-phone').value.trim() || null;
+
+            /* Phone validation — optional but if entered must be valid */
+            const tfPhoneVal = document.getElementById('tf-phone').value.trim();
+            if (tfPhoneVal) {
+                if (!validatePhone('tf')) {
+                    document.getElementById('tfPhoneWrap').classList.add('err');
+                    document.getElementById('tfPhoneError').classList.add('show');
+                    showToast('Please enter a valid phone number');
+                    return;
+                }
+            }
+            tfData.phone = tfPhoneVal ? getPhoneForSubmit('tf') : null;
+
             const btn = document.getElementById('tfSubmitBtn');
             btn.textContent = 'Submitting…';
             btn.disabled = true;
 
-            // Build the shared lead payload
             const tfLeadPayload = {
                 name: (`${tfData.first||''} ${tfData.last||''}`).trim() || 'Unknown',
                 email: tfData.email,
@@ -2514,15 +3100,11 @@
             };
 
             try {
-                // ── 1. Zapier webhook — no-cors avoids preflight CORS block ──
-                // Response is opaque in no-cors mode so we can't read .ok; if fetch throws, the catch handles it
                 await fetch(ZAPIER_WEBHOOK_URL, {
                     method: 'POST',
                     mode: 'no-cors',
                     body: JSON.stringify(tfLeadPayload)
                 });
-
-                // ── 2. Supabase — secondary, fully non-blocking ──
                 sb.from('seller_leads').insert([tfLeadPayload]).then(({
                     error
                 }) => {
@@ -2538,8 +3120,6 @@
                         if (error) console.warn('Supabase search_logs error:', error);
                     });
                 }
-
-                // Show success
                 document.querySelectorAll('.tf-step').forEach(s => s.classList.remove('active'));
                 document.getElementById('tfSuccess').classList.add('active');
                 document.getElementById('tfProgressFill').style.width = '100%';
@@ -2660,7 +3240,6 @@
             const fname = document.getElementById('c-fname').value.trim(),
                 lname = document.getElementById('c-lname').value.trim(),
                 email = document.getElementById('c-email').value.trim(),
-                phone = document.getElementById('c-phone').value.trim(),
                 street = document.getElementById('c-street').value.trim(),
                 city = document.getElementById('c-city').value.trim(),
                 zip = document.getElementById('c-zip').value.trim(),
@@ -2683,11 +3262,22 @@
                 showToast('Please enter a valid email address');
                 return;
             }
-            if (!phone) {
-                markErr('c-phone');
+
+            /* Phone validation — required in contact form */
+            const cPhoneVal = document.getElementById('c-phone').value.trim();
+            if (!cPhoneVal) {
+                document.getElementById('cPhoneWrap').classList.add('err');
+                document.getElementById('cPhoneError').classList.add('show');
                 showToast('Please enter your phone number');
                 return;
             }
+            if (!validatePhone('c')) {
+                document.getElementById('cPhoneWrap').classList.add('err');
+                document.getElementById('cPhoneError').classList.add('show');
+                showToast('Please enter a valid phone number');
+                return;
+            }
+
             if (!street) {
                 markErr('c-street');
                 showToast('Please enter the property street address');
@@ -2723,11 +3313,10 @@
             btn.textContent = 'Submitting…';
             btn.disabled = true;
 
-            // Build the shared lead payload
             const contactLeadPayload = {
                 name: `${fname} ${lname}`,
                 email,
-                phone: phone || null,
+                phone: getPhoneForSubmit('c'),
                 street_address: street,
                 city,
                 zip,
@@ -2740,20 +3329,16 @@
             };
 
             try {
-                // ── 1. Zapier webhook — no-cors avoids preflight CORS block ──
                 await fetch(ZAPIER_WEBHOOK_URL, {
                     method: 'POST',
                     mode: 'no-cors',
                     body: JSON.stringify(contactLeadPayload)
                 });
-
-                // ── 2. Supabase — secondary, fully non-blocking ──
                 sb.from('seller_leads').insert([contactLeadPayload]).then(({
                     error
                 }) => {
                     if (error) console.warn('Supabase insert error:', error);
                 });
-
                 document.getElementById('contactFormWrap').style.display = 'none';
                 document.getElementById('contactSuccess').style.display = 'block';
             } catch (err) {
@@ -2783,8 +3368,9 @@
             }, 2800);
         }
 
-        /* ── Keyboard navigation for address inputs ── */
+        /* ══ INIT ══ */
         document.addEventListener('DOMContentLoaded', () => {
+            renderPhoneDds();
             attachKeyNav(document.getElementById('searchInput'), () => document.querySelectorAll('#heroAddrDropdown .addr-item'), item => item.click(), () => startFlowFromHero());
             attachKeyNav(document.getElementById('tf-address'), () => document.querySelectorAll('#tfAddrDropdown .tf-addr-item'), item => item.click(), () => tfNext(1));
             attachKeyNav(document.getElementById('c-street'), () => document.querySelectorAll('#formAddrDropdown .form-addr-item'), item => item.click());
