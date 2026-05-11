@@ -2,6 +2,24 @@
 <html lang="en">
 
 <head>
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TWW4T6JS');
+    </script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TopThree — Find the Top 3 Agents to Sell Your Property</title>
@@ -1990,6 +2008,10 @@
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWW4T6JS"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- ══ TYPEFORM OVERLAY ══ -->
     <div class="tf-overlay" id="tfOverlay">
@@ -2484,10 +2506,10 @@
         const phoneState = {
             tf: {
                 country: PHONE_COUNTRIES[0]
-            }, // typeform
+            },
             c: {
                 country: PHONE_COUNTRIES[0]
-            }, // contact form
+            },
         };
 
         /* ── Build dropdown HTML ── */
@@ -2554,7 +2576,6 @@
             document.getElementById('tfPhoneCountryDd').classList.remove('show');
         }
 
-        /* ── US phone masking → (XXX) XXX-XXXX ── */
         function maskUSPhone(raw) {
             const digits = raw.replace(/\D/g, '').slice(0, 10);
             if (digits.length === 0) return '';
@@ -2563,7 +2584,6 @@
             return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
         }
 
-        /* Generic digit extractor */
         function extractDigits(val) {
             return val.replace(/\D/g, '');
         }
@@ -2576,7 +2596,6 @@
                 if (masked !== prev) {
                     const sel = input.selectionStart;
                     input.value = masked;
-                    // restore cursor unless at end
                     try {
                         input.setSelectionRange(sel, sel);
                     } catch (e) {}
@@ -2603,7 +2622,6 @@
             document.getElementById('cPhoneError').classList.remove('show');
         }
 
-        /* ── Validate: digits must match maxDigits for selected country ── */
         function validatePhone(type) {
             const country = phoneState[type].country;
             const inputId = type === 'tf' ? 'tf-phone' : 'c-phone';
@@ -2612,7 +2630,6 @@
             return digits.length === country.maxDigits;
         }
 
-        /* Get formatted phone for submission */
         function getPhoneForSubmit(type) {
             const country = phoneState[type].country;
             const inputId = type === 'tf' ? 'tf-phone' : 'c-phone';
@@ -2621,7 +2638,6 @@
             return country.dial + ' ' + val;
         }
 
-        /* Close phone dropdowns on outside click */
         document.addEventListener('click', e => {
             const tfDd = document.getElementById('tfPhoneCountryDd');
             const cDd = document.getElementById('cPhoneCountryDd');
@@ -2880,7 +2896,6 @@
             setTimeout(() => tfNext(1), 380);
         }
 
-        /* Close address dropdowns on outside click */
         document.addEventListener('click', e => {
             if (!e.target.closest('.s-fields')) document.getElementById('heroAddrDropdown').classList.remove('show');
             if (!e.target.closest('.addr-wrap')) document.getElementById('formAddrDropdown').classList.remove('show');
@@ -2940,7 +2955,6 @@
             document.getElementById('tfSuccess').classList.remove('active');
             document.getElementById('tfStep1Hint').textContent = 'Start typing your street address and select from the suggestions.';
             document.getElementById('tfEmailHint').textContent = "We'll send you the top agents in your area.";
-            // Reset TF phone
             phoneState.tf.country = PHONE_COUNTRIES[0];
             document.getElementById('tfPhoneFlag').textContent = '🇺🇸';
             document.getElementById('tf-phone').value = '';
@@ -3067,7 +3081,6 @@
             }
             tfData.email = emailVal;
 
-            /* Phone validation — optional but if entered must be valid */
             const tfPhoneVal = document.getElementById('tf-phone').value.trim();
             if (tfPhoneVal) {
                 if (!validatePhone('tf')) {
@@ -3184,7 +3197,6 @@
             }, 100);
         }
 
-        /* Global keydown */
         document.addEventListener('keydown', e => {
             const overlay = document.getElementById('tfOverlay');
             if (!overlay.classList.contains('open')) return;
@@ -3263,7 +3275,6 @@
                 return;
             }
 
-            /* Phone validation — required in contact form */
             const cPhoneVal = document.getElementById('c-phone').value.trim();
             if (!cPhoneVal) {
                 document.getElementById('cPhoneWrap').classList.add('err');
