@@ -1088,44 +1088,6 @@
             text-align: center;
             margin-top: 10px
         }
-        
-        .form-success {
-            display: none;
-            text-align: center;
-            padding: 24px 0
-        }
-        
-        .form-success-ico {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--gold), var(--goldd));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-            box-shadow: 0 8px 24px rgba(201, 168, 76, .35)
-        }
-        
-        .form-success-ico svg {
-            width: 28px;
-            height: 28px
-        }
-        
-        .form-success h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 8px
-        }
-        
-        .form-success p {
-            font-size: 14px;
-            color: var(--mid);
-            line-height: 1.6;
-            font-weight: 300
-        }
         /* ══ PHONE INPUT COMPONENT — Light Theme (underline style) ══ */
         
         .phone-wrap {
@@ -1803,68 +1765,6 @@
             color: rgba(255, 255, 255, .35)
         }
         
-        .tf-success {
-            display: none;
-            text-align: center;
-            max-width: 560px;
-            width: 100%;
-            animation: stepIn .4s ease
-        }
-        
-        .tf-success.active {
-            display: block
-        }
-        
-        .tf-success-ico {
-            width: 72px;
-            height: 72px;
-            background: linear-gradient(135deg, var(--gold), var(--goldd));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            box-shadow: 0 10px 32px rgba(201, 168, 76, .4)
-        }
-        
-        .tf-success-ico svg {
-            width: 34px;
-            height: 34px
-        }
-        
-        .tf-success h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(32px, 4.5vw, 52px);
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 14px;
-            letter-spacing: -.5px
-        }
-        
-        .tf-success p {
-            font-size: 16px;
-            color: rgba(255, 255, 255, .7);
-            line-height: 1.7;
-            font-weight: 300;
-            margin-bottom: 30px
-        }
-        
-        .tf-success-detail {
-            background: rgba(255, 255, 255, .08);
-            border: 1px solid rgba(255, 255, 255, .15);
-            border-radius: 12px;
-            padding: 18px 22px;
-            font-size: 13.5px;
-            color: rgba(255, 255, 255, .6);
-            line-height: 1.6;
-            text-align: left
-        }
-        
-        .tf-success-detail strong {
-            color: rgba(255, 255, 255, .85);
-            font-weight: 600
-        }
-        
         footer {
             background: #0B0A08;
             padding: 30px 5% 22px
@@ -2135,18 +2035,6 @@
                 <button class="tf-ok" id="tfSubmitBtn" onclick="tfSubmit()">Show Me The Top Agents <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Ctrl + Enter ↵</div>
             </div>
-            <!-- Success -->
-            <div class="tf-success" id="tfSuccess">
-                <div class="tf-success-ico">
-                    <svg viewBox="0 0 34 34" fill="none"><path d="M6 17l7 7L28 9" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <h2>You're all set!</h2>
-                <p>We've received your details and are matching you with the top 3 verified selling agents in your area. Expect to hear from us within minutes.</p>
-                <div class="tf-success-detail">
-                    <strong>What happens next?</strong><br>Our team reviews your property details and matches you with the 3 best-rated listing agents in your market — based on real sales data, not paid placements. We'll reach out via email and phone
-                    shortly.
-                </div>
-            </div>
         </div>
     </div>
 
@@ -2354,11 +2242,6 @@
                     <p class="form-note">🔒 Your information is private and never shared without your consent.</p>
                 </div>
             </div>
-            <div class="form-success" id="contactSuccess" style="display:none">
-                <div class="form-success-ico"><svg viewBox="0 0 28 28" fill="none"><path d="M5 14l6 6L23 8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                <h3>You're all set!</h3>
-                <p>Your request is received. We'll match you with the top 3 verified selling agents in your area and be in touch shortly.</p>
-            </div>
         </div>
     </section>
 
@@ -2500,19 +2383,17 @@
             code: 'AE',
             mask: '## ### ####',
             maxDigits: 9
-        }, ];
+        }];
 
-        /* Active country state per form */
         const phoneState = {
             tf: {
                 country: PHONE_COUNTRIES[0]
             },
             c: {
                 country: PHONE_COUNTRIES[0]
-            },
+            }
         };
 
-        /* ── Build dropdown HTML ── */
         function buildPhoneDdHTML(type) {
             const isDark = type === 'tf';
             const itemClass = isDark ? 'tf-phone-country-item' : 'phone-country-item';
@@ -2539,7 +2420,6 @@
             const country = PHONE_COUNTRIES.find(c => c.code === code);
             if (!country) return;
             phoneState[type].country = country;
-
             if (type === 'tf') {
                 document.getElementById('tfPhoneFlag').textContent = country.flag;
                 const inp = document.getElementById('tf-phone');
@@ -2952,7 +2832,6 @@
                 zip: ''
             });
             tfSelectedAddress = null;
-            document.getElementById('tfSuccess').classList.remove('active');
             document.getElementById('tfStep1Hint').textContent = 'Start typing your street address and select from the suggestions.';
             document.getElementById('tfEmailHint').textContent = "We'll send you the top agents in your area.";
             phoneState.tf.country = PHONE_COUNTRIES[0];
@@ -2996,7 +2875,6 @@
 
         function showTfStep(n) {
             document.querySelectorAll('.tf-step').forEach(s => s.classList.remove('active'));
-            document.getElementById('tfSuccess').classList.remove('active');
             const el = document.getElementById('tfStep' + n);
             if (el) el.classList.add('active');
             updateProgress(n);
@@ -3133,12 +3011,8 @@
                         if (error) console.warn('Supabase search_logs error:', error);
                     });
                 }
-                document.querySelectorAll('.tf-step').forEach(s => s.classList.remove('active'));
-                document.getElementById('tfSuccess').classList.add('active');
-                document.getElementById('tfProgressFill').style.width = '100%';
-                document.getElementById('tfStepLbl').textContent = 'Complete!';
-                const backBtn = document.getElementById('tfBackBtn');
-                if (backBtn) backBtn.style.display = 'none';
+                /* ── REDIRECT TO THANK YOU PAGE ── */
+                window.location.href = '/thankyou';
             } catch (err) {
                 console.error('Typeform submit error:', err);
                 showToast('Submission failed — please try again');
@@ -3350,8 +3224,8 @@
                 }) => {
                     if (error) console.warn('Supabase insert error:', error);
                 });
-                document.getElementById('contactFormWrap').style.display = 'none';
-                document.getElementById('contactSuccess').style.display = 'block';
+                /* ── REDIRECT TO THANK YOU PAGE ── */
+                window.location.href = '/thankyou';
             } catch (err) {
                 console.error('Contact form error:', err);
                 showToast('Submission failed — please try again');
