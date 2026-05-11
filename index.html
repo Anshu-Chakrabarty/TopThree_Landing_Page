@@ -2435,15 +2435,44 @@
 
         /* ══ THANK YOU PAGE ══ */
         function showThankyou() {
+            // Push /thank-you into the browser URL bar (for conversion tracking)
+            history.pushState({
+                page: 'thankyou'
+            }, 'Thank You — TopThree', '/thank-you');
+            document.title = 'Thank You — TopThree Realty';
             document.getElementById('thankyouPage').classList.add('show');
             document.body.style.overflow = 'hidden';
             window.scrollTo(0, 0);
+            // Fire dataLayer event for GTM conversion tracking
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'form_submission',
+                    page: '/thank-you'
+                });
+            }
         }
 
         function closeThankyou() {
+            // Restore original URL when going back to home
+            history.pushState({
+                page: 'home'
+            }, 'TopThree — Find the Top 3 Agents to Sell Your Property', '/');
+            document.title = 'TopThree — Find the Top 3 Agents to Sell Your Property';
             document.getElementById('thankyouPage').classList.remove('show');
             document.body.style.overflow = '';
         }
+
+        // Handle browser back button while on /thank-you
+        window.addEventListener('popstate', function(e) {
+            const ty = document.getElementById('thankyouPage');
+            if (e.state && e.state.page === 'thankyou') {
+                ty.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            } else {
+                ty.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
 
         /* ══ SMARTY ADDRESS AUTOCOMPLETE ══ */
         const SMARTY_CONFIG = {
