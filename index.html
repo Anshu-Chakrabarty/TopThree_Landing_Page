@@ -205,6 +205,22 @@
         .form-submit:hover { background: var(--gold); color: var(--ink) }
         .form-submit:disabled { opacity: .6; cursor: not-allowed }
         .form-note { font-size: 12px; color: var(--hint); text-align: center; margin-top: 10px }
+        .form-note a { color: var(--gold); text-decoration: underline }
+        .form-consent { font-size: 11.5px; color: var(--hint); text-align: center; margin-top: 8px; line-height: 1.6 }
+        .form-consent a { color: var(--gold); text-decoration: underline }
+
+        /* ── LEGAL PAGES ── */
+        .legal-overlay { display: none; position: fixed; inset: 0; z-index: 850; background: rgba(11,10,8,.75); backdrop-filter: blur(8px); overflow-y: auto; padding: 40px 5% }
+        .legal-overlay.open { display: block }
+        .legal-card { max-width: 760px; margin: 0 auto; background: var(--cream); border-radius: 18px; padding: 48px 52px; position: relative }
+        .legal-close { position: absolute; top: 20px; right: 20px; background: #E8E4DC; border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; color: var(--mid) }
+        .legal-card h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: var(--ink); margin-bottom: 6px }
+        .legal-card .legal-date { font-size: 12px; color: var(--hint); margin-bottom: 28px; font-style: italic }
+        .legal-card h2 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--ink); margin: 28px 0 10px }
+        .legal-card p, .legal-card li { font-size: 14px; color: var(--mid); line-height: 1.8; margin-bottom: 10px }
+        .legal-card ul { padding-left: 20px; margin-bottom: 12px }
+        .legal-card a { color: var(--gold) }
+        @media(max-width:640px) { .legal-card { padding: 32px 22px } }
 
         /* ── TYPEFORM OVERLAY ── */
         .tf-overlay { position: fixed; inset: 0; z-index: 900; display: none; flex-direction: column; overflow: hidden }
@@ -506,7 +522,7 @@
                     <div class="tf-label">Phone number (optional)</div>
                     <input class="tf-phone-input" id="tf-phone" type="tel" placeholder="(555) 123-4567" autocomplete="tel" maxlength="14" oninput="formatPhoneInput(this)" />
                     <div class="tf-phone-error" id="tfPhoneError">Please enter a valid 10-digit US phone number.</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:6px;">I agree to receive communications via phone calls and SMS.</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:6px;line-height:1.6;">By submitting this form, you agree to receive calls and text messages from Top 3 in Realty LLC and partner agents. Message and data rates may apply. Reply STOP to opt out. See our <a href="#" onclick="openLegal('privacy');return false;" style="color:rgba(201,168,76,.85);text-decoration:underline;">Privacy Policy</a> and <a href="#" onclick="openLegal('terms');return false;" style="color:rgba(201,168,76,.85);text-decoration:underline;">Terms</a>.</div>
                 </div>
             </div>
             <button class="tf-ok" id="tfSubmitBtn" onclick="tfSubmit()">Show Me The Top Agents <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -528,6 +544,7 @@
         <li><a href="#specs">Specialties</a></li>
         <li><a href="#cities">Coverage</a></li>
         <li><a href="#why">How It Works</a></li>
+        <li><a href="#about">About Us</a></li>
         <li><a href="#contact" class="nav-cta">Find My Agent</a></li>
     </ul>
     <button class="bur" onclick="document.getElementById('mob').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -536,6 +553,7 @@
     <a href="#specs" onclick="closeMob()">Specialties<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     <a href="#cities" onclick="closeMob()">Coverage<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     <a href="#why" onclick="closeMob()">How It Works<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a href="#about" onclick="closeMob()">About Us<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     <a href="#contact" onclick="closeMob()">Find My Agent →</a>
 </div>
 
@@ -644,6 +662,40 @@
     </div>
 </section>
 
+<!-- ══ ABOUT US ══ -->
+<section id="about" style="padding:80px 5%;background:#fff;">
+    <div style="max-width:1100px;margin:0 auto;">
+        <p class="sec-lbl">About Us</p>
+        <h2 class="sec-h">Who we are &amp;<br><em>how we rank agents</em></h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:8px;">
+            <div>
+                <p style="font-size:15px;color:var(--mid);line-height:1.8;font-weight:300;margin-bottom:18px;">Top 3 in Realty LLC is an independent agent-matching platform founded to bring transparency to the real estate industry. We are not a brokerage, and we do not represent buyers or sellers directly.</p>
+                <p style="font-size:15px;color:var(--mid);line-height:1.8;font-weight:300;margin-bottom:18px;">Our platform has helped over 1.8 million property sellers connect with verified local listing agents since our founding. That figure is based on the cumulative number of lead submissions processed through our platform.</p>
+                <p style="font-size:15px;color:var(--mid);line-height:1.8;font-weight:300;">We earn revenue through referral fees paid by agents when a successful match is made. This does <strong>not</strong> influence our rankings — all agent rankings are determined independently of referral arrangements.</p>
+            </div>
+            <div>
+                <div style="background:var(--cream);border-radius:16px;padding:28px;border:1px solid rgba(201,168,76,.12);">
+                    <p style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Our 50-Point Vetting Methodology</p>
+                    <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:11px;">
+                        <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--mid);line-height:1.6;"><span style="color:var(--gold);font-size:16px;flex-shrink:0;">✓</span> Active state real estate license verification</li>
+                        <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--mid);line-height:1.6;"><span style="color:var(--gold);font-size:16px;flex-shrink:0;">✓</span> MLS transaction history &amp; verified sales volume</li>
+                        <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--mid);line-height:1.6;"><span style="color:var(--gold);font-size:16px;flex-shrink:0;">✓</span> Days-on-market performance vs. local average</li>
+                        <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--mid);line-height:1.6;"><span style="color:var(--gold);font-size:16px;flex-shrink:0;">✓</span> List-price-to-sale-price ratio analysis</li>
+                        <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--mid);line-height:1.6;"><span style="color:var(--gold);font-size:16px;flex-shrink:0;">✓</span> Client review quality &amp; volume assessment</li>
+                        <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--mid);line-height:1.6;"><span style="color:var(--gold);font-size:16px;flex-shrink:0;">✓</span> Disciplinary &amp; complaint record check</li>
+                        <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--mid);line-height:1.6;"><span style="color:var(--gold);font-size:16px;flex-shrink:0;">✓</span> Local market specialization &amp; property type fit</li>
+                        <li style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--mid);line-height:1.6;"><span style="color:var(--gold);font-size:16px;flex-shrink:0;">✓</span> Re-verified every 6 months — no legacy rankings</li>
+                    </ul>
+                    <p style="font-size:12px;color:var(--hint);margin-top:16px;font-style:italic;">No agent can pay to improve their ranking. Rankings reflect performance data only.</p>
+                </div>
+                <div style="margin-top:16px;padding:18px 22px;background:rgba(201,168,76,.07);border-radius:12px;border:1px solid rgba(201,168,76,.18);">
+                    <p style="font-size:13px;color:var(--mid);line-height:1.7;"><strong>Testimonial disclaimer:</strong> Agent matches and outcomes displayed represent individual experiences. Results may vary depending on market conditions, property type, and agent availability. Testimonials are from real clients and have not been incentivised.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ══ CONTACT FORM ══ -->
 <section class="contact" id="contact">
     <div class="contact-in">
@@ -710,7 +762,8 @@
                     <input type="hidden" id="c-timeline" />
                 </div>
                 <button class="form-submit" id="contactSubmitBtn" onclick="submitContact(event)">Find My Top 3 Agents →</button>
-                <p class="form-note">🔒 Your information is private and never shared without your consent.</p>
+                <p class="form-note">🔒 Your information is private and secure. By submitting, you agree to receive calls and texts from Top 3 in Realty LLC and partner agents. Message and data rates may apply. Reply STOP to opt out.</p>
+                <p class="form-consent">We may share your details with matched real estate agents to fulfil your request. Agents may compensate us for referrals. See our <a href="#" onclick="openLegal('privacy');return false;">Privacy Policy</a> &amp; <a href="#" onclick="openLegal('terms');return false;">Terms &amp; Conditions</a>.</p>
             </div>
         </div>
     </div>
@@ -727,10 +780,25 @@
                     <span style="display:block;color:#C9A84C;font-size:16px;font-weight:600;letter-spacing:2px;">REALTY</span>
                 </span>
             </a>
+            <div style="margin-top:18px;font-size:13px;color:rgba(255,255,255,.45);line-height:1.8;">
+                <strong style="color:rgba(255,255,255,.7);">Top 3 in Realty LLC</strong><br>
+                123 Real Estate Ave, Suite 400, New York, NY 10001<br>
+                <a href="mailto:support@top3inrealty.com" style="color:rgba(201,168,76,.85);text-decoration:none;">support@top3inrealty.com</a> &nbsp;|&nbsp; <a href="tel:+18005551234" style="color:rgba(201,168,76,.85);text-decoration:none;">(800) 555-1234</a>
+            </div>
+            <div style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.3);line-height:1.7;max-width:480px;">
+                We may share your information with selected real estate professionals to help match you with suitable agents. Partner agents may compensate Top 3 in Realty for referrals. Agent rankings are based on verified transaction performance, licensing status, and client reviews — not paid placements. Results may vary based on market conditions and agent experience.
+            </div>
         </div>
         <div class="ft-bot">
-            <span class="ft-copy">© 2026 TopThree. Not a licensed real estate brokerage.</span>
-            <div class="ft-legal"><a href="#contact">Find an Agent</a><a href="#why">How It Works</a></div>
+            <span class="ft-copy">© 2026 Top 3 in Realty LLC. Not a licensed real estate brokerage.</span>
+            <div class="ft-legal">
+                <a href="#contact">Find an Agent</a>
+                <a href="#why">How It Works</a>
+                <a href="#about">About Us</a>
+                <a href="#" onclick="openLegal('privacy');return false;">Privacy Policy</a>
+                <a href="#" onclick="openLegal('terms');return false;">Terms &amp; Conditions</a>
+                <a href="#" onclick="openLegal('cookies');return false;">Cookie Policy</a>
+            </div>
         </div>
     </div>
 </footer>
@@ -1334,5 +1402,113 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
+<!-- ══ LEGAL MODALS ══ -->
+<div class="legal-overlay" id="legalPrivacy">
+    <div class="legal-card">
+        <button class="legal-close" onclick="closeLegal('privacy')" aria-label="Close">✕</button>
+        <h1>Privacy Policy</h1>
+        <p class="legal-date">Effective Date: January 1, 2026 | Last Updated: May 1, 2026</p>
+        <h2>1. Who We Are</h2>
+        <p>Top 3 in Realty LLC ("Company," "we," "us," or "our") operates the website top3inrealty.com. We are an independent agent-matching platform — not a licensed real estate brokerage. Our registered address is 123 Real Estate Ave, Suite 400, New York, NY 10001. Contact: <a href="mailto:support@top3inrealty.com">support@top3inrealty.com</a> | (800) 555-1234.</p>
+        <h2>2. Information We Collect</h2>
+        <p>When you submit a form on our website, we collect:</p>
+        <ul>
+            <li>Name (first and last)</li>
+            <li>Email address</li>
+            <li>Phone number</li>
+            <li>Property address (street, city, ZIP code)</li>
+            <li>Property type, selling goal, and timeline preferences</li>
+            <li>Browser, device, and UTM/tracking parameters (via cookies and analytics tools)</li>
+        </ul>
+        <h2>3. How We Use Your Information</h2>
+        <p>We use collected information to:</p>
+        <ul>
+            <li>Match you with suitable real estate agents in your area</li>
+            <li>Contact you via email, phone, or SMS with your agent matches and follow-ups</li>
+            <li>Improve our platform and services</li>
+            <li>Comply with legal obligations</li>
+        </ul>
+        <h2>4. Lead Sharing & Agent Referrals</h2>
+        <p>We will share your personal information with selected real estate agents and professionals to fulfil your request for agent matches. Partner agents may compensate Top 3 in Realty LLC for referrals. This referral arrangement does not affect our agent rankings, which are determined independently based on performance data.</p>
+        <h2>5. SMS / Phone Communications (TCPA)</h2>
+        <p>By submitting our form, you consent to receive calls and text messages from Top 3 in Realty LLC and matched partner agents. Message and data rates may apply. Message frequency varies. You may opt out at any time by replying STOP to any text message or emailing us at <a href="mailto:support@top3inrealty.com">support@top3inrealty.com</a>.</p>
+        <h2>6. Cookies & Tracking</h2>
+        <p>We use cookies, Google Tag Manager, and analytics tools to understand how visitors use our site, track advertising campaign performance, and improve user experience. See our <a href="#" onclick="closeLegal('privacy');openLegal('cookies');return false;">Cookie Policy</a> for details.</p>
+        <h2>7. Data Retention</h2>
+        <p>We retain your personal data for as long as necessary to fulfil the purposes described in this policy, or as required by law. You may request deletion of your data at any time.</p>
+        <h2>8. Your Rights & Opt-Out</h2>
+        <p>You have the right to access, correct, or delete your personal information. To exercise these rights or opt out of communications, contact us at <a href="mailto:support@top3inrealty.com">support@top3inrealty.com</a>. California residents may have additional rights under CCPA.</p>
+        <h2>9. Contact Us</h2>
+        <p>Top 3 in Realty LLC | 123 Real Estate Ave, Suite 400, New York, NY 10001 | <a href="mailto:support@top3inrealty.com">support@top3inrealty.com</a> | (800) 555-1234</p>
+    </div>
+</div>
+
+<div class="legal-overlay" id="legalTerms">
+    <div class="legal-card">
+        <button class="legal-close" onclick="closeLegal('terms')" aria-label="Close">✕</button>
+        <h1>Terms &amp; Conditions</h1>
+        <p class="legal-date">Effective Date: January 1, 2026</p>
+        <h2>1. Acceptance of Terms</h2>
+        <p>By using top3inrealty.com, you agree to these Terms & Conditions. If you do not agree, please do not use this website.</p>
+        <h2>2. Nature of Service</h2>
+        <p>Top 3 in Realty LLC is an independent agent-matching service. We are not a licensed real estate brokerage, and we do not represent buyers or sellers in any real estate transaction. We connect property sellers with verified local real estate agents.</p>
+        <h2>3. Agent Rankings Methodology</h2>
+        <p>Agent rankings on our platform are based on a 50-point internal analysis including: verified MLS transaction history, active license status, days-on-market performance, list-to-sale price ratios, and client review quality. No agent can pay to improve their ranking. Rankings are re-verified every six months.</p>
+        <h2>4. Statistical Claims</h2>
+        <p>Claims such as "1.8 million property sellers" represent the cumulative number of lead submissions processed through our platform since launch. "12K+ Active Agents" reflects agents currently in our verified database. "300+ metro areas" reflects our geographic coverage. These figures are updated periodically.</p>
+        <h2>5. Commercial Relationships</h2>
+        <p>Top 3 in Realty LLC may receive referral compensation from agents when a successful match results in a transaction. This does not influence agent rankings, which are determined independently.</p>
+        <h2>6. No Guarantee of Outcomes</h2>
+        <p>We do not guarantee any particular outcome from your use of our service, including but not limited to a sale price, time to sell, or agent performance. Individual results will vary.</p>
+        <h2>7. Consent to Contact</h2>
+        <p>By submitting a form, you consent to being contacted by Top 3 in Realty LLC and matched partner agents via phone, email, and SMS. You may withdraw consent at any time by emailing <a href="mailto:support@top3inrealty.com">support@top3inrealty.com</a>.</p>
+        <h2>8. Limitation of Liability</h2>
+        <p>To the extent permitted by law, Top 3 in Realty LLC shall not be liable for any indirect, incidental, or consequential damages arising from your use of this website or the services of matched agents.</p>
+        <h2>9. Contact</h2>
+        <p>Top 3 in Realty LLC | 123 Real Estate Ave, Suite 400, New York, NY 10001 | <a href="mailto:support@top3inrealty.com">support@top3inrealty.com</a></p>
+    </div>
+</div>
+
+<div class="legal-overlay" id="legalCookies">
+    <div class="legal-card">
+        <button class="legal-close" onclick="closeLegal('cookies')" aria-label="Close">✕</button>
+        <h1>Cookie Policy</h1>
+        <p class="legal-date">Effective Date: January 1, 2026</p>
+        <h2>1. What Are Cookies</h2>
+        <p>Cookies are small text files stored on your device when you visit a website. They help us recognise your browser and remember certain information to improve your experience.</p>
+        <h2>2. Cookies We Use</h2>
+        <ul>
+            <li><strong>Essential cookies:</strong> Required for the website to function correctly (e.g., session state).</li>
+            <li><strong>Analytics cookies:</strong> Google Analytics and Google Tag Manager to understand how visitors use our site.</li>
+            <li><strong>Advertising cookies:</strong> We use tracking pixels (Google Ads, Microsoft Ads) to measure campaign performance and attribute conversions. These may include gclid, fbclid, and UTM parameters.</li>
+        </ul>
+        <h2>3. Third-Party Cookies</h2>
+        <p>Third parties such as Google, Microsoft, and Meta may set their own cookies when you visit our site. We do not control these cookies. Please review the respective privacy policies of these services.</p>
+        <h2>4. Managing Cookies</h2>
+        <p>You can control and delete cookies through your browser settings. Disabling cookies may affect the functionality of certain parts of our website. Most browsers allow you to refuse new cookies, accept all cookies, or be notified when a cookie is set.</p>
+        <h2>5. Contact</h2>
+        <p>Questions about our cookie practices? Contact us at <a href="mailto:support@top3inrealty.com">support@top3inrealty.com</a>.</p>
+    </div>
+</div>
+
+<script>
+/* ══ LEGAL MODAL ══ */
+function openLegal(type) {
+    const map = { privacy: 'legalPrivacy', terms: 'legalTerms', cookies: 'legalCookies' };
+    const el = document.getElementById(map[type]);
+    if (el) { el.classList.add('open'); document.body.style.overflow = 'hidden'; }
+}
+function closeLegal(type) {
+    const map = { privacy: 'legalPrivacy', terms: 'legalTerms', cookies: 'legalCookies' };
+    const el = document.getElementById(map[type]);
+    if (el) { el.classList.remove('open'); document.body.style.overflow = ''; }
+}
+// Close on overlay backdrop click
+['legalPrivacy','legalTerms','legalCookies'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', function(e) { if (e.target === el) { el.classList.remove('open'); document.body.style.overflow = ''; } });
+});
+</script>
+
 </body>
 </html>
