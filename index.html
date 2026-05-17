@@ -14,17 +14,127 @@
                 j = d.createElement(s),
                 dl = l != 'dataLayer' ? '&l=' + l : '';
             j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-TWW4T6JS');
     </script>
     <!-- End Google Tag Manager -->
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TopThree — Find the Top 3 Agents to Sell Your Property</title>
+    <!-- FIX: Added minimum-scale for better mobile SEO signal -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <!-- ══ PRIMARY SEO META TAGS ══ -->
+    <title>Top 3 in Realty — Find the Top 3 Agents to Sell Your Property</title>
+    <meta name="description" content="Find the top 3 verified real estate listing agents in your area. No paid rankings. Just the best agents matched to your property in minutes. Trusted by 1.8 million sellers.">
+    <meta name="keywords" content="top real estate agents, find listing agent, sell my home, best real estate agent near me, top 3 realty, property seller agent matching, verified listing agents">
+    <meta name="author" content="Top 3 in Realty">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0B0A08">
+    <link rel="canonical" href="https://top3inrealty.com/">
+
+    <!-- FIX: Local SEO geo meta tags (matches registered address in Florham Park, NJ) -->
+    <meta name="geo.region" content="US-NJ">
+    <meta name="geo.placename" content="Florham Park, New Jersey">
+    <meta name="geo.position" content="40.7943;-74.3904">
+    <meta name="ICBM" content="40.7943, -74.3904">
+
+    <!-- ══ FAVICON ══ -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="shortcut icon" href="logo.png">
+
+    <!-- ══ OPEN GRAPH / FACEBOOK ══ -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://top3inrealty.com/">
+    <meta property="og:title" content="Top 3 in Realty — Find the Top 3 Agents to Sell Your Property">
+    <meta property="og:description" content="Verified selling agents. Zero paid rankings. Just the three best listing agents in your market — matched to your property in minutes. Free & no obligation.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=85&fit=crop">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Top 3 in Realty">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ══ TWITTER CARD ══ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://top3inrealty.com/">
+    <meta name="twitter:title" content="Top 3 in Realty — Find the Top 3 Agents to Sell Your Property">
+    <meta name="twitter:description" content="Verified selling agents. Zero paid rankings. Just the three best listing agents in your market — matched to your property in minutes.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=85&fit=crop">
+
+    <!-- ══ STRUCTURED DATA / SCHEMA.ORG ══ -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Top 3 in Realty",
+            "url": "https://top3inrealty.com",
+            "logo": "https://top3inrealty.com/logo.png",
+            "description": "An independent agent-matching platform that connects property sellers with the top 3 verified listing agents in their area.",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "35 Murphy Circle",
+                "addressLocality": "Florham Park",
+                "addressRegion": "NJ",
+                "postalCode": "07932",
+                "addressCountry": "US"
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "support@top3inrealty.com",
+                "contactType": "customer support"
+            },
+            "sameAs": []
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://top3inrealty.com",
+            "name": "Top 3 in Realty",
+            "description": "Find the top 3 verified real estate agents to sell your property.",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://top3inrealty.com/?address={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+    </script>
+    <!-- FIX: Added Service schema for richer search result potential -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Real Estate Agent Matching",
+            "provider": {
+                "@type": "Organization",
+                "name": "Top 3 in Realty",
+                "url": "https://top3inrealty.com"
+            },
+            "name": "Top 3 Agent Matching Service",
+            "description": "Free, unbiased matching service connecting property sellers with the top 3 verified real estate listing agents in their local market.",
+            "areaServed": {
+                "@type": "Country",
+                "name": "United States"
+            },
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD",
+                "description": "Free agent matching — no obligation"
+            }
+        }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- FIX: Preload hero image for LCP performance improvement -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1800&q=85&fit=crop" fetchpriority="high">
+
     <style>
         *,
         *::before,
@@ -57,6 +167,97 @@
             background: var(--cream);
             color: var(--ink);
             overflow-x: hidden
+        }
+        /* ══ TOP NAVBAR ══ */
+        
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            background: rgba(11, 10, 8, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+            padding: 0 5%;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        
+        .nav-logo img {
+            height: 44px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .nav-logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            color: #fff;
+            line-height: 1.1;
+        }
+        
+        .nav-logo-text .brand-name {
+            display: block;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .nav-logo-text .brand-sub {
+            display: block;
+            color: #C9A84C;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+        }
+        
+        .nav-cta {
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13.5px;
+            font-weight: 700;
+            letter-spacing: .2px;
+            box-shadow: 0 4px 16px rgba(37, 99, 235, .4);
+            transition: all .22s;
+            white-space: nowrap;
+        }
+        
+        .nav-cta:hover {
+            background: var(--blued);
+            transform: scale(1.03);
+            box-shadow: 0 6px 22px rgba(37, 99, 235, .5);
+        }
+        
+        @media (max-width: 580px) {
+            .top-nav {
+                height: 58px;
+            }
+            .nav-logo img {
+                height: 36px;
+            }
+            .nav-logo-text .brand-name {
+                font-size: 17px;
+            }
+            .nav-logo-text .brand-sub {
+                font-size: 11px;
+            }
+            .nav-cta {
+                padding: 9px 16px;
+                font-size: 12.5px;
+            }
         }
         /* ── HERO ── */
         
@@ -556,6 +757,13 @@
             color: var(--mid);
             line-height: 1.7;
             font-weight: 300
+        }
+        /* FIX: Required field asterisk style */
+        
+        .req-star {
+            color: #ef4444;
+            margin-left: 2px;
+            font-size: 13px;
         }
         /* ── PHONE INPUT (simple, clean, US only) ── */
         
@@ -1727,17 +1935,32 @@
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWW4T6JS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- ══ STICKY TOP NAVIGATION WITH LOGO ══ -->
+    <nav class="top-nav" role="navigation" aria-label="Main navigation">
+        <a href="/" class="nav-logo" aria-label="Top 3 in Realty — Home">
+            <img src="logo.png" alt="Top 3 in Realty Logo" width="44" height="44">
+            <span class="nav-logo-text">
+                <span class="brand-name">Top <span style="color:#C9A84C;">3</span> in</span>
+            <span class="brand-sub">REALTY</span>
+            </span>
+        </a>
+        <button class="nav-cta" onclick="startFlowFromNav()" aria-label="Find your top 3 real estate agents">
+            Find My Agents →
+        </button>
+    </nav>
 
     <!-- ══════════════════════════════════════
      THANK YOU PAGE (embedded, shown after submission)
 ══════════════════════════════════════ -->
-    <div id="thankyouPage">
+    <div id="thankyouPage" role="dialog" aria-modal="true" aria-label="Thank You">
         <div class="ty-bg">
             <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1800&q=85&fit=crop" alt="">
         </div>
         <nav class="ty-nav">
             <a href="#" class="logo" onclick="closeThankyou()" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-                <img src="logo.png" alt="TopThree Realtors Logo" style="height:52px;width:auto;object-fit:contain;" />
+                <img src="logo.png" alt="Top 3 in Realty Logo" style="height:52px;width:auto;object-fit:contain;" />
                 <span style="font-family:'Cormorant Garamond',serif;color:#fff;line-height:1.1;">
                 <span style="display:block;font-size:22px;font-weight:700;">Top <span style="color:#C9A84C;">3</span> in</span>
                 <span style="display:block;color:#C9A84C;font-size:16px;font-weight:600;letter-spacing:2px;">REALTY</span>
@@ -1790,13 +2013,13 @@
     <!-- ══════════════════════════════════════
      TYPEFORM OVERLAY
 ══════════════════════════════════════ -->
-    <div class="tf-overlay" id="tfOverlay">
+    <div class="tf-overlay" id="tfOverlay" role="dialog" aria-modal="true" aria-label="Find your top 3 agents">
         <div class="tf-bg">
             <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1800&q=85&fit=crop" alt="">
         </div>
         <div class="tf-topbar">
             <a href="#" class="logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-                <img src="logo.png" alt="TopThree Realtors Logo" style="height:52px;width:auto;object-fit:contain;" />
+                <img src="logo.png" alt="Top 3 in Realty Logo" style="height:52px;width:auto;object-fit:contain;" />
                 <span style="font-family:'Cormorant Garamond',serif;color:#fff;line-height:1.1;">
                 <span style="display:block;font-size:22px;font-weight:700;">Top <span style="color:#C9A84C;">3</span> in</span>
                 <span style="display:block;color:#C9A84C;font-size:16px;font-weight:600;letter-spacing:2px;">REALTY</span>
@@ -1822,7 +2045,8 @@
                 <div class="tf-q">What's the address of the<br>property you want to sell?</div>
                 <div class="tf-hint" id="tfStep1Hint">Start typing your street address and select from the suggestions.</div>
                 <div class="tf-addr-wrap">
-                    <input class="tf-field" id="tf-address" type="text" placeholder="123 Main St, New York, NY 10001" autocomplete="off" oninput="tfAddressInput(this.value)" />
+                    <!-- FIX: Added aria-required -->
+                    <input class="tf-field" id="tf-address" type="text" placeholder="123 Main St, New York, NY 10001" autocomplete="off" oninput="tfAddressInput(this.value)" aria-required="true" required />
                     <div class="tf-addr-dropdown" id="tfAddrDropdown"></div>
                 </div>
                 <button class="tf-ok" onclick="tfNext(1)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -1832,13 +2056,13 @@
             <div class="tf-step" id="tfStep2">
                 <div class="tf-q">What type of property are you<br>looking to sell?</div>
                 <div class="tf-hint">Select the option that best describes your property.</div>
-                <div class="tf-choices cols-3" id="tf-prop-grid">
-                    <button class="tf-choice" onclick="tfSelect('prop','Single Family',this)">🏠 Single Family</button>
-                    <button class="tf-choice" onclick="tfSelect('prop','Condo / Townhouse',this)">🏢 Condo / Townhouse</button>
-                    <button class="tf-choice" onclick="tfSelect('prop','Multi-Family',this)">🏘️ Multi-Family</button>
-                    <button class="tf-choice" onclick="tfSelect('prop','Mobile Home',this)">🚐 Mobile Home</button>
-                    <button class="tf-choice" onclick="tfSelect('prop','Commercial',this)">🏬 Commercial</button>
-                    <button class="tf-choice" onclick="tfSelect('prop','Plot / Land',this)">🌱 Plot / Land</button>
+                <div class="tf-choices cols-3" id="tf-prop-grid" role="radiogroup" aria-required="true">
+                    <button class="tf-choice" onclick="tfSelect('prop','Single Family',this)" role="radio" aria-checked="false">🏠 Single Family</button>
+                    <button class="tf-choice" onclick="tfSelect('prop','Condo / Townhouse',this)" role="radio" aria-checked="false">🏢 Condo / Townhouse</button>
+                    <button class="tf-choice" onclick="tfSelect('prop','Multi-Family',this)" role="radio" aria-checked="false">🏘️ Multi-Family</button>
+                    <button class="tf-choice" onclick="tfSelect('prop','Mobile Home',this)" role="radio" aria-checked="false">🚐 Mobile Home</button>
+                    <button class="tf-choice" onclick="tfSelect('prop','Commercial',this)" role="radio" aria-checked="false">🏬 Commercial</button>
+                    <button class="tf-choice" onclick="tfSelect('prop','Plot / Land',this)" role="radio" aria-checked="false">🌱 Plot / Land</button>
                 </div>
                 <button class="tf-ok" onclick="tfNext(2)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
@@ -1846,22 +2070,22 @@
             <div class="tf-step" id="tfStep3">
                 <div class="tf-q">What is your primary goal<br>for the sale?</div>
                 <div class="tf-hint">Not sure? Choose the option that sounds most important to you right now.</div>
-                <div class="tf-choices cols-2" id="tf-goal-grid">
-                    <button class="tf-choice" onclick="tfSelect('goal','Maximize my profit (Evaluate top agents)',this)">💰 Maximize my profit<br><span style="font-size:12px;opacity:.6;font-weight:400">Evaluate top agents</span></button>
-                    <button class="tf-choice" onclick="tfSelect('goal','Sell fast for cash (No repairs or showings)',this)">⚡ Sell fast for cash<br><span style="font-size:12px;opacity:.6;font-weight:400">No repairs or showings</span></button>
+                <div class="tf-choices cols-2" id="tf-goal-grid" role="radiogroup" aria-required="true">
+                    <button class="tf-choice" onclick="tfSelect('goal','Maximize my profit (Evaluate top agents)',this)" role="radio" aria-checked="false">💰 Maximize my profit<br><span style="font-size:12px;opacity:.6;font-weight:400">Evaluate top agents</span></button>
+                    <button class="tf-choice" onclick="tfSelect('goal','Sell fast for cash (No repairs or showings)',this)" role="radio" aria-checked="false">⚡ Sell fast for cash<br><span style="font-size:12px;opacity:.6;font-weight:400">No repairs or showings</span></button>
                 </div>
                 <button class="tf-ok" onclick="tfNext(3)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
             <!-- Step 4: Timeline -->
             <div class="tf-step" id="tfStep4">
                 <div class="tf-q">How soon are you looking<br>to sell?</div>
-                <div class="tf-choices cols-3" id="tf-timeline-grid">
-                    <button class="tf-choice" onclick="tfSelect('timeline','Less than 2 weeks',this)">Less than 2 weeks</button>
-                    <button class="tf-choice" onclick="tfSelect('timeline','2 – 4 weeks',this)">2 – 4 weeks</button>
-                    <button class="tf-choice" onclick="tfSelect('timeline','1 – 2 months',this)">1 – 2 months</button>
-                    <button class="tf-choice" onclick="tfSelect('timeline','2 – 4 months',this)">2 – 4 months</button>
-                    <button class="tf-choice" onclick="tfSelect('timeline','4 – 6 months',this)">4 – 6 months</button>
-                    <button class="tf-choice" onclick="tfSelect('timeline','More than 6 months',this)">More than 6 months</button>
+                <div class="tf-choices cols-3" id="tf-timeline-grid" role="radiogroup" aria-required="true">
+                    <button class="tf-choice" onclick="tfSelect('timeline','Less than 2 weeks',this)" role="radio" aria-checked="false">Less than 2 weeks</button>
+                    <button class="tf-choice" onclick="tfSelect('timeline','2 – 4 weeks',this)" role="radio" aria-checked="false">2 – 4 weeks</button>
+                    <button class="tf-choice" onclick="tfSelect('timeline','1 – 2 months',this)" role="radio" aria-checked="false">1 – 2 months</button>
+                    <button class="tf-choice" onclick="tfSelect('timeline','2 – 4 months',this)" role="radio" aria-checked="false">2 – 4 months</button>
+                    <button class="tf-choice" onclick="tfSelect('timeline','4 – 6 months',this)" role="radio" aria-checked="false">4 – 6 months</button>
+                    <button class="tf-choice" onclick="tfSelect('timeline','More than 6 months',this)" role="radio" aria-checked="false">More than 6 months</button>
                 </div>
                 <button class="tf-ok" onclick="tfNext(4)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
@@ -1872,32 +2096,34 @@
                 <div class="tf-input-wrap">
                     <div class="tf-input-row">
                         <div>
-                            <div class="tf-label">First name *</div>
-                            <input class="tf-field" id="tf-first" type="text" placeholder="Jane" autocomplete="given-name" />
+                            <!-- FIX: aria-required added -->
+                            <div class="tf-label">First name <span class="req-star" aria-hidden="true">*</span></div>
+                            <input class="tf-field" id="tf-first" type="text" placeholder="Jane" autocomplete="given-name" aria-required="true" required />
                         </div>
                         <div>
-                            <div class="tf-label">Last name *</div>
-                            <input class="tf-field" id="tf-last" type="text" placeholder="Smith" autocomplete="family-name" />
+                            <div class="tf-label">Last name <span class="req-star" aria-hidden="true">*</span></div>
+                            <input class="tf-field" id="tf-last" type="text" placeholder="Smith" autocomplete="family-name" aria-required="true" required />
                         </div>
                     </div>
                 </div>
                 <button class="tf-ok" onclick="tfNext(5)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
             </div>
-            <!-- Step 6: Contact -->
+            <!-- Step 6: Contact — FIX: Phone is now REQUIRED -->
             <div class="tf-step" id="tfStep6">
                 <div class="tf-q">How can we reach you?</div>
-                <div class="tf-hint" id="tfEmailHint">We'll send you the top agents in your area.</div>
+                <div class="tf-hint" id="tfEmailHint">We'll send your top agents by email and confirm by phone.</div>
                 <div class="tf-input-wrap">
                     <div>
-                        <div class="tf-label">Email address *</div>
-                        <input class="tf-field" id="tf-email" type="email" placeholder="name@example.com" autocomplete="email" />
+                        <div class="tf-label">Email address <span class="req-star" aria-hidden="true">*</span></div>
+                        <input class="tf-field" id="tf-email" type="email" placeholder="name@example.com" autocomplete="email" aria-required="true" required />
                     </div>
                     <div>
-                        <div class="tf-label">Phone number (optional)</div>
-                        <input class="tf-phone-input" id="tf-phone" type="tel" placeholder="(555) 123-4567" autocomplete="tel" maxlength="14" oninput="formatPhoneInput(this)" />
+                        <!-- FIX: Removed "(optional)" — phone is now required -->
+                        <div class="tf-label">Phone number <span class="req-star" aria-hidden="true">*</span></div>
+                        <input class="tf-phone-input" id="tf-phone" type="tel" placeholder="(555) 123-4567" autocomplete="tel" maxlength="14" oninput="formatPhoneInput(this)" aria-required="true" required />
                         <div class="tf-phone-error" id="tfPhoneError">Please enter a valid 10-digit US phone number.</div>
-                        <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:6px;line-height:1.6;">By submitting this form, you agree to receive calls and text messages from Top 3 in Realty and partner agents. Message and data rates may apply. Reply STOP to opt out. See our <a href="#" onclick="openLegal('privacy');return false;"
+                        <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:6px;line-height:1.6;">By submitting this form, you agree to receive calls and text messages from Top 3 in Realty and partner agents at the number provided. Message and data rates may apply. Reply STOP to opt out. See our <a href="#" onclick="openLegal('privacy');return false;"
                                 style="color:rgba(201,168,76,.85);text-decoration:underline;">Privacy Policy</a> and <a href="#" onclick="openLegal('terms');return false;" style="color:rgba(201,168,76,.85);text-decoration:underline;">Terms</a>.</div>
                     </div>
                 </div>
@@ -1906,82 +2132,79 @@
             </div>
         </div>
     </div>
+
     <!-- ══ HERO ══ -->
-    <section class="hero">
-        <div class="hero-bg"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1800&q=85&fit=crop" alt="Luxury property"></div>
+    <section class="hero" aria-label="Find your top 3 real estate agents">
+        <div class="hero-bg"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1800&q=85&fit=crop" alt="Luxury property exterior" loading="eager" fetchpriority="high"></div>
         <div class="hero-fog"></div>
         <div class="hero-inner">
             <div class="hero-badge"><span class="dot"></span>Trusted by 1.8 million property sellers</div>
             <h1>Find the <em>Top 3 Agents</em><br>to Sell Your Property</h1>
             <p class="hero-sub">Verified selling agents. Zero paid rankings. Just the three best listing agents in your market — matched to your property in minutes.</p>
-            <div class="search-box">
-                <svg class="s-ico" viewBox="0 0 18 18" fill="none"><path d="M9 1C6.24 1 4 3.24 4 6c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5z" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/><circle cx="9" cy="6" r="2" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/></svg>
+            <div class="search-box" role="search">
+                <svg class="s-ico" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 1C6.24 1 4 3.24 4 6c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5z" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/><circle cx="9" cy="6" r="2" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/></svg>
                 <div class="s-fields">
-                    <input class="s-input" id="searchInput" type="text" placeholder="Enter your full property address…" autocomplete="off" oninput="heroAddressInput(this.value)" />
-                    <div class="addr-dropdown" id="heroAddrDropdown"></div>
+                    <input class="s-input" id="searchInput" type="text" placeholder="Enter your full property address…" autocomplete="off" oninput="heroAddressInput(this.value)" aria-label="Enter your property address" />
+                    <div class="addr-dropdown" id="heroAddrDropdown" role="listbox" aria-label="Address suggestions"></div>
                 </div>
-                <button class="s-btn" onclick="startFlowFromHero()">Find My Agents</button>
+                <button class="s-btn" onclick="startFlowFromHero()" aria-label="Find my top 3 agents">Find My Agents</button>
             </div>
         </div>
     </section>
 
     <!-- ══ TRUST STRIP ══ -->
-    <div class="strip">
+    <div class="strip" aria-label="Trust indicators">
         <div class="strip-in">
-            <div class="si"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2l1.6 5h5.4l-4.3 3.1 1.6 5L9 12.2 4.7 15.1l1.6-5L2 6.9h5.4z" fill="#C9A84C"/></svg><span><strong>Top 3</strong> selling agents per search</span></div>
-            <div class="si"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#C9A84C" stroke-width="1.6"/><path d="M6 9l2 2 4-4" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Verified</strong> sales performance &amp; licensing</span></div>
-            <div class="si"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="4" stroke="#C9A84C" stroke-width="1.6"/><path d="M5 9h8M9 5v8" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round"/></svg><span><strong>0%</strong> paid rankings, ever</span></div>
-            <div class="si"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#C9A84C" stroke-width="1.6"/><path d="M9 6v3.5l2.5 2.5" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Re-vetted <strong>every 6 months</strong></span></div>
+            <div class="si"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 2l1.6 5h5.4l-4.3 3.1 1.6 5L9 12.2 4.7 15.1l1.6-5L2 6.9h5.4z" fill="#C9A84C"/></svg><span><strong>Top 3</strong> selling agents per search</span></div>
+            <div class="si"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7" stroke="#C9A84C" stroke-width="1.6"/><path d="M6 9l2 2 4-4" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Verified</strong> sales performance &amp; licensing</span></div>
+            <div class="si"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="2" y="2" width="14" height="14" rx="4" stroke="#C9A84C" stroke-width="1.6"/><path d="M5 9h8M9 5v8" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round"/></svg><span><strong>0%</strong> paid rankings, ever</span></div>
+            <div class="si"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7" stroke="#C9A84C" stroke-width="1.6"/><path d="M9 6v3.5l2.5 2.5" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Re-vetted <strong>every 6 months</strong></span></div>
         </div>
     </div>
 
     <!-- ══ SPECIALTIES ══ -->
-    <section class="specs" id="specs">
+    <section class="specs" id="specs" aria-labelledby="specs-heading">
         <div class="specs-in">
             <p class="sec-lbl">Browse by Specialty</p>
-            <h2 class="sec-h">Whatever you're selling,<br><em>we have the right listing expert</em></h2>
+            <h2 class="sec-h" id="specs-heading">Whatever you're selling,<br><em>we have the right listing expert</em></h2>
             <p class="sec-sub">Every property type covered. Every agent manually vetted and ranked on real sales results.</p>
             <div class="spec-grid">
-                <button class="spec-card" onclick="startFlowWithProp('Single Family')"><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&q=82&fit=crop" alt="Sell a Home"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M1 7.5l7-6 7 6V15H1V7.5z" stroke="#C9A84C" stroke-width="1.4" stroke-linejoin="round"/><rect x="5.5" y="9.5" width="5" height="5.5" rx="1" stroke="#C9A84C" stroke-width="1.2"/></svg></div><div class="spec-name">Sell a Home</div><div class="spec-cnt">3,800+ agents</div></div></button>
-                <button class="spec-card" onclick="startFlowWithProp('Luxury Property')"><img src="https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=400&q=82&fit=crop" alt="Luxury"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1.5l1.4 4H14l-3.5 2.5 1.3 4L8 10 4.2 12l1.3-4L2 5.5h4.6z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="spec-name">Luxury Property</div><div class="spec-cnt">1,600+ agents</div></div></button>
-                <button class="spec-card" onclick="startFlowWithProp('Investment Property')"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=82&fit=crop" alt="Investment"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="1.5" y="8" width="3" height="7" rx="1" stroke="#C9A84C" stroke-width="1.3"/><rect x="6.5" y="5" width="3" height="10" rx="1" stroke="#C9A84C" stroke-width="1.3"/><rect x="11.5" y="2" width="3" height="13" rx="1" stroke="#C9A84C" stroke-width="1.3"/></svg></div><div class="spec-name">Investment Property</div><div class="spec-cnt">2,100+ agents</div></div></button>
-                <button class="spec-card" onclick="startFlowWithProp('Condo / Townhouse')"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=82&fit=crop" alt="Condos"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="3" y="1" width="10" height="14" rx="2" stroke="#C9A84C" stroke-width="1.3"/><rect x="5" y="4" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/><rect x="9" y="4" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/><rect x="5" y="8" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/><rect x="9" y="8" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/></svg></div><div class="spec-name">Condos &amp; Apts</div><div class="spec-cnt">2,900+ agents</div></div></button>
-                <button class="spec-card" onclick="startFlowWithProp('Commercial')"><img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&q=82&fit=crop" alt="Commercial"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="1" y="4" width="14" height="11" rx="1.5" stroke="#C9A84C" stroke-width="1.3"/><path d="M5 4V3a3 3 0 016 0v1" stroke="#C9A84C" stroke-width="1.3"/></svg></div><div class="spec-name">Commercial</div><div class="spec-cnt">1,200+ agents</div></div></button>
-                <button class="spec-card" onclick="startFlowWithProp('Plot / Land')"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=82&fit=crop" alt="Land"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M2 12l4-6 3 4 2-2 3 4H2z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="spec-name">Land &amp; Lots</div><div class="spec-cnt">900+ agents</div></div></button>
+                <button class="spec-card" onclick="startFlowWithProp('Single Family')" aria-label="Find agents for Single Family homes"><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&q=82&fit=crop" alt="Single family home" loading="lazy"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1 7.5l7-6 7 6V15H1V7.5z" stroke="#C9A84C" stroke-width="1.4" stroke-linejoin="round"/><rect x="5.5" y="9.5" width="5" height="5.5" rx="1" stroke="#C9A84C" stroke-width="1.2"/></svg></div><div class="spec-name">Sell a Home</div><div class="spec-cnt">3,800+ agents</div></div></button>
+                <button class="spec-card" onclick="startFlowWithProp('Luxury Property')" aria-label="Find agents for Luxury Property"><img src="https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=400&q=82&fit=crop" alt="Luxury property" loading="lazy"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5l1.4 4H14l-3.5 2.5 1.3 4L8 10 4.2 12l1.3-4L2 5.5h4.6z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="spec-name">Luxury Property</div><div class="spec-cnt">1,600+ agents</div></div></button>
+                <button class="spec-card" onclick="startFlowWithProp('Investment Property')" aria-label="Find agents for Investment Property"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=82&fit=crop" alt="Investment property" loading="lazy"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="8" width="3" height="7" rx="1" stroke="#C9A84C" stroke-width="1.3"/><rect x="6.5" y="5" width="3" height="10" rx="1" stroke="#C9A84C" stroke-width="1.3"/><rect x="11.5" y="2" width="3" height="13" rx="1" stroke="#C9A84C" stroke-width="1.3"/></svg></div><div class="spec-name">Investment Property</div><div class="spec-cnt">2,100+ agents</div></div></button>
+                <button class="spec-card" onclick="startFlowWithProp('Condo / Townhouse')" aria-label="Find agents for Condos and Apartments"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=82&fit=crop" alt="Condo building" loading="lazy"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3" y="1" width="10" height="14" rx="2" stroke="#C9A84C" stroke-width="1.3"/><rect x="5" y="4" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/><rect x="9" y="4" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/><rect x="5" y="8" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/><rect x="9" y="8" width="2" height="2" rx=".4" fill="#C9A84C" opacity=".8"/></svg></div><div class="spec-name">Condos &amp; Apts</div><div class="spec-cnt">2,900+ agents</div></div></button>
+                <button class="spec-card" onclick="startFlowWithProp('Commercial')" aria-label="Find agents for Commercial property"><img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&q=82&fit=crop" alt="Commercial property" loading="lazy"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="4" width="14" height="11" rx="1.5" stroke="#C9A84C" stroke-width="1.3"/><path d="M5 4V3a3 3 0 016 0v1" stroke="#C9A84C" stroke-width="1.3"/></svg></div><div class="spec-name">Commercial</div><div class="spec-cnt">1,200+ agents</div></div></button>
+                <button class="spec-card" onclick="startFlowWithProp('Plot / Land')" aria-label="Find agents for Land and Lots"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=82&fit=crop" alt="Land lot" loading="lazy"><div class="spec-card-grad"></div><div class="spec-info"><div class="spec-ico"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 12l4-6 3 4 2-2 3 4H2z" stroke="#C9A84C" stroke-width="1.3" stroke-linejoin="round"/></svg></div><div class="spec-name">Land &amp; Lots</div><div class="spec-cnt">900+ agents</div></div></button>
             </div>
         </div>
     </section>
 
-
-
-
     <!-- ══ WHY ══ -->
-    <section class="why" id="why">
+    <section class="why" id="why" aria-labelledby="why-heading">
         <div class="why-in">
             <div class="why-card">
-                <div class="why-ico" style="background:#FBF5E8"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#C9A84C" stroke-width="1.6"/><path d="M8 11l2 2 4-4" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="why-ico" style="background:#FBF5E8"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="#C9A84C" stroke-width="1.6"/><path d="M8 11l2 2 4-4" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                 <div class="why-title">No paid rankings</div>
                 <p class="why-desc">No agent can pay their way onto our list. Every ranking is earned purely on verified sales performance and client satisfaction scores.</p>
             </div>
             <div class="why-card">
-                <div class="why-ico" style="background:#E8FFF6"><svg viewBox="0 0 22 22" fill="none"><path d="M3 7h16M3 11h16M3 15h10" stroke="#06D6A0" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+                <div class="why-ico" style="background:#E8FFF6"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M3 7h16M3 11h16M3 15h10" stroke="#06D6A0" stroke-width="1.6" stroke-linecap="round"/></svg></div>
                 <div class="why-title">50-point vetting</div>
                 <p class="why-desc">We cross-check MLS records, verify licenses, and assess dozens of quality signals. Real research — not an algorithm you can game.</p>
             </div>
             <div class="why-card">
-                <div class="why-ico" style="background:#EEF4FF"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#00B4D8" stroke-width="1.6"/><path d="M11 7v4l3 3" stroke="#00B4D8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="why-ico" style="background:#EEF4FF"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="#00B4D8" stroke-width="1.6"/><path d="M11 7v4l3 3" stroke="#00B4D8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                 <div class="why-title">Updated every 6 months</div>
                 <p class="why-desc">We re-vet every agent twice a year. Markets shift — our rankings always reflect the current top-performing listing agents in each city.</p>
             </div>
         </div>
     </section>
 
-
     <!-- ══ ABOUT US ══ -->
-    <section id="about" style="padding:40px 5% 60px;background:#fff;">
+    <section id="about" aria-labelledby="about-heading" style="padding:40px 5% 60px;background:#fff;">
         <div style="max-width:1100px;margin:0 auto;">
             <p class="sec-lbl">About Us</p>
-            <h2 class="sec-h">Who we are &amp;<br><em>how we rank agents</em></h2>
+            <h2 class="sec-h" id="about-heading">Who we are &amp;<br><em>how we rank agents</em></h2>
             <div class="about-grid">
                 <div style="display:flex;flex-direction:column;gap:18px;">
                     <p style="font-size:15px;color:var(--mid);line-height:1.8;font-weight:300;">Top 3 in Realty is an independent agent-matching platform founded to bring transparency to the real estate industry. We are not a brokerage, and we do not represent buyers or sellers directly.</p>
@@ -2012,23 +2235,23 @@
         </div>
     </section>
 
-
     <!-- ══ CTA ══ -->
-    <section style="padding:60px 5%;background:var(--ink);text-align:center;">
+    <section style="padding:60px 5%;background:var(--ink);text-align:center;" aria-label="Call to action">
         <div style="max-width:600px;margin:0 auto;">
             <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,42px);font-weight:700;color:#fff;margin-bottom:14px;">Ready to find your <em style="color:#C9A84C;">Top 3 Agents?</em></h2>
             <p style="font-size:15px;color:rgba(255,255,255,.65);margin-bottom:28px;line-height:1.7;font-weight:300;">Free, unbiased, instant. Enter your address and get matched in minutes.</p>
-            <button onclick="startFlowFromHero()" style="background:var(--blue);color:#fff;border:none;cursor:pointer;padding:16px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;letter-spacing:.3px;box-shadow:0 4px 24px rgba(37,99,235,.45);transition:all .22s;">Find My Top 3 Agents →</button>
+            <button onclick="startFlowFromHero()" style="background:var(--blue);color:#fff;border:none;cursor:pointer;padding:16px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;letter-spacing:.3px;box-shadow:0 4px 24px rgba(37,99,235,.45);transition:all .22s;"
+                aria-label="Find my top 3 real estate agents">Find My Top 3 Agents →</button>
             <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.35);">100% Free · No Obligation · Instant Results</p>
         </div>
     </section>
 
     <!-- ══ FOOTER ══ -->
-    <footer>
+    <footer role="contentinfo">
         <div class="ft-in">
             <div class="ft-row">
-                <a href="#" class="logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-                    <img src="logo.png" alt="TopThree Realtors Logo" style="height:52px;width:auto;object-fit:contain;" />
+                <a href="/" class="logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;" aria-label="Top 3 in Realty — Home">
+                    <img src="logo.png" alt="Top 3 in Realty Logo" style="height:52px;width:auto;object-fit:contain;" />
                     <span style="font-family:'Cormorant Garamond',serif;color:#fff;line-height:1.1;">
                     <span style="display:block;font-size:22px;font-weight:700;">Top <span style="color:#C9A84C;">3</span> in</span>
                     <span style="display:block;color:#C9A84C;font-size:16px;font-weight:600;letter-spacing:2px;">REALTY</span>
@@ -2084,8 +2307,6 @@
 
         /* ══════════════════════════════════════
            PHONE FORMATTING — clean, reliable US format
-           Outputs exactly what the user typed as digits,
-           formatted as (XXX) XXX-XXXX. Nothing more.
         ══════════════════════════════════════ */
         function formatPhoneInput(input) {
             const cursorPos = input.selectionStart;
@@ -2125,8 +2346,7 @@
         }
 
         function getPhoneDigits(inputId) {
-            const val = document.getElementById(inputId).value;
-            return val.replace(/\D/g, '');
+            return document.getElementById(inputId).value.replace(/\D/g, '');
         }
 
         function isValidUSPhone(inputId) {
@@ -2144,7 +2364,7 @@
             history.pushState({
                 page: 'thankyou'
             }, 'Thank You — TopThree', '/thank-you');
-            document.title = 'Thank You — TopThree Realty';
+            document.title = 'Thank You — Top 3 in Realty';
             document.getElementById('thankyouPage').classList.add('show');
             document.body.style.overflow = 'hidden';
             window.scrollTo(0, 0);
@@ -2310,9 +2530,9 @@
                 return;
             }
             dd.innerHTML = suggestions.map(s => `
-    <div class="addr-item" onclick="selectHeroAddress('${escHtml(s.full)}','${escHtml(s.city)}','${escHtml(s.state)}','${escHtml(s.zip)}')">
-        <svg width="14" height="14" viewBox="0 0 18 18" fill="none"><path d="M9 1C6.24 1 4 3.24 4 6c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5z" stroke="#9B9690" stroke-width="1.4"/></svg>
-        <div><div class="addr-main">${escHtml(s.street)}${s.secondary?' '+escHtml(s.secondary):''}</div><div class="addr-sub">${escHtml(s.city)}, ${escHtml(s.state)} ${escHtml(s.zip)}</div></div>
+    <div class="addr-item" role="option" onclick="selectHeroAddress('${escHtml(s.full)}','${escHtml(s.city)}','${escHtml(s.state)}','${escHtml(s.zip)}')">
+        <svg width="14" height="14" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 1C6.24 1 4 3.24 4 6c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5z" stroke="#9B9690" stroke-width="1.4"/></svg>
+        <div><div class="addr-main">${escHtml(s.street)}${s.secondary ? ' ' + escHtml(s.secondary) : ''}</div><div class="addr-sub">${escHtml(s.city)}, ${escHtml(s.state)} ${escHtml(s.zip)}</div></div>
     </div>`).join('');
             dd.classList.add('show');
         }
@@ -2357,8 +2577,8 @@
                 return;
             }
             dd.innerHTML = suggestions.map(s => `
-    <div class="tf-addr-item" onclick="selectTfAddress('${escHtml(s.full)}','${escHtml(s.street)}','${escHtml(s.city)}','${escHtml(s.state)}','${escHtml(s.zip)}')">
-        <div class="tf-addr-main">${escHtml(s.street)}${s.secondary?' '+escHtml(s.secondary):''}</div>
+    <div class="tf-addr-item" role="option" onclick="selectTfAddress('${escHtml(s.full)}','${escHtml(s.street)}','${escHtml(s.city)}','${escHtml(s.state)}','${escHtml(s.zip)}')">
+        <div class="tf-addr-main">${escHtml(s.street)}${s.secondary ? ' ' + escHtml(s.secondary) : ''}</div>
         <div class="tf-addr-sub">${escHtml(s.city)}, ${escHtml(s.state)} ${escHtml(s.zip)}</div>
     </div>`).join('');
             dd.classList.add('show');
@@ -2387,7 +2607,6 @@
         /* Close dropdowns on outside click */
         document.addEventListener('click', e => {
             if (!e.target.closest('.s-fields')) document.getElementById('heroAddrDropdown').classList.remove('show');
-
             if (!e.target.closest('.tf-addr-wrap')) {
                 const d = document.getElementById('tfAddrDropdown');
                 if (d) d.classList.remove('show');
@@ -2420,7 +2639,10 @@
         }
 
         function resetTfForm() {
-            document.querySelectorAll('.tf-choice').forEach(b => b.classList.remove('selected', 'err'));
+            document.querySelectorAll('.tf-choice').forEach(b => {
+                b.classList.remove('selected', 'err');
+                b.setAttribute('aria-checked', 'false');
+            });
             document.querySelectorAll('.tf-field').forEach(f => {
                 f.value = '';
                 f.classList.remove('err');
@@ -2440,7 +2662,7 @@
             });
             tfSelectedAddress = null;
             document.getElementById('tfStep1Hint').textContent = 'Start typing your street address and select from the suggestions.';
-            document.getElementById('tfEmailHint').textContent = "We'll send you the top agents in your area.";
+            document.getElementById('tfEmailHint').textContent = "We'll send your top agents by email and confirm by phone.";
             const phoneErr = document.getElementById('tfPhoneError');
             if (phoneErr) phoneErr.classList.remove('show');
         }
@@ -2492,8 +2714,12 @@
         }
 
         function tfSelect(key, value, btn) {
-            btn.closest('.tf-choices').querySelectorAll('.tf-choice').forEach(b => b.classList.remove('selected', 'err'));
+            btn.closest('.tf-choices').querySelectorAll('.tf-choice').forEach(b => {
+                b.classList.remove('selected', 'err');
+                b.setAttribute('aria-checked', 'false');
+            });
             btn.classList.add('selected');
+            btn.setAttribute('aria-checked', 'true');
             tfData[key] = value;
             setTimeout(() => tfNext(tfCurrent), 300);
         }
@@ -2552,6 +2778,7 @@
             showTfStep(tfCurrent);
         }
 
+        /* FIX: Phone is now REQUIRED — removed the optional guard */
         async function tfSubmit() {
             const emailVal = document.getElementById('tf-email').value.trim();
             if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
@@ -2561,32 +2788,47 @@
             }
             tfData.email = emailVal;
 
-            const tfPhoneVal = document.getElementById('tf-phone').value.trim();
-            if (tfPhoneVal) {
-                if (!isValidUSPhone('tf-phone')) {
-                    const tfPh = document.getElementById('tf-phone');
-                    tfPh.classList.add('err');
-                    tfPh.classList.remove('shake');
-                    void tfPh.offsetWidth;
-                    tfPh.classList.add('shake');
-                    const tfPhErr = document.getElementById('tfPhoneError');
-                    tfPhErr.classList.add('show');
-                    tfPhErr.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'nearest'
-                    });
-                    showToast('Please enter a valid 10-digit phone number');
-                    return;
-                }
+            /* FIX: Phone is now required — always validate, no empty-value bypass */
+            const tfPhoneEl = document.getElementById('tf-phone');
+            const tfPhoneVal = tfPhoneEl.value.trim();
+            if (!tfPhoneVal) {
+                tfPhoneEl.classList.add('err');
+                tfPhoneEl.classList.remove('shake');
+                void tfPhoneEl.offsetWidth;
+                tfPhoneEl.classList.add('shake');
+                const tfPhErr = document.getElementById('tfPhoneError');
+                tfPhErr.textContent = 'Phone number is required.';
+                tfPhErr.classList.add('show');
+                tfPhErr.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
+                });
+                showToast('Please enter your phone number');
+                return;
             }
-            tfData.phone = tfPhoneVal ? getPhoneForSubmit('tf-phone') : null;
+            if (!isValidUSPhone('tf-phone')) {
+                tfPhoneEl.classList.add('err');
+                tfPhoneEl.classList.remove('shake');
+                void tfPhoneEl.offsetWidth;
+                tfPhoneEl.classList.add('shake');
+                const tfPhErr = document.getElementById('tfPhoneError');
+                tfPhErr.textContent = 'Please enter a valid 10-digit US phone number.';
+                tfPhErr.classList.add('show');
+                tfPhErr.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
+                });
+                showToast('Please enter a valid 10-digit phone number');
+                return;
+            }
+            tfData.phone = getPhoneForSubmit('tf-phone');
 
             const btn = document.getElementById('tfSubmitBtn');
             btn.textContent = 'Submitting…';
             btn.disabled = true;
 
             const payload = {
-                name: (`${tfData.first||''} ${tfData.last||''}`).trim() || 'Unknown',
+                name: (`${tfData.first || ''} ${tfData.last || ''}`).trim() || 'Unknown',
                 email: tfData.email,
                 phone: tfData.phone,
                 street_address: tfData.street || tfData.address || null,
@@ -2633,6 +2875,11 @@
         }
 
         /* ══ FLOW ENTRY POINTS ══ */
+        function startFlowFromNav() {
+            openTf(null, 1);
+            setTimeout(() => document.getElementById('tf-address').focus(), 150);
+        }
+
         function startFlowFromHero() {
             const inputVal = document.getElementById('searchInput').value.trim();
             if (!inputVal || inputVal.length < 4) {
@@ -2695,10 +2942,6 @@
             if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && tfCurrent === 6) tfSubmit();
         });
 
-        /* ══ INLINE CONTACT FORM ══ */
-
-
-
         /* ══ TOAST ══ */
         function showToast(msg) {
             let t = document.getElementById('toast');
@@ -2725,17 +2968,18 @@
             if (window.location.pathname === '/thank-you') {
                 document.getElementById('thankyouPage').classList.add('show');
                 document.body.style.overflow = 'hidden';
-                document.title = 'Thank You — TopThree Realty';
+                document.title = 'Thank You — Top 3 in Realty';
                 history.replaceState({
                     page: 'thankyou'
-                }, 'Thank You — TopThree Realty', '/thank-you');
+                }, 'Thank You — Top 3 in Realty', '/thank-you');
             }
         });
     </script>
+
     <!-- ══ LEGAL MODALS ══ -->
-    <div class="legal-overlay" id="legalPrivacy">
+    <div class="legal-overlay" id="legalPrivacy" role="dialog" aria-modal="true" aria-label="Privacy Policy">
         <div class="legal-card">
-            <button class="legal-close" onclick="closeLegal('privacy')" aria-label="Close">✕</button>
+            <button class="legal-close" onclick="closeLegal('privacy')" aria-label="Close Privacy Policy">✕</button>
             <h1>Privacy Policy</h1>
             <p class="legal-date">Effective Date: January 1, 2026 | Last Updated: May 1, 2026</p>
             <h2>1. Who We Are</h2>
@@ -2763,8 +3007,8 @@
             <p>We will share your personal information with selected real estate agents and professionals to fulfil your request for agent matches. Partner agents may compensate Top 3 in Realty for referrals. This referral arrangement does not affect our
                 agent rankings, which are determined independently based on performance data.</p>
             <h2>5. SMS / Phone Communications (TCPA)</h2>
-            <p>By submitting our form, you consent to receive calls and text messages from Top 3 in Realty and matched partner agents. Message and data rates may apply. Message frequency varies. You may opt out at any time by replying STOP to any text message
-                or emailing us at <a href="mailto:support@top3inrealty.com">support@top3inrealty.com</a>.</p>
+            <p>By submitting our form, you consent to receive calls and text messages from Top 3 in Realty and matched partner agents at the phone number you provide. Message and data rates may apply. Message frequency varies. You may opt out at any time
+                by replying STOP to any text message or emailing us at <a href="mailto:support@top3inrealty.com">support@top3inrealty.com</a>.</p>
             <h2>6. Cookies & Tracking</h2>
             <p>We use cookies, Google Tag Manager, and analytics tools to understand how visitors use our site, track advertising campaign performance, and improve user experience. See our <a href="#" onclick="closeLegal('privacy');openLegal('cookies');return false;">Cookie Policy</a>                for details.</p>
             <h2>7. Data Retention</h2>
@@ -2777,9 +3021,9 @@
         </div>
     </div>
 
-    <div class="legal-overlay" id="legalTerms">
+    <div class="legal-overlay" id="legalTerms" role="dialog" aria-modal="true" aria-label="Terms and Conditions">
         <div class="legal-card">
-            <button class="legal-close" onclick="closeLegal('terms')" aria-label="Close">✕</button>
+            <button class="legal-close" onclick="closeLegal('terms')" aria-label="Close Terms and Conditions">✕</button>
             <h1>Terms &amp; Conditions</h1>
             <p class="legal-date">Effective Date: January 1, 2026</p>
             <h2>1. Acceptance of Terms</h2>
@@ -2797,7 +3041,7 @@
             <h2>6. No Guarantee of Outcomes</h2>
             <p>We do not guarantee any particular outcome from your use of our service, including but not limited to a sale price, time to sell, or agent performance. Individual results will vary.</p>
             <h2>7. Consent to Contact</h2>
-            <p>By submitting a form, you consent to being contacted by Top 3 in Realty and matched partner agents via phone, email, and SMS. You may withdraw consent at any time by emailing <a href="mailto:support@top3inrealty.com">support@top3inrealty.com</a>.</p>
+            <p>By submitting a form, you consent to being contacted by Top 3 in Realty and matched partner agents via phone, email, and SMS at the contact details you provide. You may withdraw consent at any time by emailing <a href="mailto:support@top3inrealty.com">support@top3inrealty.com</a>.</p>
             <h2>8. Limitation of Liability</h2>
             <p>To the extent permitted by law, Top 3 in Realty shall not be liable for any indirect, incidental, or consequential damages arising from your use of this website or the services of matched agents.</p>
             <h2>9. Contact</h2>
@@ -2805,9 +3049,9 @@
         </div>
     </div>
 
-    <div class="legal-overlay" id="legalCookies">
+    <div class="legal-overlay" id="legalCookies" role="dialog" aria-modal="true" aria-label="Cookie Policy">
         <div class="legal-card">
-            <button class="legal-close" onclick="closeLegal('cookies')" aria-label="Close">✕</button>
+            <button class="legal-close" onclick="closeLegal('cookies')" aria-label="Close Cookie Policy">✕</button>
             <h1>Cookie Policy</h1>
             <p class="legal-date">Effective Date: January 1, 2026</p>
             <h2>1. What Are Cookies</h2>
@@ -2855,6 +3099,7 @@
                 document.body.style.overflow = '';
             }
         }
+
         ['legalPrivacy', 'legalTerms', 'legalCookies'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.addEventListener('click', function(e) {
