@@ -2061,8 +2061,8 @@
                 <div class="tf-q">What is your primary goal<br>for the sale?</div>
                 <div class="tf-hint">Not sure? Choose the option that sounds most important to you right now.</div>
                 <div class="tf-choices cols-2" id="tf-goal-grid" role="radiogroup" aria-required="true">
-                    <button class="tf-choice" onclick="tfSelect('goal','Maximize my profit (Evaluate top agents)',this)" role="radio" aria-checked="false">💰 Maximize my profit<br><span style="font-size:12px;opacity:.6;font-weight:400">Evaluate top agents</span></button>
-                    <button class="tf-choice" onclick="tfSelect('goal','Sell fast for cash (No repairs or showings)',this)" role="radio" aria-checked="false">⚡ Sell fast for cash<br><span style="font-size:12px;opacity:.6;font-weight:400">No repairs or showings</span></button>
+                    <button class="tf-choice" onclick="tfSelect('goal','Maximize my profit',this)" role="radio" aria-checked="false">💰 Maximize my profit<br><span style="font-size:12px;opacity:.6;font-weight:400">Evaluate top agents</span></button>
+                    <button class="tf-choice" onclick="tfSelect('goal','Sell fast for cash',this)" role="radio" aria-checked="false">⚡ Sell fast for cash<br><span style="font-size:12px;opacity:.6;font-weight:400">No repairs or showings</span></button>
                 </div>
                 <button class="tf-ok" onclick="tfNext(3)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             </div>
@@ -2278,17 +2278,18 @@
         const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/321420/uvx8s3a/';
 
         /* ══ UTM / TRACKING ══ */
+        /* FIX (point 7): default to '' instead of null — Zapier wants strings, no nulls */
         function getTrackingParams() {
             const p = new URLSearchParams(window.location.search);
             return {
-                utm_source: p.get('utm_source') || null,
-                utm_medium: p.get('utm_medium') || null,
-                utm_campaign: p.get('utm_campaign') || null,
-                utm_term: p.get('utm_term') || null,
-                utm_content: p.get('utm_content') || null,
-                gclid: p.get('gclid') || null,
-                fbclid: p.get('fbclid') || null,
-                landing_page: window.location.href || null
+                utm_source: p.get('utm_source') || '',
+                utm_medium: p.get('utm_medium') || '',
+                utm_campaign: p.get('utm_campaign') || '',
+                utm_term: p.get('utm_term') || '',
+                utm_content: p.get('utm_content') || '',
+                gclid: p.get('gclid') || '',
+                fbclid: p.get('fbclid') || '',
+                landing_page: window.location.href || ''
             };
         }
         const TRACKING = getTrackingParams();
@@ -2339,10 +2340,9 @@
             return getPhoneDigits(inputId).length === 10;
         }
 
+        /* FIX (point 3): send a bare 10-digit string ("5551234567"), not "+1 (555) 123-4567" */
         function getPhoneForSubmit(inputId) {
-            const val = document.getElementById(inputId).value.trim();
-            if (!val) return null;
-            return '+1 ' + val;
+            return getPhoneDigits(inputId);
         }
 
         /* ══ THANK YOU PAGE ══ */
@@ -2718,7 +2718,7 @@
                     showToast('Please enter your full property address');
                     return;
                 }
-                // ── FIX: only set address/street from raw text; never pollute city/state/zip ──
+                // only set address/street from raw text; never pollute city/state/zip
                 if (!tfSelectedAddress) {
                     tfData.address = addrVal;
                     tfData.street = addrVal;
@@ -2760,7 +2760,7 @@
                 }
                 tfData.first = f;
                 tfData.last = l;
-                // ── FIX: only use city in the hint if it is a real parsed city, not the full address ──
+                // only use city in the hint if it is a real parsed city, not the full address
                 if (tfData.city && tfData.city.length < 60) {
                     document.getElementById('tfEmailHint').textContent = "We'll email you the top agents near " + tfData.city + '.';
                 }
@@ -2816,21 +2816,34 @@
             btn.textContent = 'Submitting…';
             btn.disabled = true;
 
-            // ── FIX: city is null when not parsed from Smarty — never the raw address string ──
+            /*
+             * FIXED PAYLOAD — matches Zapier's requested JSON format:
+             *  - point 1: address sent as separate street_address / city / state / zip fields
+             *  - point 3: phone is a bare 10-digit string
+             *  - point 5: est_iso sent in ISO 8601 (replaces the old estimated_value field)
+             *  - point 7: all fields are strings, no nulls (empty string "" when unavailable)
+             */
             const payload = {
-                name: (`${tfData.first || ''} ${tfData.last || ''}`).trim() || 'Unknown',
-                email: tfData.email,
-                phone: tfData.phone,
-                street_address: tfData.street || tfData.address || null,
-                city: tfData.city || null,
-                state: tfData.state || null,
-                zip: tfData.zip || null,
-                property_type: tfData.prop || null,
-                goal: tfData.goal || null,
-                message: tfData.timeline || null,
-                estimated_value: null,
+                name: (`${tfData.first || ''} ${tfData.last || ''}`).trim() || '',
+                email: tfData.email || '',
+                phone: tfData.phone || '',
+                street_address: tfData.street || tfData.address || '',
+                city: tfData.city || '',
+                state: tfData.state || '',
+                zip: tfData.zip || '',
+                property_type: tfData.prop || '',
+                goal: tfData.goal || '',
+                message: tfData.timeline || '',
+                est_iso: new Date().toISOString(),
                 source: 'typeform',
-                ...TRACKING
+                utm_source: TRACKING.utm_source || '',
+                utm_medium: TRACKING.utm_medium || '',
+                utm_campaign: TRACKING.utm_campaign || '',
+                utm_term: TRACKING.utm_term || '',
+                utm_content: TRACKING.utm_content || '',
+                gclid: TRACKING.gclid || '',
+                fbclid: TRACKING.fbclid || '',
+                landing_page: TRACKING.landing_page || ''
             };
 
             try {
@@ -2839,7 +2852,29 @@
                     mode: 'no-cors',
                     body: JSON.stringify(payload)
                 });
-                sb.from('seller_leads').insert([payload]).then(({
+                /* Supabase mirror — keep its own nulls; this is unrelated to the Zapier contract */
+                sb.from('seller_leads').insert([{
+                    name: payload.name,
+                    email: payload.email,
+                    phone: payload.phone,
+                    street_address: tfData.street || tfData.address || null,
+                    city: tfData.city || null,
+                    state: tfData.state || null,
+                    zip: tfData.zip || null,
+                    property_type: tfData.prop || null,
+                    goal: tfData.goal || null,
+                    message: tfData.timeline || null,
+                    estimated_value: null,
+                    source: 'typeform',
+                    utm_source: TRACKING.utm_source || null,
+                    utm_medium: TRACKING.utm_medium || null,
+                    utm_campaign: TRACKING.utm_campaign || null,
+                    utm_term: TRACKING.utm_term || null,
+                    utm_content: TRACKING.utm_content || null,
+                    gclid: TRACKING.gclid || null,
+                    fbclid: TRACKING.fbclid || null,
+                    landing_page: TRACKING.landing_page || null
+                }]).then(({
                     error
                 }) => {
                     if (error) console.warn('Supabase insert error:', error);
@@ -2888,7 +2923,7 @@
                     zip: heroSelectedAddr.zip
                 };
             } else {
-                // ── FIX: raw typed text goes to street/address only — city/state/zip stay blank ──
+                // raw typed text goes to street/address only — city/state/zip stay blank
                 preAddr = {
                     full: inputVal,
                     address: inputVal,
