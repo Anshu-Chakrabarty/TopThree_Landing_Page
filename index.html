@@ -2852,19 +2852,30 @@
 
         /* ────────────────────────────────────────────────────────────
            ███  ZAPIER  ███  — fully independent block.
-           Builds its OWN payload to the exact webhook spec:
-             • every field is a STRING (empty string "" when missing)
+           Builds its OWN JSON payload matching Zapier's documented spec
+           EXACTLY (their Zap's Split Text / AI / date-formatter steps are
+           wired to this JSON shape):
+             • every field is a STRING (empty string "" when missing, no nulls)
              • name = first + last combined
-             • phone = 10 digits
+             • phone = raw 10-digit string  (e.g. "5551234567")
              • address split into street_address / city / state / zip
-             • est_iso = ISO 8601
-             • each UTM sent as its own field
-           Sends as application/x-www-form-urlencoded, the one content
-           type browsers allow under no-cors — this is what makes the
-           data actually arrive in the Catch Hook.
+             • est_iso = ISO 8601 (e.g. "2024-01-15T10:30:00Z")
+             • each UTM as its own field
+
+           HOW IT'S SENT (this is the actual fix):
+             • Body is a JSON STRING.
+             • Content-Type is text/plain — this is a "simple" request, so the
+               browser sends it directly with NO CORS preflight. Zapier's Catch
+               Hook reads the raw body, sees valid JSON, and parses every field.
+             • We do NOT use no-cors, so we can READ Zapier's response and KNOW
+               it arrived. Zapier replies with {"status":"success", ...}.
+             (application/json would force a preflight OPTIONS; no-cors would
+              make the response unreadable. text/plain + JSON body avoids both.)
         ──────────────────────────────────────────────────────────── */
         function buildZapierPayload() {
             const str = v => (v === undefined || v === null) ? '' : String(v).trim();
+            // ISO 8601 without milliseconds to match their example exactly.
+            const estIso = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
             return {
                 name: (str(tfData.first) + ' ' + str(tfData.last)).trim(),
                 email: str(tfData.email),
@@ -2884,24 +2895,28 @@
                 landing_page: str(TRACKING.landing_page),
                 gclid: str(TRACKING.gclid),
                 fbclid: str(TRACKING.fbclid),
-                est_iso: new Date().toISOString()
+                est_iso: estIso
             };
         }
 
         async function sendLeadToZapier() {
             const payload = buildZapierPayload();
-            const body = new URLSearchParams();
-            Object.keys(payload).forEach(k => body.append(k, payload[k]));
-            await fetch(ZAPIER_WEBHOOK_URL, {
+            const res = await fetch(ZAPIER_WEBHOOK_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    // text/plain = simple request, no preflight. Zapier still
+                    // parses the JSON body. Lets us read the response too.
+                    'Content-Type': 'text/plain;charset=UTF-8'
                 },
-                body: body.toString(),
+                body: JSON.stringify(payload),
                 keepalive: true
             });
-            return true;
+            let info = '';
+            try {
+                info = await res.text();
+            } catch (e) {}
+            if (!res.ok) throw new Error('Zapier HTTP ' + res.status + ' — ' + info);
+            return info || 'ok'; // Zapier returns e.g. {"status":"success",...}
         }
 
         /* ────────────────────────────────────────────────────────────
