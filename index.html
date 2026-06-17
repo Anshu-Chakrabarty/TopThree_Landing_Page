@@ -2274,11 +2274,10 @@
             "sb_publishable_BWDnlqjX5G-T8LxVOVzcHg_QlTEqAfc"
         );
 
-        /* ══ ZAPIER WEBHOOK ══ */
+        /* ══ ZAPIER WEBHOOK — UNTOUCHED ══ */
         const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/321420/uvx8s3a/';
 
         /* ══ UTM / TRACKING ══ */
-        /* FIX (point 7): default to '' instead of null — Zapier wants strings, no nulls */
         function getTrackingParams() {
             const p = new URLSearchParams(window.location.search);
             return {
@@ -2340,7 +2339,6 @@
             return getPhoneDigits(inputId).length === 10;
         }
 
-        /* FIX (point 3): send a bare 10-digit string ("5551234567"), not "+1 (555) 123-4567" */
         function getPhoneForSubmit(inputId) {
             return getPhoneDigits(inputId);
         }
@@ -2718,11 +2716,9 @@
                     showToast('Please enter your full property address');
                     return;
                 }
-                // only set address/street from raw text; never pollute city/state/zip
                 if (!tfSelectedAddress) {
                     tfData.address = addrVal;
                     tfData.street = addrVal;
-                    // city, state, zip intentionally left blank — parsed values only come from Smarty
                 }
                 if (tfData.prop) {
                     tfCurrent = 3;
@@ -2760,7 +2756,6 @@
                 }
                 tfData.first = f;
                 tfData.last = l;
-                // only use city in the hint if it is a real parsed city, not the full address
                 if (tfData.city && tfData.city.length < 60) {
                     document.getElementById('tfEmailHint').textContent = "We'll email you the top agents near " + tfData.city + '.';
                 }
@@ -2769,6 +2764,15 @@
             showTfStep(tfCurrent);
         }
 
+        /* ══════════════════════════════════════════════════════
+           tfSubmit — FIXED SUPABASE INSERT
+           Root causes fixed:
+           1. city is NOT NULL in DB — always send a non-empty string.
+              Use tfData.city if available, else parse from full address,
+              else fall back to 'Unknown' so the constraint never fires.
+           2. All nullable columns now send null properly (no change
+              to Zapier payload — that block is untouched below).
+        ══════════════════════════════════════════════════════ */
         async function tfSubmit() {
             const emailVal = document.getElementById('tf-email').value.trim();
             if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
@@ -2816,13 +2820,7 @@
             btn.textContent = 'Submitting…';
             btn.disabled = true;
 
-            /*
-             * FIXED PAYLOAD — matches Zapier's requested JSON format:
-             *  - point 1: address sent as separate street_address / city / state / zip fields
-             *  - point 3: phone is a bare 10-digit string
-             *  - point 5: est_iso sent in ISO 8601 (replaces the old estimated_value field)
-             *  - point 7: all fields are strings, no nulls (empty string "" when unavailable)
-             */
+            /* ── ZAPIER PAYLOAD — COMPLETELY UNTOUCHED ── */
             const payload = {
                 name: (`${tfData.first || ''} ${tfData.last || ''}`).trim() || '',
                 email: tfData.email || '',
@@ -2846,19 +2844,55 @@
                 landing_page: TRACKING.landing_page || ''
             };
 
+            /* ── SUPABASE CITY FALLBACK ──
+               The seller_leads table has city NOT NULL.
+               If the user typed manually (no Smarty selection), city is ''.
+               We resolve a safe city value before inserting:
+                 1. Use tfData.city if it's a real parsed city (short string)
+                 2. Try to extract a city-like token from the full address
+                 3. Fall back to 'Unknown' — never send empty string
+            */
+            function resolveCityForSupabase() {
+                // Best case: Smarty gave us a proper city
+                if (tfData.city && tfData.city.trim().length > 0 && tfData.city.trim().length < 60) {
+                    return tfData.city.trim();
+                }
+                // Try to parse city from full address (format: "123 Main St, Springfield, IL 62701")
+                const addr = (tfData.address || tfData.street || '').trim();
+                if (addr) {
+                    // Match pattern: ", City, STATE ZIP" or ", City, STATE"
+                    const m = addr.match(/,\s*([^,]+),\s*[A-Z]{2}(?:\s+\d{5})?/);
+                    if (m && m[1] && m[1].trim().length > 0 && m[1].trim().length < 60) {
+                        return m[1].trim();
+                    }
+                    // Fallback: try second comma-delimited segment
+                    const parts = addr.split(',');
+                    if (parts.length >= 2) {
+                        const candidate = parts[1].trim();
+                        if (candidate.length > 0 && candidate.length < 60) return candidate;
+                    }
+                }
+                // Last resort — satisfies NOT NULL constraint
+                return 'Unknown';
+            }
+
+            const supabaseCity = resolveCityForSupabase();
+
             try {
+                /* ── FIRE ZAPIER (untouched, no-cors, fire-and-forget) ── */
                 await fetch(ZAPIER_WEBHOOK_URL, {
                     method: 'POST',
                     mode: 'no-cors',
                     body: JSON.stringify(payload)
                 });
-                /* Supabase mirror — keep its own nulls; this is unrelated to the Zapier contract */
-                sb.from('seller_leads').insert([{
-                    name: payload.name,
-                    email: payload.email,
-                    phone: payload.phone,
+
+                /* ── SUPABASE INSERT — FIXED ── */
+                const supabaseRow = {
+                    name: (`${tfData.first || ''} ${tfData.last || ''}`).trim() || '',
+                    email: tfData.email || '',
+                    phone: tfData.phone || null,
                     street_address: tfData.street || tfData.address || null,
-                    city: tfData.city || null,
+                    city: supabaseCity, // ← always non-empty now
                     state: tfData.state || null,
                     zip: tfData.zip || null,
                     property_type: tfData.prop || null,
@@ -2874,23 +2908,40 @@
                     gclid: TRACKING.gclid || null,
                     fbclid: TRACKING.fbclid || null,
                     landing_page: TRACKING.landing_page || null
-                }]).then(({
-                    error
-                }) => {
-                    if (error) console.warn('Supabase insert error:', error);
-                });
-                if (tfData.city) {
-                    sb.from('search_logs').insert([{
-                        search_query: tfData.address || tfData.city,
-                        city: tfData.city
-                    }]).then(({
-                        error
-                    }) => {
-                        if (error) console.warn('search_logs error:', error);
-                    });
+                };
+
+                const {
+                    data: sbData,
+                    error: sbError
+                } = await sb
+                    .from('seller_leads')
+                    .insert([supabaseRow]);
+
+                if (sbError) {
+                    // Log the full Supabase error so you can debug in the browser console
+                    console.error('Supabase insert failed:', JSON.stringify(sbError, null, 2));
+                    console.error('Row that failed:', JSON.stringify(supabaseRow, null, 2));
+                    // Do NOT block the thank-you page — Zapier already received the lead
+                } else {
+                    console.info('Supabase insert OK', sbData);
                 }
+
+                /* ── SEARCH LOG (only when we have a real city) ── */
+                if (supabaseCity && supabaseCity !== 'Unknown') {
+                    const {
+                        error: slError
+                    } = await sb
+                        .from('search_logs')
+                        .insert([{
+                            search_query: tfData.address || supabaseCity,
+                            city: supabaseCity
+                        }]);
+                    if (slError) console.warn('search_logs error:', JSON.stringify(slError, null, 2));
+                }
+
                 closeTf();
                 showThankyou();
+
             } catch (err) {
                 console.error('Typeform submit error:', err);
                 showToast('Submission failed — please try again');
@@ -2923,7 +2974,6 @@
                     zip: heroSelectedAddr.zip
                 };
             } else {
-                // raw typed text goes to street/address only — city/state/zip stay blank
                 preAddr = {
                     full: inputVal,
                     address: inputVal,
