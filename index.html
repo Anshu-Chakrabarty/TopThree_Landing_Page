@@ -382,6 +382,11 @@
             position: relative
         }
         
+        .search-box.verified {
+            border-color: rgba(201, 168, 76, .55);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, .35), 0 0 0 3px rgba(201, 168, 76, .15)
+        }
+        
         .search-box svg.s-ico {
             width: 17px;
             height: 17px;
@@ -412,6 +417,60 @@
         
         .s-input::placeholder {
             color: rgba(255, 255, 255, .45)
+        }
+        
+        .verified-badge {
+            display: none;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 100px;
+            background: rgba(201, 168, 76, .22);
+            border: 1px solid rgba(201, 168, 76, .45);
+            color: #E8CC7A;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .3px;
+            flex-shrink: 0;
+            margin-right: 6px;
+            white-space: nowrap;
+        }
+        
+        .verified-badge.show {
+            display: inline-flex;
+        }
+        
+        .verified-badge svg {
+            width: 11px;
+            height: 11px;
+        }
+        
+        .hero-error-msg {
+            display: none;
+            max-width: 600px;
+            margin: -8px auto 14px;
+            padding: 10px 16px;
+            background: rgba(239, 68, 68, .12);
+            border: 1px solid rgba(239, 68, 68, .35);
+            border-radius: 10px;
+            color: #fecaca;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.5;
+            text-align: left;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        
+        .hero-error-msg.show {
+            display: flex;
+        }
+        
+        .hero-error-msg svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            margin-top: 1px;
         }
         
         .s-btn {
@@ -1338,6 +1397,11 @@
             line-height: 1.5
         }
         
+        .tf-hint.warn {
+            color: #fca5a5;
+            font-weight: 500;
+        }
+        
         .tf-choices {
             display: grid;
             gap: 10px;
@@ -1437,6 +1501,35 @@
         
         .tf-field.err {
             border-color: #ef4444!important
+        }
+        
+        .tf-field.verified {
+            border-color: rgba(201, 168, 76, .6);
+            background: rgba(201, 168, 76, .08);
+        }
+        
+        .tf-addr-verified {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            padding: 8px 14px;
+            background: rgba(201, 168, 76, .15);
+            border: 1px solid rgba(201, 168, 76, .4);
+            border-radius: 8px;
+            color: #E8CC7A;
+            font-size: 12.5px;
+            font-weight: 500;
+        }
+        
+        .tf-addr-verified.show {
+            display: inline-flex;
+        }
+        
+        .tf-addr-verified svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
         }
         
         .tf-ok {
@@ -1866,6 +1959,9 @@
                 padding: 12px 20px;
                 font-size: 13px
             }
+            .verified-badge {
+                display: none !important;
+            }
             .spec-grid {
                 grid-template-columns: repeat(2, 1fr)
             }
@@ -2034,10 +2130,14 @@
             <!-- Step 1: Address -->
             <div class="tf-step active" id="tfStep1">
                 <div class="tf-q">What's the address of the<br>property you want to sell?</div>
-                <div class="tf-hint" id="tfStep1Hint">Start typing your street address and select from the suggestions.</div>
+                <div class="tf-hint" id="tfStep1Hint">Start typing your street address and <strong style="color:#E8CC7A;">select from the dropdown</strong> to continue.</div>
                 <div class="tf-addr-wrap">
-                    <input class="tf-field" id="tf-address" type="text" placeholder="123 Main St, New York, NY 10001" autocomplete="off" oninput="tfAddressInput(this.value)" aria-required="true" required />
+                    <input class="tf-field" id="tf-address" type="text" placeholder="Start typing e.g. 123 Main St…" autocomplete="off" oninput="tfAddressInput(this.value)" aria-required="true" required />
                     <div class="tf-addr-dropdown" id="tfAddrDropdown"></div>
+                    <div class="tf-addr-verified" id="tfAddrVerified">
+                        <svg viewBox="0 0 16 16" fill="none"><path d="M13 4L6 11L3 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span id="tfAddrVerifiedText">Verified address</span>
+                    </div>
                 </div>
                 <button class="tf-ok" onclick="tfNext(1)">OK <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <div class="tf-ok-hint">Press Enter ↵</div>
@@ -2129,13 +2229,21 @@
             <div class="hero-badge"><span class="dot"></span>Trusted by 1.8 million property sellers</div>
             <h1>Find the <em>Top 3 Agents</em><br>to Sell Your Property</h1>
             <p class="hero-sub">Verified selling agents. Zero paid rankings. Just the three best listing agents in your market — matched to your property in minutes.</p>
-            <div class="search-box" role="search">
+            <div class="search-box" id="heroSearchBox" role="search">
                 <svg class="s-ico" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 1C6.24 1 4 3.24 4 6c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5z" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/><circle cx="9" cy="6" r="2" stroke="rgba(255,255,255,.55)" stroke-width="1.4"/></svg>
                 <div class="s-fields">
-                    <input class="s-input" id="searchInput" type="text" placeholder="Enter your full property address…" autocomplete="off" oninput="heroAddressInput(this.value)" aria-label="Enter your property address" />
+                    <input class="s-input" id="searchInput" type="text" placeholder="Enter your property address & select from list…" autocomplete="off" oninput="heroAddressInput(this.value)" aria-label="Enter your property address" />
                     <div class="addr-dropdown" id="heroAddrDropdown" role="listbox" aria-label="Address suggestions"></div>
                 </div>
+                <span class="verified-badge" id="heroVerifiedBadge">
+                    <svg viewBox="0 0 16 16" fill="none"><path d="M13 4L6 11L3 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Verified
+                </span>
                 <button class="s-btn" onclick="startFlowFromHero()" aria-label="Find my top 3 agents">Find My Agents</button>
+            </div>
+            <div class="hero-error-msg" id="heroErrorMsg">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3.5M8 10.5v.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <span id="heroErrorMsgText">Please select your address from the dropdown that appears as you type.</span>
             </div>
         </div>
     </section>
@@ -2228,7 +2336,7 @@
         <div style="max-width:600px;margin:0 auto;">
             <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,42px);font-weight:700;color:#fff;margin-bottom:14px;">Ready to find your <em style="color:#C9A84C;">Top 3 Agents?</em></h2>
             <p style="font-size:15px;color:rgba(255,255,255,.65);margin-bottom:28px;line-height:1.7;font-weight:300;">Free, unbiased, instant. Enter your address and get matched in minutes.</p>
-            <button onclick="startFlowFromHero()" style="background:var(--blue);color:#fff;border:none;cursor:pointer;padding:16px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;letter-spacing:.3px;box-shadow:0 4px 24px rgba(37,99,235,.45);transition:all .22s;"
+            <button onclick="startFlowFromNav()" style="background:var(--blue);color:#fff;border:none;cursor:pointer;padding:16px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;letter-spacing:.3px;box-shadow:0 4px 24px rgba(37,99,235,.45);transition:all .22s;"
                 aria-label="Find my top 3 real estate agents">Find My Top 3 Agents →</button>
             <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.35);">100% Free · No Obligation · Instant Results</p>
         </div>
@@ -2257,7 +2365,7 @@
             <div class="ft-bot">
                 <span class="ft-copy">© 2026 Top 3 in Realty. Not a licensed real estate brokerage.</span>
                 <div class="ft-legal">
-                    <button onclick="startFlowFromHero()" style="background:none;border:none;cursor:pointer;color:inherit;font:inherit;padding:0;text-decoration:underline;">Find an Agent</button>
+                    <button onclick="startFlowFromNav()" style="background:none;border:none;cursor:pointer;color:inherit;font:inherit;padding:0;text-decoration:underline;">Find an Agent</button>
                     <a href="#" onclick="openLegal('privacy');return false;">Privacy Policy</a>
                     <a href="#" onclick="openLegal('terms');return false;">Terms &amp; Conditions</a>
                     <a href="#" onclick="openLegal('cookies');return false;">Cookie Policy</a>
@@ -2269,11 +2377,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         /* ════════════════════════════════════════════════════════════
-                           CONFIG — Zapier and Supabase are kept fully separate.
-                           Neither one shares any builder, fetch, or error handler with
-                           the other. The ONLY thing in common is the raw form input
-                           (tfData / TRACKING), which is the original user data source.
-                        ════════════════════════════════════════════════════════════ */
+           CONFIG — Zapier and Supabase are kept fully separate.
+           Neither one shares any builder, fetch, or error handler with
+           the other. The ONLY thing in common is the raw form input
+           (tfData / TRACKING), which is the original user data source.
+        ════════════════════════════════════════════════════════════ */
 
         /* ── SUPABASE (independent client) ── */
         const sb = window.supabase.createClient(
@@ -2342,8 +2450,26 @@
             return document.getElementById(inputId).value.replace(/\D/g, '');
         }
 
+        /* NANP (North American Numbering Plan) validation:
+           • must be exactly 10 digits
+           • area code (NPA) first digit: 2-9  (never 0 or 1)
+           • exchange code (NXX) first digit: 2-9  (never 0 or 1)
+           This blocks fake numbers like "1-XXX-XXX-XXXX" that Numverify catches. */
+        function validatePhoneDetail(inputId) {
+            const digits = getPhoneDigits(inputId);
+            if (digits.length === 0) return { ok: false, reason: 'Phone number is required.' };
+            if (digits.length !== 10) return { ok: false, reason: 'Phone number must be exactly 10 digits.' };
+            if (digits[0] === '0' || digits[0] === '1') {
+                return { ok: false, reason: 'Invalid US number — area code cannot start with 0 or 1.' };
+            }
+            if (digits[3] === '0' || digits[3] === '1') {
+                return { ok: false, reason: 'Invalid US number — exchange code cannot start with 0 or 1.' };
+            }
+            return { ok: true };
+        }
+
         function isValidUSPhone(inputId) {
-            return getPhoneDigits(inputId).length === 10;
+            return validatePhoneDetail(inputId).ok;
         }
 
         function getPhoneForSubmit(inputId) {
@@ -2506,9 +2632,17 @@
             heroSelectedAddr = null;
 
         function heroAddressInput(val) {
-            heroSelectedAddr = null;
+            /* When the user edits the input after selecting, invalidate the
+               previous Smarty selection so they can't sneak through with a
+               modified string. */
+            if (heroSelectedAddr && val !== heroSelectedAddr.full) {
+                heroSelectedAddr = null;
+                setHeroVerifiedUI(false);
+            }
             clearTimeout(heroDebounce);
             const dd = document.getElementById('heroAddrDropdown');
+            const errMsg = document.getElementById('heroErrorMsg');
+            if (errMsg) errMsg.classList.remove('show');
             if (!val || val.length < SMARTY_CONFIG.MIN_CHARS) {
                 dd.classList.remove('show');
                 dd.innerHTML = '';
@@ -2521,30 +2655,41 @@
             }, 280);
         }
 
+        function setHeroVerifiedUI(on) {
+            const box = document.getElementById('heroSearchBox');
+            const badge = document.getElementById('heroVerifiedBadge');
+            if (!box || !badge) return;
+            if (on) {
+                box.classList.add('verified');
+                badge.classList.add('show');
+            } else {
+                box.classList.remove('verified');
+                badge.classList.remove('show');
+            }
+        }
+
         function renderHeroDropdown(suggestions) {
             const dd = document.getElementById('heroAddrDropdown');
             if (!suggestions.length) {
-                dd.innerHTML = '<div class="addr-no-results">No matching addresses found</div>';
+                dd.innerHTML = '<div class="addr-no-results">No matching addresses found. Please check spelling.</div>';
                 dd.classList.add('show');
                 return;
             }
             dd.innerHTML = suggestions.map(s => `
-    <div class="addr-item" role="option" onclick="selectHeroAddress('${escHtml(s.full)}','${escHtml(s.city)}','${escHtml(s.state)}','${escHtml(s.zip)}')">
+    <div class="addr-item" role="option" onclick="selectHeroAddress('${escHtml(s.full)}','${escHtml(s.street)}','${escHtml(s.city)}','${escHtml(s.state)}','${escHtml(s.zip)}')">
         <svg width="14" height="14" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 1C6.24 1 4 3.24 4 6c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5z" stroke="#9B9690" stroke-width="1.4"/></svg>
         <div><div class="addr-main">${escHtml(s.street)}${s.secondary ? ' ' + escHtml(s.secondary) : ''}</div><div class="addr-sub">${escHtml(s.city)}, ${escHtml(s.state)} ${escHtml(s.zip)}</div></div>
     </div>`).join('');
             dd.classList.add('show');
         }
 
-        function selectHeroAddress(full, city, state, zip) {
+        function selectHeroAddress(full, street, city, state, zip) {
             document.getElementById('searchInput').value = full;
             document.getElementById('heroAddrDropdown').classList.remove('show');
-            heroSelectedAddr = {
-                full,
-                city,
-                state,
-                zip
-            };
+            heroSelectedAddr = { full, street, city, state, zip };
+            setHeroVerifiedUI(true);
+            const errMsg = document.getElementById('heroErrorMsg');
+            if (errMsg) errMsg.classList.remove('show');
             setTimeout(() => startFlowFromHero(), 300);
         }
 
@@ -2553,7 +2698,12 @@
             tfSelectedAddress = null;
 
         function tfAddressInput(val) {
-            tfSelectedAddress = null;
+            /* Invalidate selection if user edits after selecting */
+            if (tfSelectedAddress && val !== tfSelectedAddress.full) {
+                tfSelectedAddress = null;
+                Object.assign(tfData, { address: '', street: '', city: '', state: '', zip: '' });
+                setTfAddrVerifiedUI(false);
+            }
             clearTimeout(tfAddrDebounce);
             const dd = document.getElementById('tfAddrDropdown');
             if (!val || val.length < SMARTY_CONFIG.MIN_CHARS) {
@@ -2568,10 +2718,24 @@
             }, 280);
         }
 
+        function setTfAddrVerifiedUI(on) {
+            const inp = document.getElementById('tf-address');
+            const badge = document.getElementById('tfAddrVerified');
+            if (!inp || !badge) return;
+            if (on) {
+                inp.classList.add('verified');
+                inp.classList.remove('err');
+                badge.classList.add('show');
+            } else {
+                inp.classList.remove('verified');
+                badge.classList.remove('show');
+            }
+        }
+
         function renderTfDropdown(suggestions) {
             const dd = document.getElementById('tfAddrDropdown');
             if (!suggestions.length) {
-                dd.innerHTML = '<div class="tf-addr-no-results">No matching addresses found</div>';
+                dd.innerHTML = '<div class="tf-addr-no-results">No matching addresses found. Please check spelling.</div>';
                 dd.classList.add('show');
                 return;
             }
@@ -2586,13 +2750,7 @@
         function selectTfAddress(full, street, city, state, zip) {
             document.getElementById('tf-address').value = full;
             document.getElementById('tfAddrDropdown').classList.remove('show');
-            tfSelectedAddress = {
-                full,
-                street,
-                city,
-                state,
-                zip
-            };
+            tfSelectedAddress = { full, street, city, state, zip };
             Object.assign(tfData, {
                 address: full,
                 street,
@@ -2600,7 +2758,13 @@
                 state,
                 zip
             });
-            setTimeout(() => tfNext(1), 380);
+            setTfAddrVerifiedUI(true);
+            const hint = document.getElementById('tfStep1Hint');
+            if (hint) {
+                hint.classList.remove('warn');
+                hint.innerHTML = '✓ Address verified. Click <strong>OK</strong> to continue.';
+            }
+            setTimeout(() => tfNext(1), 500);
         }
 
         /* Close dropdowns on outside click */
@@ -2644,7 +2808,7 @@
             });
             document.querySelectorAll('.tf-field').forEach(f => {
                 f.value = '';
-                f.classList.remove('err');
+                f.classList.remove('err', 'verified');
             });
             const tfPhone = document.getElementById('tf-phone');
             if (tfPhone) {
@@ -2660,7 +2824,12 @@
                 zip: ''
             });
             tfSelectedAddress = null;
-            document.getElementById('tfStep1Hint').textContent = 'Start typing your street address and select from the suggestions.';
+            setTfAddrVerifiedUI(false);
+            const hint = document.getElementById('tfStep1Hint');
+            if (hint) {
+                hint.classList.remove('warn');
+                hint.innerHTML = 'Start typing your street address and <strong style="color:#E8CC7A;">select from the dropdown</strong> to continue.';
+            }
             document.getElementById('tfEmailHint').textContent = "We'll send your top agents by email and confirm by phone.";
             const phoneErr = document.getElementById('tfPhoneError');
             if (phoneErr) phoneErr.classList.remove('show');
@@ -2670,7 +2839,12 @@
             document.getElementById('tfOverlay').classList.add('open');
             document.body.style.overflow = 'hidden';
             resetTfForm();
-            if (preAddr) {
+            /* Only accept a preAddr if it came from a Smarty selection —
+               i.e. it has all four validated fields. Anything else, we start
+               at step 1 and force selection. */
+            const hasValidatedAddr = preAddr && preAddr.city && preAddr.state && preAddr.zip &&
+                (preAddr.full || preAddr.address);
+            if (hasValidatedAddr) {
                 Object.assign(tfData, {
                     address: preAddr.address || preAddr.full || '',
                     street: preAddr.street || preAddr.full || '',
@@ -2678,13 +2852,20 @@
                     state: preAddr.state || '',
                     zip: preAddr.zip || ''
                 });
-                tfSelectedAddress = preAddr;
+                tfSelectedAddress = {
+                    full: preAddr.full || preAddr.address,
+                    street: preAddr.street || preAddr.full || preAddr.address,
+                    city: preAddr.city,
+                    state: preAddr.state,
+                    zip: preAddr.zip
+                };
                 setTimeout(() => {
                     const ai = document.getElementById('tf-address');
-                    if (preAddr.full || preAddr.address) ai.value = preAddr.full || preAddr.address;
+                    ai.value = preAddr.full || preAddr.address;
+                    setTfAddrVerifiedUI(true);
                 }, 60);
             }
-            const startStep = skipToStep || (preAddr && (preAddr.full || preAddr.address) ? 2 : 1);
+            const startStep = skipToStep && hasValidatedAddr ? skipToStep : 1;
             tfCurrent = startStep;
             showTfStep(startStep);
             updateProgress(startStep);
@@ -2725,16 +2906,41 @@
 
         function tfNext(step) {
             if (step === 1) {
-                const addrVal = document.getElementById('tf-address').value.trim();
-                if (!addrVal || addrVal.length < 5) {
-                    document.getElementById('tf-address').classList.add('err');
-                    showToast('Please enter your full property address');
+                /* HARD GATE — user must pick from Smarty. Free-typed text is rejected. */
+                const addrInput = document.getElementById('tf-address');
+                const addrVal = addrInput.value.trim();
+                const hint = document.getElementById('tfStep1Hint');
+                if (!addrVal || addrVal.length < 3) {
+                    addrInput.classList.add('err');
+                    if (hint) {
+                        hint.classList.add('warn');
+                        hint.innerHTML = '⚠ Please enter your property address.';
+                    }
+                    showToast('Please enter your property address');
+                    addrInput.focus();
                     return;
                 }
-                if (!tfSelectedAddress) {
-                    tfData.address = addrVal;
-                    tfData.street = addrVal;
+                if (!tfSelectedAddress || tfSelectedAddress.full !== addrVal) {
+                    /* User typed something but didn't pick from the dropdown. */
+                    addrInput.classList.add('err');
+                    if (hint) {
+                        hint.classList.add('warn');
+                        hint.innerHTML = '⚠ Please <strong style="color:#fca5a5;">select your address from the dropdown</strong> as you type. We need the full verified address (with city, state, and ZIP) to match agents.';
+                    }
+                    showToast('Please select your address from the dropdown suggestions');
+                    /* Re-fire lookup so dropdown appears */
+                    tfAddressInput(addrVal);
+                    addrInput.focus();
+                    return;
                 }
+                /* Passed — copy validated fields into tfData in case they weren't already */
+                Object.assign(tfData, {
+                    address: tfSelectedAddress.full,
+                    street: tfSelectedAddress.street,
+                    city: tfSelectedAddress.city,
+                    state: tfSelectedAddress.state,
+                    zip: tfSelectedAddress.zip
+                });
                 if (tfData.prop) {
                     tfCurrent = 3;
                     showTfStep(3);
@@ -2787,6 +2993,21 @@
         ════════════════════════════════════════════════════════════ */
         async function tfSubmit() {
             /* ---- validation (shared form gate, runs once) ---- */
+            /* Extra defensive: re-check the Smarty selection here too, in
+               case somebody scripted past step 1. This is the SAME rule
+               that step 1 enforces. */
+            if (!tfSelectedAddress || !tfData.city || !tfData.state || !tfData.zip) {
+                showToast('Please go back and select your verified address from the dropdown');
+                tfCurrent = 1;
+                showTfStep(1);
+                const hint = document.getElementById('tfStep1Hint');
+                if (hint) {
+                    hint.classList.add('warn');
+                    hint.innerHTML = '⚠ Please <strong style="color:#fca5a5;">select your address from the dropdown</strong> to continue.';
+                }
+                return;
+            }
+
             const emailVal = document.getElementById('tf-email').value.trim();
             if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
                 document.getElementById('tf-email').classList.add('err');
@@ -2796,35 +3017,20 @@
             tfData.email = emailVal;
 
             const tfPhoneEl = document.getElementById('tf-phone');
-            const tfPhoneVal = tfPhoneEl.value.trim();
-            if (!tfPhoneVal) {
+            const phoneCheck = validatePhoneDetail('tf-phone');
+            if (!phoneCheck.ok) {
                 tfPhoneEl.classList.add('err');
                 tfPhoneEl.classList.remove('shake');
                 void tfPhoneEl.offsetWidth;
                 tfPhoneEl.classList.add('shake');
                 const tfPhErr = document.getElementById('tfPhoneError');
-                tfPhErr.textContent = 'Phone number is required.';
+                tfPhErr.textContent = phoneCheck.reason;
                 tfPhErr.classList.add('show');
                 tfPhErr.scrollIntoView({
                     behavior: 'smooth',
                     block: 'nearest'
                 });
-                showToast('Please enter your phone number');
-                return;
-            }
-            if (!isValidUSPhone('tf-phone')) {
-                tfPhoneEl.classList.add('err');
-                tfPhoneEl.classList.remove('shake');
-                void tfPhoneEl.offsetWidth;
-                tfPhoneEl.classList.add('shake');
-                const tfPhErr = document.getElementById('tfPhoneError');
-                tfPhErr.textContent = 'Please enter a valid 10-digit US phone number.';
-                tfPhErr.classList.add('show');
-                tfPhErr.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest'
-                });
-                showToast('Please enter a valid 10-digit phone number');
+                showToast(phoneCheck.reason);
                 return;
             }
             tfData.phone = getPhoneForSubmit('tf-phone');
@@ -2859,22 +3065,21 @@
              • name = first + last combined
              • phone = raw 10-digit string  (e.g. "5551234567")
              • address split into street_address / city / state / zip
+               (city / state / zip are now GUARANTEED non-empty because the
+                form gates on a Smarty selection before submit)
              • est_iso = ISO 8601 (e.g. "2024-01-15T10:30:00Z")
              • each UTM as its own field
 
-           HOW IT'S SENT (this is the actual fix):
+           HOW IT'S SENT:
              • Body is a JSON STRING.
              • Content-Type is text/plain — this is a "simple" request, so the
                browser sends it directly with NO CORS preflight. Zapier's Catch
                Hook reads the raw body, sees valid JSON, and parses every field.
              • We do NOT use no-cors, so we can READ Zapier's response and KNOW
                it arrived. Zapier replies with {"status":"success", ...}.
-             (application/json would force a preflight OPTIONS; no-cors would
-              make the response unreadable. text/plain + JSON body avoids both.)
         ──────────────────────────────────────────────────────────── */
         function buildZapierPayload() {
             const str = v => (v === undefined || v === null) ? '' : String(v).trim();
-            // ISO 8601 without milliseconds to match their example exactly.
             const estIso = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
             return {
                 name: (str(tfData.first) + ' ' + str(tfData.last)).trim(),
@@ -2904,8 +3109,6 @@
             const res = await fetch(ZAPIER_WEBHOOK_URL, {
                 method: 'POST',
                 headers: {
-                    // text/plain = simple request, no preflight. Zapier still
-                    // parses the JSON body. Lets us read the response too.
                     'Content-Type': 'text/plain;charset=UTF-8'
                 },
                 body: JSON.stringify(payload),
@@ -2916,16 +3119,15 @@
                 info = await res.text();
             } catch (e) {}
             if (!res.ok) throw new Error('Zapier HTTP ' + res.status + ' — ' + info);
-            return info || 'ok'; // Zapier returns e.g. {"status":"success",...}
+            return info || 'ok';
         }
 
         /* ────────────────────────────────────────────────────────────
            ███  SUPABASE  ███  — fully independent block.
-           Builds its OWN row for the seller_leads table:
-             • nullable columns send null when empty
-             • city is NOT NULL, so it always resolves to a non-empty
-               value (parsed from the address, or 'Unknown' as last resort)
-           Also writes a search_logs row when a real city is known.
+           city is guaranteed present because of the Smarty gate, so
+           the "Unknown" fallback should never trigger — but it stays
+           in as a belt-and-braces safety net so a row can never fail
+           the NOT NULL constraint.
         ──────────────────────────────────────────────────────────── */
         function resolveSupabaseCity() {
             if (tfData.city && tfData.city.trim().length > 0 && tfData.city.trim().length < 60) {
@@ -3005,32 +3207,42 @@
         }
 
         function startFlowFromHero() {
-            const inputVal = document.getElementById('searchInput').value.trim();
-            if (!inputVal || inputVal.length < 4) {
-                document.getElementById('searchInput').focus();
-                showToast('Please enter your property address first');
+            const inputEl = document.getElementById('searchInput');
+            const errMsg = document.getElementById('heroErrorMsg');
+            const errMsgText = document.getElementById('heroErrorMsgText');
+            const inputVal = inputEl.value.trim();
+
+            /* If nothing typed, just open the form flow at step 1 (nicer UX
+               than scrolling back to a highlighted input). */
+            if (!inputVal || inputVal.length < 3) {
+                startFlowFromNav();
                 return;
             }
-            let preAddr;
-            if (heroSelectedAddr) {
-                preAddr = {
-                    full: heroSelectedAddr.full,
-                    address: heroSelectedAddr.full,
-                    street: heroSelectedAddr.full,
-                    city: heroSelectedAddr.city,
-                    state: heroSelectedAddr.state,
-                    zip: heroSelectedAddr.zip
-                };
-            } else {
-                preAddr = {
-                    full: inputVal,
-                    address: inputVal,
-                    street: inputVal,
-                    city: '',
-                    state: '',
-                    zip: ''
-                };
+
+            /* HARD GATE — user must have picked a Smarty suggestion, AND the
+               text can't have been edited since. Otherwise we don't know the
+               city/state/zip and the webhook would fail like the client showed. */
+            if (!heroSelectedAddr || heroSelectedAddr.full !== inputVal) {
+                if (errMsgText) {
+                    errMsgText.textContent = 'Please select your address from the dropdown suggestions — we need the verified city, state, and ZIP.';
+                }
+                if (errMsg) errMsg.classList.add('show');
+                inputEl.focus();
+                /* Re-fire lookup so the dropdown appears again */
+                heroAddressInput(inputVal);
+                showToast('Please select your address from the dropdown');
+                return;
             }
+
+            /* Passed — carry the validated address into the form. */
+            const preAddr = {
+                full: heroSelectedAddr.full,
+                address: heroSelectedAddr.full,
+                street: heroSelectedAddr.street || heroSelectedAddr.full,
+                city: heroSelectedAddr.city,
+                state: heroSelectedAddr.state,
+                zip: heroSelectedAddr.zip
+            };
             openTf(preAddr, 2);
         }
 
