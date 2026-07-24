@@ -296,6 +296,7 @@
         }
         .s-input::placeholder { color: #9AA6A1; }
         .s-input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(22,79,59,.1); }
+        .s-input.err { border-color: #ef4444; }
         .s-btn {
             width: 100%; margin-top: 14px; background: var(--green); color: var(--white);
             border: none; cursor: pointer; padding: 17px; border-radius: 100px;
@@ -1470,7 +1471,7 @@
                     <span class="fc-step">Step 1 of 6</span>
                 </div>
                 <h2 class="fc-q">What&rsquo;s the address of the property you want to sell?</h2>
-                <p class="fc-hint">Start typing your address and select it from the dropdown.</p>
+                <p class="fc-hint">Start typing your address and select it from the dropdown to continue.</p>
                 <div class="fc-progress">
                     <div class="fc-track"><div class="fc-fill"></div></div>
                     <span class="fc-vlabel">Verified address</span>
@@ -1736,7 +1737,7 @@
             <!-- Step 1: Address -->
             <div class="tf-step active" id="tfStep1">
                 <div class="tf-q">What's the address of the<br>property you want to sell?</div>
-                <div class="tf-hint" id="tfStep1Hint">Start typing your street address and select from the suggestions.</div>
+                <div class="tf-hint" id="tfStep1Hint">Start typing your street address and select it from the suggestions to continue.</div>
                 <div class="tf-addr-wrap">
                     <input class="tf-field" id="tf-address" type="text" placeholder="123 Main St, New York, NY 10001" autocomplete="off" oninput="tfAddressInput(this.value)" aria-required="true" required />
                     <div class="tf-addr-dropdown" id="tfAddrDropdown"></div>
@@ -2191,8 +2192,8 @@
             if (result && result.status === 'abort') return;
             if (!suggestions.length) {
                 dd.innerHTML = (result && result.status === 'error')
-                    ? '<div class="addr-no-results">Address lookup is unavailable right now — type your full address and press Enter to continue.</div>'
-                    : '<div class="addr-no-results">No matching addresses found</div>';
+                    ? '<div class="addr-no-results">Address lookup is unavailable right now. Please try again in a moment.</div>'
+                    : '<div class="addr-no-results">No matching addresses found — try a different street address</div>';
                 dd.classList.add('show');
                 return;
             }
@@ -2205,7 +2206,9 @@
         }
 
         function selectHeroAddress(full, city, state, zip) {
-            document.getElementById('searchInput').value = full;
+            const input = document.getElementById('searchInput');
+            input.value = full;
+            input.classList.remove('err');
             document.getElementById('heroAddrDropdown').classList.remove('show');
             heroSelectedAddr = {
                 full,
@@ -2242,8 +2245,8 @@
             if (result && result.status === 'abort') return;
             if (!suggestions.length) {
                 dd.innerHTML = (result && result.status === 'error')
-                    ? '<div class="tf-addr-no-results">Address lookup is unavailable right now — type your full address to continue.</div>'
-                    : '<div class="tf-addr-no-results">No matching addresses found</div>';
+                    ? '<div class="tf-addr-no-results">Address lookup is unavailable right now. Please try again in a moment.</div>'
+                    : '<div class="tf-addr-no-results">No matching addresses found — try a different street address</div>';
                 dd.classList.add('show');
                 return;
             }
@@ -2256,7 +2259,9 @@
         }
 
         function selectTfAddress(full, street, city, state, zip) {
-            document.getElementById('tf-address').value = full;
+            const input = document.getElementById('tf-address');
+            input.value = full;
+            input.classList.remove('err');
             document.getElementById('tfAddrDropdown').classList.remove('show');
             tfSelectedAddress = {
                 full,
@@ -2332,7 +2337,7 @@
                 zip: ''
             });
             tfSelectedAddress = null;
-            document.getElementById('tfStep1Hint').textContent = 'Start typing your street address and select from the suggestions.';
+            document.getElementById('tfStep1Hint').textContent = 'Start typing your street address and select it from the suggestions to continue.';
             document.getElementById('tfEmailHint').textContent = "We'll send your top agents by email and confirm by phone.";
             const phoneErr = document.getElementById('tfPhoneError');
             if (phoneErr) phoneErr.classList.remove('show');
@@ -2397,15 +2402,22 @@
 
         function tfNext(step) {
             if (step === 1) {
-                const addrVal = document.getElementById('tf-address').value.trim();
+                const addrInput = document.getElementById('tf-address');
+                const addrVal = addrInput.value.trim();
                 if (!addrVal || addrVal.length < 5) {
-                    document.getElementById('tf-address').classList.add('err');
+                    addrInput.classList.add('err');
                     showToast('Please enter your full property address');
                     return;
                 }
-                if (!tfSelectedAddress) {
-                    tfData.address = addrVal;
-                    tfData.street = addrVal;
+                // Require a Smarty suggestion so city / state / zip are always captured
+                if (!tfSelectedAddress || !tfSelectedAddress.city) {
+                    addrInput.classList.add('err');
+                    const dd = document.getElementById('tfAddrDropdown');
+                    if (dd && !dd.classList.contains('show') && addrVal.length >= SMARTY_CONFIG.MIN_CHARS) {
+                        tfAddressInput(addrVal);
+                    }
+                    showToast('Please select your address from the suggestions');
+                    return;
                 }
                 if (tfData.prop) {
                     tfCurrent = 3;
@@ -2677,33 +2689,32 @@
         }
 
         function startFlowFromHero() {
-            const inputVal = document.getElementById('searchInput').value.trim();
+            const searchInput = document.getElementById('searchInput');
+            const inputVal = searchInput.value.trim();
             if (!inputVal || inputVal.length < 4) {
-                document.getElementById('searchInput').focus();
+                searchInput.focus();
                 showToast('Please enter your property address first');
                 return;
             }
-            let preAddr;
-            if (heroSelectedAddr) {
-                preAddr = {
-                    full: heroSelectedAddr.full,
-                    address: heroSelectedAddr.full,
-                    street: heroSelectedAddr.full,
-                    city: heroSelectedAddr.city,
-                    state: heroSelectedAddr.state,
-                    zip: heroSelectedAddr.zip
-                };
-            } else {
-                preAddr = {
-                    full: inputVal,
-                    address: inputVal,
-                    street: inputVal,
-                    city: '',
-                    state: '',
-                    zip: ''
-                };
+            // Require a Smarty suggestion so city / state / zip are always captured
+            if (!heroSelectedAddr || !heroSelectedAddr.city) {
+                searchInput.classList.add('err');
+                searchInput.focus();
+                const dd = document.getElementById('heroAddrDropdown');
+                if (dd && !dd.classList.contains('show') && inputVal.length >= SMARTY_CONFIG.MIN_CHARS) {
+                    heroAddressInput(inputVal);
+                }
+                showToast('Please select your address from the suggestions');
+                return;
             }
-            openTf(preAddr, 2);
+            openTf({
+                full: heroSelectedAddr.full,
+                address: heroSelectedAddr.full,
+                street: heroSelectedAddr.full,
+                city: heroSelectedAddr.city,
+                state: heroSelectedAddr.state,
+                zip: heroSelectedAddr.zip
+            }, 2);
         }
 
         function startFlowWithProp(propType) {
@@ -2721,7 +2732,7 @@
             openTf();
             setTimeout(() => {
                 document.getElementById('tf-address').placeholder = 'e.g. 123 Main St, ' + city;
-                document.getElementById('tfStep1Hint').textContent = 'Enter your full property address in ' + city + ' to find your top 3 agents.';
+                document.getElementById('tfStep1Hint').textContent = 'Enter your full property address in ' + city + ' and select it from the suggestions.';
             }, 100);
         }
 
